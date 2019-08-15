@@ -1,10 +1,6 @@
-drop database DBProyecto;
+drop database if exists DBProyecto;
 create database DBProyecto;
 use DBProyecto;
-
-
---CREATE USER ‘usuario’@'%' IDENTIFIED BY 'contraseña';
---GRANT REPLICATION SLAVE ON *.* TO 'usuario'@'%'  ;
 
 drop table if exists Cuentas;
 create table Cuentas(
@@ -115,13 +111,13 @@ create table producto(
 	descripcion varchar(100),
 	precio decimal(10,2),
 	eliminado tinyint(1),
-	primary key (idArticulo)
+	primary key (idProducto)
 );
 
 drop table if exists pedido;
 create table pedido(
 	idPedido int(10),
-	idRepartidor varchar(10)
+	idRepartidor varchar(10),
 	estado varchar(15),
 	HoraSalida Time,
 	HoraEntrega Time,
@@ -146,7 +142,7 @@ create table venta(
 drop table if exists factura;
 create table factura(
 	idFactura int(10),
-	idVenta varchar(10)
+	idVenta varchar(10),
 	PrecioTotal decimal(8,2),
 	primary key (idFactura),
 	foreign key(idVenta) references venta(idVenta)
@@ -171,7 +167,7 @@ create table productos_local(
 	primary key(idProducto),
 	foreign key(idProducto) references producto(idProducto),
 	foreign key(idPedido) references pedido(idPedido)
-};
+);
 
 drop table if exists productos_pedido;
 create table productos_pedido(
@@ -181,7 +177,7 @@ create table productos_pedido(
 	primary key(idProducto),
 	foreign key(idProducto) references producto(idProducto),
 	foreign key(idPedido) references pedido(idPedido)
-};
+);
 
 drop table if exists pedido_cliente;
 create table pedido_cliente(
@@ -190,7 +186,7 @@ create table pedido_cliente(
 	primary key(idPedido),
 	foreign key(idPedido) references pedido(idPedido),
 	foreign key(idCliente) references cliente(idCliente)
-};
+);
 
 drop table if exists pedido_sucursal;
 create table pedido_sucursal(
@@ -199,7 +195,7 @@ create table pedido_sucursal(
 	primary key(idPedido),
 	foreign key(idPedido) references pedido(idPedido),
 	foreign key(idSucursal) references sucursal(idSucursal)
-};
+);
 
 drop table if exists productos_bodega;
 create table productos_bodega(
@@ -208,7 +204,7 @@ create table productos_bodega(
 	primary key(idProducto),
 	foreign key(idProducto) references producto(idProducto),
 	foreign key(idBodega) references bodega(idBodega)
-};
+);
 
 drop table if exists productos_factura;
 create table productos_factura(
@@ -218,5 +214,4 @@ create table productos_factura(
 	primary key(idProducto),
 	foreign key(idProducto) references producto(idProducto),
 	foreign key(idFactura) references factura(idFactura)
-};
-
+);
