@@ -5,10 +5,50 @@
  */
 package Modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author LuisEduardo
  */
 public class Ruta {
+    private Repartidor rep;
+    private ArrayList<Pedido> listPedidos;
+    private String camino;
+
+    public Ruta(Repartidor rep, ArrayList<Pedido> listPedidos, String camino) {
+        this.rep = rep;
+        this.listPedidos = listPedidos;
+        this.camino = camino;
+    }
+
+    public Repartidor getRep() {
+        return rep;
+    }
+
+    public void setRep(Repartidor rep) {
+        this.rep = rep;
+    }
+
     
+
+    public ArrayList<Pedido> getListPedidos() {
+        return listPedidos;
+    }
+
+    public void setListPedidos(ArrayList<Pedido> listPedidos) {
+        this.listPedidos = listPedidos;
+    }
+
+    public String getCamino() {
+        return camino;
+    }
+
+    public void setCamino(String camino) {
+        this.camino = camino;
+    }
+
+    public void imprimirRuta(){
+        
+    }
 }

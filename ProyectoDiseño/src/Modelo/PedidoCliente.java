@@ -5,18 +5,23 @@
  */
 package Modelo;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author LuisEduardo
  */
-public class PedidoCliente {
+public class PedidoCliente extends Pedido{
     private Cliente cliente;
     private Venta venta;
 
-    public PedidoCliente(Cliente cliente, Venta venta) {
+    public PedidoCliente(Cliente cliente, Venta venta, String estadoEntrega, DataBase db) {
+        super(estadoEntrega, db,cliente.getDireccion());
         this.cliente = cliente;
         this.venta = venta;
     }
+
+    
 
     public Cliente getCliente() {
         return cliente;

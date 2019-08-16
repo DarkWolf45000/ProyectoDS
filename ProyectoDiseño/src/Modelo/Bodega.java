@@ -107,6 +107,12 @@ public class Bodega {
         this.db = db;
     }
     
+    public Repartidor repartidorDisponible(){
+        return this.colaRepartidores.poll();
+    }
     
+    public void agregarRepartidor(Repartidor rep){
+        this.colaRepartidores.offer(rep);
+    }
     
 }

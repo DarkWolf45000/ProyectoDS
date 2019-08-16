@@ -6,36 +6,30 @@
 package Modelo;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  *
  * @author LuisEduardo
  */
-class Pedido {
-    private Repartidor repartidor;
+public class Pedido {
     private LocalDate horaS;
     private LocalDate horaE;
     private String estadoEntrega;
+    private String direccion;
     private DataBase db;
+    public static ArrayList<Pedido> listPedido=new ArrayList<>();
 
-    public Pedido(Repartidor repartidor, LocalDate horaS, LocalDate horaE, String estadoEntrega, DataBase db) {
-        this.repartidor = repartidor;
-        this.horaS = horaS;
-        this.horaE = horaE;
+    public Pedido(String estadoEntrega, DataBase db,String direccion){
+        this.direccion=direccion;
         this.estadoEntrega = estadoEntrega;
         this.db = db;
     }
-    
-    
-    
-    public Repartidor getRepartidor() {
-        return repartidor;
-    }
 
-    public void setRepartidor(Repartidor repartidor) {
-        this.repartidor = repartidor;
+    public String getDireccion() {
+        return direccion;
     }
-
+    
     public LocalDate getHoraS() {
         return horaS;
     }
