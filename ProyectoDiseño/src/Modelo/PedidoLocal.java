@@ -16,8 +16,8 @@ public class PedidoLocal extends Pedido {
     private Local local;
     private HashMap<Integer,Producto> listProducto;
 
-    public PedidoLocal(Local local, HashMap<Integer, Producto> listProducto, Repartidor repartidor, LocalDate horaS, LocalDate horaE, String estadoEntrega, DataBase db) {
-        super(repartidor, horaS, horaE, estadoEntrega, db);
+    public PedidoLocal(Local local, HashMap<Integer, Producto> listProducto, String estadoEntrega, DataBase db) {
+        super(estadoEntrega, db,local.getDireccion());
         this.local = local;
         this.listProducto = listProducto;
     }

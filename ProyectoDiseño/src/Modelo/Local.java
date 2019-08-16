@@ -56,5 +56,9 @@ public class Local {
     public static Local getMatriz(){
         return Local.matriz;
     }
+
+    public String getDireccion() {
+        return direccion;
+    }
     
 }
