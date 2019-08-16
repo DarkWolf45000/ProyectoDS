@@ -44,9 +44,16 @@ public class Local {
         this.db = db;
     }
     
-    public static Local GetMatriz(){
-        
-        
+    public static Local createMatriz(String idlocal, String direccion, ArrayList<Producto> listProducto, ArrayList<Usuario> listVendedores, Gerente gerente, Usuario administrador, DataBase db){
+        if(Local.matriz==null){
+            Local rm=new Local(idlocal,direccion,listProducto, listVendedores,gerente,administrador,true,db);
+            return rm;
+        }else{
+            return Local.matriz;
+        }
+    }
+    
+    public static Local getMatriz(){
         return Local.matriz;
     }
     

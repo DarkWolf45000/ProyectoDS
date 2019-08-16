@@ -9,7 +9,7 @@ package Modelo;
  *
  * @author LuisEduardo
  */
-public class Usuario extends Persona{
+public class Usuario extends Persona implements User{
     protected String usuario;
     protected String clave;
     protected String tipou;
@@ -39,9 +39,6 @@ public class Usuario extends Persona{
         this.clave = clave;
     }
 
-    public String getTipou() {
-        return tipou;
-    }
 
     public void setTipou(String tipou) {
         this.tipou = tipou;
@@ -53,6 +50,11 @@ public class Usuario extends Persona{
 
     public void setDb(DataBase db) {
         this.db = db;
+    }
+
+    @Override
+    public String getTipoU() {
+        return this.tipou;
     }
     
     
