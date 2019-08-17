@@ -116,12 +116,14 @@ drop table if exists pedido;
 create table pedido(
 	idPedido int(10),
 	idRepartidor varchar(10),
+    idBodega int(10),
 	estado varchar(15),
 	HoraSalida Time,
 	HoraEntrega Time,
 	eliminado tinyint(1),
 	primary key (idPedido),
-	foreign key(idRepartidor) references repartidor_bodega(idRepartidor)
+	foreign key(idRepartidor) references repartidor_bodega(idRepartidor),
+    foreign key(idBodega) references bodega(idBodega)
 );
 
 drop table if exists venta;

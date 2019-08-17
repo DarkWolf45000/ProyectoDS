@@ -38,7 +38,7 @@ Insert into producto values (1,"Aromatel","Higiene","Producto para limpiar",1.55
 							(3,"Galak","Alimentos","Comestible dulce",0.70,0),
 							(4,"Mi Lechera","Alimentos","Bebida lactea",1.30,0),
 							(5,"Club Social","Alimentos","Comestible para fiestas",0.15,0);
-Insert into pedido values (1,"0950950950","Entregado",'10:00','11:15',0);
+Insert into pedido values (1,"0950950950",1,"Entregado",'10:00','11:15',0);
 
 Insert into venta values (1,1,1,"efectivo",'2019-08-15',0);
 
