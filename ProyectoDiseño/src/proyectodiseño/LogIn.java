@@ -5,6 +5,10 @@
  */
 package proyectodiseño;
 
+import Modelo.BD;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -25,7 +29,7 @@ import javafx.stage.Stage;
  * @author LuisEduardo
  */
 public class LogIn extends Application {
-    
+    Connection cn=BD.getConexion();
     @Override
     public void start(Stage primaryStage) {
         Label lbtit=new Label("Log In");
@@ -79,7 +83,9 @@ public class LogIn extends Application {
                     alert.setContentText("Falta usuario o contraseña");
                     alert.showAndWait();
                 }else{
-                    
+                    if(verificar(us,cont)){
+                        //procedimiento que lleve a la ventana de empleados o admin segun sea el caso
+                    }
                 }
             }
         });
@@ -91,7 +97,25 @@ public class LogIn extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+    public boolean verificar (String usuario, String contraseña){
+        try{
+            String sql= "{call verificar(?,?)";
+            CallableStatement cst=cn.prepareCall(sql);
+            cst.setString(1,usuario);
+            cst.setString(2, contraseña);
+            ResultSet rs = cst.executeQuery();
+            while(rs.next()){
+                String user=rs.getString(1);
+                String pass=rs.getString(2);
+                if(usuario.equals(user)&& contraseña.equals(pass)){
+                    return true;
+                }
+            }
+            return false;
+        }catch (Exception e){
+            return false;
+        }
+    }
    /* public static Empleado verificarCuenta(String us, String contra){
         for(Empleado e: Empleado.listEmpleado){
                 if(e.getUsuario().getUsuario().equals(us) && e.getUsuario().comprobarClave(contra)){

@@ -7,8 +7,8 @@ package Modelo;
 
 /**
  *
- * @author LuisEduardo
+ * @author DiegoY
  */
 public interface Buscar {
-    
+     public Producto Buscarproducto();
 }
