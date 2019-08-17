@@ -99,7 +99,7 @@ public class LogIn extends Application {
     }
     public boolean verificar (String usuario, String contraseña){
         try{
-            String sql= "{call verificar(?,?)";
+            String sql= "{call verificar(?,?)}";
             CallableStatement cst=cn.prepareCall(sql);
             cst.setString(1,usuario);
             cst.setString(2, contraseña);
@@ -108,11 +108,13 @@ public class LogIn extends Application {
                 String user=rs.getString(1);
                 String pass=rs.getString(2);
                 if(usuario.equals(user)&& contraseña.equals(pass)){
+                    System.out.println("yes");
                     return true;
                 }
             }
             return false;
         }catch (Exception e){
+            System.out.println(e);
             return false;
         }
     }

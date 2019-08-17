@@ -4,9 +4,7 @@
  * and open the template in the editor.
  */
 package Modelo;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import org.apache.commons.lang.StringUtils;
+
 /**
  *
  * @author DiegoY
