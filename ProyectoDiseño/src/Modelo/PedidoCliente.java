@@ -15,11 +15,13 @@ public class PedidoCliente extends Pedido{
     private Cliente cliente;
     private Venta venta;
 
-    public PedidoCliente(Cliente cliente, Venta venta, String estadoEntrega, DataBase db) {
-        super(estadoEntrega, db,cliente.getDireccion());
+    public PedidoCliente(Cliente cliente, Venta venta, String id, String estadoEntrega, String direccion, DataBase db) {
+        super(id, estadoEntrega, direccion, db);
         this.cliente = cliente;
         this.venta = venta;
     }
+
+   
 
     
 

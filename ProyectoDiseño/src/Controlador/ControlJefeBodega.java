@@ -5,8 +5,10 @@
  */
 package Controlador;
 
+import Modelo.Bodega;
 import Modelo.JefeBodega;
 import Modelo.Pedido;
+import Modelo.Repartidor;
 import Modelo.Ruta;
 import java.util.ArrayList;
 import javafx.scene.control.TextArea;
@@ -18,12 +20,77 @@ import javafx.scene.control.TextArea;
 public class ControlJefeBodega {
     
     public void crearRuta(TextArea ta, ArrayList<Pedido> ped,JefeBodega jf){
+        Ruta r=jf.crearRuta(ped, ta.getText());
         
-        Ruta rt=new Ruta(jf.getBodega().repartidorDisponible(),ped,ta.getText());
-        rt.imprimirRuta();
+        if(r.getRep()==null){
+            //alerta no hay repartidor disponible
+        }else{
+            r.imprimirRuta();
+        }
+        
     }
     
+    public ArrayList<Pedido> obtenerPedidos(){
+        
+        return null;
+    }
     
+    public Pedido consultarPedido(String id){
+        Pedido p=null;
+        try{
+        int idp=Integer.parseInt(id);
+            //obtener pedido
+            return p;
+        }catch(Exception e){
+            //alerta de que se escribieron letras en vez de numeros
+        }
+        return p;
+    }
     
+    public Boolean actualizarPedido(String id, String idRep,String horaS,String horaE,String estado,JefeBodega jb){
+        if(id.equalsIgnoreCase("")){
+            //alerta
+            return false;
+        }
+        
+        if(idRep.equalsIgnoreCase("")){
+            //alerta
+            return false;
+        }
+        
+        if(horaS.equalsIgnoreCase("")){
+            //alerta
+            return false;
+        }
+        
+        if(horaE.equalsIgnoreCase("")){
+            //alerta
+            return false;
+        }
+        
+        if(estado.equalsIgnoreCase("")){
+            //alerta
+            return false;
+        }
+        
+        int idrep=0;
+        int idped=0;
+        try{
+            idrep=Integer.parseInt(idRep);
+            idped=Integer.parseInt(id);
+        }catch(Exception e){
+            //alerta
+            return false;
+        }
+        
+        //query para obtener repartidor
+        Repartidor rep=null;
+        
+        
+        
+        
+        //query para actualizar el pedido en la base de datos
+        return true;
+    }
     
 }

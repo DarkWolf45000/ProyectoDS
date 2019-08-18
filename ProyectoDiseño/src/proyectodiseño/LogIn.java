@@ -5,6 +5,7 @@
  */
 package proyectodiseño;
 
+import Controlador.ControlLogIn;
 import Modelo.BD;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -23,15 +24,18 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
+import Modelo.User;
+import Modelo.Usuario;
+import java.util.ArrayList;
 /**
  *
  * @author LuisEduardo
  */
 public class LogIn extends Application {
-    Connection cn=BD.getConexion();
+    
     @Override
     public void start(Stage primaryStage) {
+        ControlLogIn cgl=new ControlLogIn();
         Label lbtit=new Label("Log In");
 
         Label lbus=new Label("Usuario: ");
@@ -83,8 +87,9 @@ public class LogIn extends Application {
                     alert.setContentText("Falta usuario o contraseña");
                     alert.showAndWait();
                 }else{
-                    if(verificar(us,cont)){
+                    if(cgl.verificar(us,cont)){
                         //procedimiento que lleve a la ventana de empleados o admin segun sea el caso
+                        cgl.siguientePantalla(us,cont,primaryStage,scene);
                     }
                 }
             }
@@ -97,45 +102,6 @@ public class LogIn extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    public boolean verificar (String usuario, String contraseña){
-        try{
-            String sql= "{call verificar(?,?)}";
-            CallableStatement cst=cn.prepareCall(sql);
-            cst.setString(1,usuario);
-            cst.setString(2, contraseña);
-            ResultSet rs = cst.executeQuery();
-            while(rs.next()){
-                String user=rs.getString(1);
-                String pass=rs.getString(2);
-                if(usuario.equals(user)&& contraseña.equals(pass)){
-                    System.out.println("yes");
-                    return true;
-                }
-            }
-            return false;
-        }catch (Exception e){
-            System.out.println(e);
-            return false;
-        }
-    }
-   /* public static Empleado verificarCuenta(String us, String contra){
-        for(Empleado e: Empleado.listEmpleado){
-                if(e.getUsuario().getUsuario().equals(us) && e.getUsuario().comprobarClave(contra)){
-                    return e;
-                }
-        }
-        return null;
-    }
-
-    public static void SeleccionarEscena(Empleado emp, Stage st, Scene scp){
-        if(emp instanceof Administrador){
-            st.setTitle("Administrador Menu");
-            st.setScene(AdministradorMenu.vetanaAdmin(st, scp,(Administrador)emp));
-        }else if(emp instanceof Planificador){
-            st.setTitle("Planificador Menu");
-        }else if(emp instanceof Cajero){
-            st.setTitle("Cajero Menu");
-        }
-    }*/
+    
     
 }

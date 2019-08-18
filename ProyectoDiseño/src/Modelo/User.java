@@ -9,7 +9,7 @@ package Modelo;
  *
  * @author LuisEduardo
  */
-interface User {
+public interface User {
     
     String getTipoU();
 }

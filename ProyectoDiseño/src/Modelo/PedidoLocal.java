@@ -16,11 +16,13 @@ public class PedidoLocal extends Pedido {
     private Local local;
     private HashMap<Integer,Producto> listProducto;
 
-    public PedidoLocal(Local local, HashMap<Integer, Producto> listProducto, String estadoEntrega, DataBase db) {
-        super(estadoEntrega, db,local.getDireccion());
+    public PedidoLocal(Local local, HashMap<Integer, Producto> listProducto, String id, String estadoEntrega, String direccion, DataBase db) {
+        super(id, estadoEntrega, direccion, db);
         this.local = local;
         this.listProducto = listProducto;
     }
+
+    
     
     
     

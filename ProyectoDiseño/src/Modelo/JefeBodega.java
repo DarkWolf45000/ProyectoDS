@@ -5,6 +5,8 @@
  */
 package Modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author LuisEduardo
@@ -24,6 +26,29 @@ public class JefeBodega extends Persona{
         this.bodega = bodega;
     }
     
+    public Ruta crearRuta(ArrayList<Pedido> listp,String camino){
+        Ruta r=new Ruta(listp,camino);
+        if(this.AsignarRepartidor(r)){
+            return r;
+        }else{
+            r.setRep(null);
+            return r;
+        }
+    }
     
+    public boolean AsignarRepartidor(Ruta r){
+        Repartidor rep=this.bodega.repartidorDisponible();
+        if(rep==null){
+            return false;
+        }else{
+            r.setRep(rep);
+            return true;
+        }
+        
+    }
     
+    public boolean ColocarRepartidor(Repartidor rep){
+        this.bodega.agregarRepartidor(rep);
+        return true;
+    }
 }

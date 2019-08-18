@@ -16,8 +16,7 @@ public class Ruta {
     private ArrayList<Pedido> listPedidos;
     private String camino;
 
-    public Ruta(Repartidor rep, ArrayList<Pedido> listPedidos, String camino) {
-        this.rep = rep;
+    public Ruta(ArrayList<Pedido> listPedidos, String camino) {
         this.listPedidos = listPedidos;
         this.camino = camino;
     }

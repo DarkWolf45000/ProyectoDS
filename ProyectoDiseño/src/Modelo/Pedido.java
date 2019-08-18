@@ -13,6 +13,7 @@ import java.util.ArrayList;
  * @author LuisEduardo
  */
 public class Pedido {
+    private String id;
     private LocalDate horaS;
     private LocalDate horaE;
     private String estadoEntrega;
@@ -20,11 +21,22 @@ public class Pedido {
     private DataBase db;
     public static ArrayList<Pedido> listPedido=new ArrayList<>();
 
-    public Pedido(String estadoEntrega, DataBase db,String direccion){
-        this.direccion=direccion;
+    public Pedido(String id, String estadoEntrega, String direccion, DataBase db) {
+        this.id = id;
         this.estadoEntrega = estadoEntrega;
+        this.direccion = direccion;
         this.db = db;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    
 
     public String getDireccion() {
         return direccion;

@@ -17,8 +17,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 /**
@@ -34,7 +38,6 @@ public class Pedidos {
         Label lbtit=new Label("Creacion de Rutas");
         
         TableView tvPedido=new TableView();
-        ArrayList<Pedido> lr=new ArrayList<>();
         
         TableColumn<String, Pedido> column1 = new TableColumn<>("Estado");
         column1.setCellValueFactory(new PropertyValueFactory<>("estadoEntrega"));
@@ -54,27 +57,29 @@ public class Pedidos {
         ta.setEditable(false);
         
         Button btncr=new Button("Crear");
-        
+        vb.getChildren().addAll(lbtit,tvPedido,ta,btncr);
         Scene sc=new Scene(vb,500,500);
-        ArrayList<Pedido> ar=new ArrayList<Pedido>();
+        ArrayList<Pedido> ar=new ArrayList<>();
         tvPedido.setOnMouseClicked((MouseEvent e)->{
-            textoRuta(ta,(Pedido) tvPedido.getSelectionModel().getSelectedItem());
+            textoRuta(ta,(Pedido) tvPedido.getSelectionModel().getSelectedItem(),ar);
             
         });
         
         btncr.setOnMouseClicked((MouseEvent e)->{
-            cjb.crearRuta(ta, lr,jb);
+            cjb.crearRuta(ta, ar,jb);
         });
         
         
         return sc;
     }
     
-    public static void textoRuta(TextArea ta,Pedido ped){
+    public static void textoRuta(TextArea ta,Pedido ped,ArrayList<Pedido> ar){
         if(ta.getText().contains(ped.getDireccion())){
             ta.setText(ta.getText().replaceAll(ped.getDireccion(), ""));
             ta.setText(ta.getText().replaceAll("--", "-"));
+            ar.remove(ped);
         }else{
+            ar.add(ped);
             if(ta.getText().equals("")){
                 ta.setText(ped.getDireccion());
             }else{
@@ -84,7 +89,82 @@ public class Pedidos {
     }
     
     public static Scene actualizarPedidos(){
-        return null;
+        ControlJefeBodega cjb=new ControlJefeBodega();
+        VBox vb=new VBox();
+        Label lbtit=new Label("Buscar Pedido");
+        
+        TextField txtidb=new TextField();
+        Button btnbus=new Button();
+        
+        HBox hb=new HBox();
+        hb.getChildren().addAll(lbtit,txtidb,btnbus);
+        
+        Label lbid=new Label("Id: ");
+        TextField txtid=new TextField();
+        txtid.setEditable(false);
+        Label lbdir=new Label("Direccion: ");
+        TextField txtdir=new TextField();
+        txtdir.setEditable(false);
+        
+        Label lbes=new Label("Estado de entrega:");
+        TextField txtes=new TextField();
+        
+        Label lbhs=new Label("Hora de Salida: ");
+        TextField txths=new TextField();
+        
+        Label lbhe=new Label("Hora de Entrega: ");
+        TextField txthe=new TextField();
+        
+        Label lbrep=new Label("Cedula Repartidor: ");
+        TextField txtrep=new TextField();
+        
+        GridPane gp=new GridPane();
+        
+        gp.add(lbid, 0, 0);
+        gp.add(txtid, 1, 0);
+        
+        gp.add(lbdir, 0, 1);
+        gp.add(txtdir, 1, 1);
+        
+        gp.add(lbes, 0, 2);
+        gp.add(txtes, 1, 2);
+        
+        gp.add(lbhs, 0, 3);
+        gp.add(txths, 1, 3);
+        
+        gp.add(lbhe, 0, 4);
+        gp.add(txthe, 1, 4);
+        
+        gp.add(lbrep, 0, 5);
+        gp.add(txtrep, 1, 5);
+        
+        Button btng=new Button("Guardar");
+        StackPane sp=new StackPane();
+        sp.getChildren().add(btng);
+        vb.getChildren().addAll(hb,gp,sp);
+        Scene sc=new Scene(vb,500,500);
+        
+        btnbus.setOnMouseClicked((MouseEvent e)->{
+            String id=txtidb.getText();
+            if(id.equalsIgnoreCase("")){
+                Pedido p=cjb.consultarPedido(id);
+                if(p==null){
+                    //alerta de que no se encontro
+                }else{
+                    txtid.setText(p.getId());
+                    txtdir.setText(p.getDireccion());
+                }
+            }else{
+                //alerta de que no se puso el id
+            }
+        });
+        
+        btng.setOnMouseClicked((MouseEvent e)->{
+           cjb.actualizarPedido(txtid.getText(), txtrep.getText(), txths.getText(), txthe.getText(), txtes.getText(),null);
+        
+        });
+        
+        return sc;
     }
     
 }
