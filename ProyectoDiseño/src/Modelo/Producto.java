@@ -5,6 +5,7 @@
  */
 package Modelo;
 
+import Controlador.ControlLogIn;
 import Estrategy.Buscar;
 import static Controlador.ControlLogIn.cn;
 import Estrategy.BuscarCategoria;
@@ -178,6 +179,23 @@ public class Producto {
         Producto.bq=new BuscarCategoria();
         ResultSet rs=bq.Buscarproducto(cat);
         try {
+            while(rs.next()){
+                Producto p=new Producto(rs.getInt(1),rs.getString(4),rs.getFloat(5),rs.getInt(6),rs.getString(3));
+                p.setNombre(rs.getString(2));
+                lp.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Producto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lp;
+    }
+    
+    public static ArrayList<Producto> productosTodos(){
+        ArrayList<Producto> lp=new ArrayList<>();
+        try {
+            String sql= "{call obtenerProductosTodos}";
+            CallableStatement cst=ControlLogIn.db.getC().prepareCall(sql);
+            ResultSet rs = cst.executeQuery();
             while(rs.next()){
                 Producto p=new Producto(rs.getInt(1),rs.getString(4),rs.getFloat(5),rs.getInt(6),rs.getString(3));
                 p.setNombre(rs.getString(2));

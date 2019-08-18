@@ -30,6 +30,17 @@ Begin
 End //
 delimiter ;
 
+drop procedure if exists obtenerProductosTodos;
+delimiter //
+create procedure obtenerProductosTodos ()
+Begin
+	Select producto.idProducto,nombre,categoria,descripcion,precio,productos_bodega.cantidad 
+    from producto 
+    inner join productos_bodega on productos_bodega.idProducto=producto.idProducto and producto.eliminado=0;
+End //
+delimiter ;
+
+
 drop procedure if exists buscar_descripcion;
 delimiter //
 create procedure buscar_descripcion (IN descripcion char(100))

@@ -27,7 +27,7 @@ public class ControlStock {
     
     
     public ArrayList<Producto> obtenerProductos(String parametro,String criterio){
-        ArrayList<Producto> lib=new ArrayList<>();
+        ArrayList<Producto> lib;
         if(criterio.equalsIgnoreCase("Por nombre")){
             lib=Producto.buscarNombre(parametro);
         }else if(criterio.equalsIgnoreCase("Por descripcion")){
@@ -35,7 +35,7 @@ public class ControlStock {
         }else if(criterio.equalsIgnoreCase("Por categoria")){
             lib=Producto.buscarCategoria(parametro);
         }else{
-            
+            lib=Producto.productosTodos();
         }
         return lib;
     }
