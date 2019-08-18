@@ -88,30 +88,33 @@ Begin
 	FROM Empleados
 	INNER JOIN Cuentas ON Empleados.idCuenta=Cuentas.idCuenta and Cuentas.usuario=usuarios and Cuentas.clave=contraseña
     INNER JOIN Administrador ON Administrador.idAdministrador=Empleados.cedula;
-    
 End //
+delimiter ;
 
 drop procedure if exists obtenerGerente;
+delimiter //
 create procedure obtenerGerente (IN usuarios char(10), contraseña char(10))
 Begin
 	SELECT Empleados.cedula, Empleados.nombres, Empleados.apellidos
 	FROM Empleados
 	INNER JOIN Cuentas ON Empleados.idCuenta=Cuentas.idCuenta and Cuentas.usuario=usuarios and Cuentas.clave=contraseña
     INNER JOIN Gerente ON Gerente.idGerente=Empleados.cedula;
-    
 End //
+delimiter; 
 
 drop procedure if exists obtenerVendedor;
+delimiter //
 create procedure obtenerVendedor (IN usuarios char(10), contraseña char(10))
 Begin
 	SELECT Empleados.cedula, Empleados.nombres, Empleados.apellidos
 	FROM Empleados
 	INNER JOIN Cuentas ON Empleados.idCuenta=Cuentas.idCuenta and Cuentas.usuario=usuarios and Cuentas.clave=contraseña
     INNER JOIN Vendedor ON Vendedor.idVendedor=Empleados.cedula;
-    
 End //
+delimiter ;
 
 drop procedure if exists obtenerJefeBodega;
+delimiter //
 create procedure obtenerJefeBodega (IN usuarios char(10), contraseña char(10))
 Begin
 	SELECT Empleados.cedula, Empleados.nombres, Empleados.apellidos
@@ -120,12 +123,14 @@ Begin
     INNER JOIN jefebodega ON Jefebodega.idJefe=Empleados.cedula;
     
 End //
+delimiter ;
 
 drop procedure if exists obtenerBodega;
+delimiter //
 create procedure obtenerBodega (IN idJefe char(10))
 Begin
 	SELECT Bodega.idBodega, Bodega.direccion
 	FROM Bodega
 	INNER JOIN jefeBodega ON jefeBodega.idJefe=idJefe and jefeBodega.idBodega=Bodega.idBodega;
 End //
-
+delimiter ;
