@@ -9,6 +9,7 @@ import Controlador.ControlJefeBodega;
 import Modelo.JefeBodega;
 import Modelo.Ruta;
 import Modelo.Pedido;
+import Modelo.User;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
@@ -24,6 +25,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  *
@@ -31,9 +33,11 @@ import javafx.scene.layout.VBox;
  */
 public class Pedidos {
     
-    public static Scene visualizarRutas(JefeBodega jb){
+    public static Scene visualizarRutas(User u,Stage st, Scene scp){
+        
         VBox vb=new VBox(20);
         ControlJefeBodega cjb=new ControlJefeBodega();
+        JefeBodega jb=cjb.cargarDatos(u);
         
         Label lbtit=new Label("Creacion de Rutas");
         

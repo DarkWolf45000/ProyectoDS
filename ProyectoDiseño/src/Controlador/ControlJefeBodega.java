@@ -10,6 +10,8 @@ import Modelo.JefeBodega;
 import Modelo.Pedido;
 import Modelo.Repartidor;
 import Modelo.Ruta;
+import Modelo.User;
+import Modelo.Usuario;
 import java.util.ArrayList;
 import javafx.scene.control.TextArea;
 
@@ -92,5 +94,20 @@ public class ControlJefeBodega {
         //query para actualizar el pedido en la base de datos
         return true;
     }
+    
+    public JefeBodega cargarDatos(User u){
+        Usuario us=(Usuario) u;
+        JefeBodega jb= new JefeBodega(us.getUsuario(),us.getClave(),us.getTipoU(),ControlLogIn.db,us.getCedula(),us.getNombre(),us.getApellido());
+        
+        // obtener bodega
+        // obtener repartidores
+        // obtener empleados adicionales
+        // obtener pedidos
+        //obtener productos
+        //CrearJefeBodega
+    
+        return jb;
+    }
+    
     
 }

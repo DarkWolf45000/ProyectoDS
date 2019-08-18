@@ -13,10 +13,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class BD {
-    public static Connection c;
+public class BD implements DataBase{
+    public Connection c;
     //Se realiza metodo que retorna la Conexion
-    public static Connection getConexion(){
+    public Connection getConexion(){
         c=null;
         //Se Realiza la conexion  
         try{
@@ -35,11 +35,18 @@ public class BD {
         return(c);
     }
     //Metodo para Desconectar de la Base de datos
-    public static void Desconectar(){
+    public void Desconectar(){
         c=null;
         if(c==null){
             System.out.println("Conexion finalizada");
         }
     }
+
+    @Override
+    public Connection getC() {
+        return c;
+    }
  
+    
+    
 }

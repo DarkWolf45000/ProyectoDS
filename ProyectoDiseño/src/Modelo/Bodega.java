@@ -5,6 +5,9 @@
  */
 package Modelo;
 
+import static Controlador.ControlLogIn.cn;
+import java.sql.CallableStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Queue;
 
@@ -13,25 +16,17 @@ import java.util.Queue;
  * @author LuisEduardo
  */
 public class Bodega {
-    private ArrayList<Repartidor> listaRepartidores;
+    private int idbodega; //
+    private ArrayList<Repartidor> listaRepartidores;//
     private Queue<Repartidor> colaRepartidores;
     private ArrayList<Usuario> listaEmpleados;
     private ArrayList<Pedido> listaPedidos;
     private JefeBodega jefeBodega;
-    private ArrayList<Vehiculo> listaVehiculos;
     private ArrayList<Producto> listaProductos;
     private String direccion;
     private DataBase db;
 
-    public Bodega(ArrayList<Repartidor> listaRepartidores, Queue<Repartidor> colaRepartidores, ArrayList<Usuario> listaEmpleados, ArrayList<Pedido> listaPedidos, JefeBodega jefeBodega, ArrayList<Vehiculo> listaVehiculos, ArrayList<Producto> listaProductos, String direccion, DataBase db) {
-        this.listaRepartidores = listaRepartidores;
-        this.colaRepartidores = colaRepartidores;
-        this.listaEmpleados = listaEmpleados;
-        this.listaPedidos = listaPedidos;
-        this.jefeBodega = jefeBodega;
-        this.listaVehiculos = listaVehiculos;
-        this.listaProductos = listaProductos;
-        this.direccion = direccion;
+    public Bodega(DataBase db) {
         this.db = db;
     }
 
@@ -75,14 +70,6 @@ public class Bodega {
         this.jefeBodega = jefeBodega;
     }
 
-    public ArrayList<Vehiculo> getListaVehiculos() {
-        return listaVehiculos;
-    }
-
-    public void setListaVehiculos(ArrayList<Vehiculo> listaVehiculos) {
-        this.listaVehiculos = listaVehiculos;
-    }
-
     public ArrayList<Producto> getListaProductos() {
         return listaProductos;
     }
@@ -113,6 +100,21 @@ public class Bodega {
     
     public void agregarRepartidor(Repartidor rep){
         this.colaRepartidores.offer(rep);
+    }
+    
+    public void cargarBodega(String idJefe){
+        try{
+            String sql= "{call obtenerBodega(?)}";
+            CallableStatement cst=this.db.getC().prepareCall(sql);
+            cst.setString(1, idJefe);
+            ResultSet rs = cst.executeQuery();
+            rs.next();
+            this.idbodega=rs.getInt(1);
+            this.direccion=rs.getString(2);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        this.listaRepartidores=Repartidor.cargarDatos(db,this.idbodega);
     }
     
 }

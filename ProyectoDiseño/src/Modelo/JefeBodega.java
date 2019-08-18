@@ -11,11 +11,18 @@ import java.util.ArrayList;
  *
  * @author LuisEduardo
  */
-public class JefeBodega extends Persona{
+public class JefeBodega extends Usuario{
     private Bodega bodega;
 
-    public JefeBodega(String cedula, String nombre, String apellido) {
-        super(cedula, nombre, apellido);
+    public JefeBodega(String usuario, String clave, String tipou, DataBase db, String cedula, String nombre, String apellido) {
+        super(usuario, clave, tipou, db, cedula, nombre, apellido);
+    }
+
+    public void cargarDatos(){
+        Bodega bod=new Bodega(this.db);
+        bod.cargarBodega(this.cedula);
+        this.bodega=bod;
+        this.bodega.setJefeBodega(this);
     }
 
     public Bodega getBodega() {

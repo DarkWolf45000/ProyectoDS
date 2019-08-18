@@ -6,8 +6,10 @@
 package Controlador;
 
 import Modelo.BD;
+import Modelo.DataBase;
 import Modelo.User;
 import Modelo.Usuario;
+import Vistas.Pedidos;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -19,7 +21,9 @@ import javafx.stage.Stage;
  * @author LuisEduardo
  */
 public class ControlLogIn {
-    Connection cn=BD.getConexion();
+    public static DataBase db=new BD();
+    public static Connection cn=db.getConexion();
+    
     public boolean verificar (String usuario, String contraseña){
         try{
             String sql= "{call verificar(?,?)}";
@@ -142,7 +146,7 @@ public class ControlLogIn {
         }
         u=obtenerJefeBodega(usuario,cont);
         if(u!=null){
-         //   st.setScene();
+            st.setScene(Pedidos.visualizarRutas(u,st,scp));
             System.out.println("JefeBodega");
         }
     }

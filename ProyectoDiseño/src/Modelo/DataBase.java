@@ -5,10 +5,16 @@
  */
 package Modelo;
 
+import java.sql.Connection;
+
 /**
  *
  * @author LuisEduardo
  */
 public interface DataBase {
+    
+    Connection getConexion();
+    
+    Connection getC();
     
 }
