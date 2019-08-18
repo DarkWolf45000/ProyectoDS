@@ -79,3 +79,53 @@ Begin
 	update pedido set idRepartidor=idrepartidor,idBodega=idbodega,estado=estado,HoraSalida=horasal,HoraEntrada=horaent where idPedido=idpedido;
 End //
 delimiter ;	
+
+drop procedure if exists obtenerAdmins;
+delimiter //
+create procedure obtenerAdmins (IN usuarios char(10), contraseña char(10))
+Begin
+	SELECT Empleados.cedula, Empleados.nombres, Empleados.apellidos
+	FROM Empleados
+	INNER JOIN Cuentas ON Empleados.idCuenta=Cuentas.idCuenta and Cuentas.usuario=usuarios and Cuentas.clave=contraseña
+    INNER JOIN Administrador ON Administrador.idAdministrador=Empleados.cedula;
+    
+End //
+
+drop procedure if exists obtenerGerente;
+create procedure obtenerGerente (IN usuarios char(10), contraseña char(10))
+Begin
+	SELECT Empleados.cedula, Empleados.nombres, Empleados.apellidos
+	FROM Empleados
+	INNER JOIN Cuentas ON Empleados.idCuenta=Cuentas.idCuenta and Cuentas.usuario=usuarios and Cuentas.clave=contraseña
+    INNER JOIN Gerente ON Gerente.idGerente=Empleados.cedula;
+    
+End //
+
+drop procedure if exists obtenerVendedor;
+create procedure obtenerVendedor (IN usuarios char(10), contraseña char(10))
+Begin
+	SELECT Empleados.cedula, Empleados.nombres, Empleados.apellidos
+	FROM Empleados
+	INNER JOIN Cuentas ON Empleados.idCuenta=Cuentas.idCuenta and Cuentas.usuario=usuarios and Cuentas.clave=contraseña
+    INNER JOIN Vendedor ON Vendedor.idVendedor=Empleados.cedula;
+    
+End //
+
+drop procedure if exists obtenerJefeBodega;
+create procedure obtenerJefeBodega (IN usuarios char(10), contraseña char(10))
+Begin
+	SELECT Empleados.cedula, Empleados.nombres, Empleados.apellidos
+	FROM Empleados
+	INNER JOIN Cuentas ON Empleados.idCuenta=Cuentas.idCuenta and Cuentas.usuario=usuarios and Cuentas.clave=contraseña
+    INNER JOIN jefebodega ON Jefebodega.idJefe=Empleados.cedula;
+    
+End //
+
+drop procedure if exists obtenerBodega;
+create procedure obtenerBodega (IN idJefe char(10))
+Begin
+	SELECT Bodega.idBodega, Bodega.direccion
+	FROM Bodega
+	INNER JOIN jefeBodega ON jefeBodega.idJefe=idJefe and jefeBodega.idBodega=Bodega.idBodega;
+End //
+
