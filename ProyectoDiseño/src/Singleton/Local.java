@@ -41,7 +41,6 @@ public class Local {
     public static Local createMatriz(DataBase db,int id,String dir){
         if(Local.matriz==null){
             Local rm=new Local(id,true,db);
-            rm.cargarDatos();
             rm.setDireccion(dir);
             matriz=rm;
             return rm;
@@ -63,6 +62,8 @@ public class Local {
         
     }
 
+    
+    
     public int getIdlocal() {
         return idlocal;
     }
@@ -110,5 +111,7 @@ public class Local {
     public void setIsMatriz(boolean isMatriz) {
         this.isMatriz = isMatriz;
     }
+    
+    
     
 }

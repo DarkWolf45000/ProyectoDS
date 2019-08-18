@@ -6,9 +6,12 @@
 package Controlador;
 
 import Modelo.Bodega;
+import Modelo.Gerente;
 import Modelo.Producto;
 import Modelo.User;
+import Modelo.Usuario;
 import java.util.ArrayList;
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -40,5 +43,20 @@ public class ControlStock {
         return lib;
     }
             
+    public boolean crearPedido(ObservableList<Producto> listp,User u){
+        Usuario us=(Usuario) u;
+        Gerente g=new Gerente(us.getUsuario(),us.getClave(),us.getTipoU(),ControlLogIn.db,us.getCedula(),us.getNombre(),us.getApellido());
+        ArrayList<Producto> lp=new ArrayList<>();
+        for(Producto p:listp){
+            if(p.getIsdeseado().isSelected()){
+                System.out.println(p.getNombre());
+                lp.add(p);
+            }
+        }
+        
+        g.crearPedido(lp);
+        return true;
+    }
+    
     
 }

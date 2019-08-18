@@ -43,6 +43,13 @@ public class PedidoLocal extends Pedido {
     
     public void cargarDatos(int idSucursal){
         //Averiguar si es local es matriz o sucursal
+        this.cargarDatosLocal(idSucursal);
+        //cargar productos
+        this.listProducto= Producto.cargarDatosPedido(db, this.id);
+        
+    }
+    
+    public void cargarDatosLocal(int idSucursal){
         try{
             String sql= "{call verificarMatriz(?)}";
             CallableStatement cst=db.getC().prepareCall(sql);
@@ -53,7 +60,6 @@ public class PedidoLocal extends Pedido {
                 this.local=Local.createMatriz(db, idSucursal,rs.getString(1));
             }else{
                 Local lc=new Local(idSucursal,this.db);
-                lc.cargarDatos();
                 lc.setDireccion(rs.getString(1));
                 this.local=lc;
             }
@@ -61,9 +67,6 @@ public class PedidoLocal extends Pedido {
         }catch (Exception e){
             System.out.println(e);
         }
-        //cargar productos
-        this.listProducto= Producto.cargarDatosPedido(db, this.id);
-        
     }
     
     public static void cargarDatosSucursalBodega(DataBase db, int idBodega,ArrayList<Pedido> lp){
@@ -87,4 +90,38 @@ public class PedidoLocal extends Pedido {
     public String getDireccion() {
         return this.local.getDireccion();
     }
+    
+    public void registrarPedido(int idBodega){
+        try{
+            //creo pedido
+            String sql= "{call insertarPedido(?,?,?)}";
+            CallableStatement cst=db.getC().prepareCall(sql);
+            cst.setInt(1, this.id);
+            cst.setInt(2, idBodega);
+            cst.setString(3, this.estadoEntrega);
+            ResultSet rs = cst.executeQuery();
+            System.out.println("paso esto");
+            for(Producto p:this.listProducto.keySet()){
+                //creo producto_pedido
+                sql= "{call insertarProductoPedido(?,?,?)}";
+                cst=db.getC().prepareCall(sql);
+                cst.setInt(1, this.id);
+                cst.setInt(2, p.getIdProducto());
+                cst.setInt(3, this.listProducto.get(p));
+                rs = cst.executeQuery();
+            }
+            
+            System.out.println("paso aquello");
+            //creo pedido_local
+            sql= "{call insertarProductoLocal(?,?}";
+            cst=db.getC().prepareCall(sql);
+            cst.setInt(1, this.id);
+            cst.setInt(2, this.local.getIdlocal());
+            rs = cst.executeQuery();
+            System.out.println("paso todo");
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+    
 }
