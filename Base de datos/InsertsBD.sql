@@ -1,4 +1,4 @@
-use DBproyecto;
+use DBProyecto;
 
 #Valores introducidos en tablas
 
