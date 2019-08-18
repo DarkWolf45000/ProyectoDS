@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import Modelo.AdminDecorator;
 import Modelo.BD;
 import Modelo.DataBase;
 import Modelo.User;
@@ -135,6 +136,7 @@ public class ControlLogIn {
         if(u!=null){
             //cabiar al menu de admin
             System.out.println("Admin");
+            st.setScene(AdminDecorator.menuAdmin(u,st,scp));
         }
         u=obtenerGerente(usuario,cont);
         if(u!=null){

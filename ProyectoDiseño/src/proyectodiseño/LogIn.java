@@ -79,9 +79,9 @@ public class LogIn extends Application {
             public void handle(ActionEvent event) {
                 String us=txtus.getText();
                 String cont=txtcont.getText();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
                 if(us.equalsIgnoreCase("") || cont.equalsIgnoreCase("")){
                     //mensaje faltan datos
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error Dialog");
                     alert.setHeaderText("ERROR");
                     alert.setContentText("Falta usuario o contraseña");
@@ -90,6 +90,12 @@ public class LogIn extends Application {
                     if(cgl.verificar(us,cont)){
                         //procedimiento que lleve a la ventana de empleados o admin segun sea el caso
                         cgl.siguientePantalla(us,cont,primaryStage,scene);
+                    }else{
+                    
+                    alert.setTitle("Error Dialog");
+                    alert.setHeaderText("ERROR");
+                    alert.setContentText("Usuario o contraseña inválida");
+                    alert.showAndWait();
                     }
                 }
             }
