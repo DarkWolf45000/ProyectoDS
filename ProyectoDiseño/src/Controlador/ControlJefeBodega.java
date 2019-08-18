@@ -26,6 +26,7 @@ public class ControlJefeBodega {
         
         if(r.getRep()==null){
             //alerta no hay repartidor disponible
+            System.out.println("no hay repartidor :,v");
         }else{
             r.imprimirRuta();
         }
@@ -98,14 +99,7 @@ public class ControlJefeBodega {
     public JefeBodega cargarDatos(User u){
         Usuario us=(Usuario) u;
         JefeBodega jb= new JefeBodega(us.getUsuario(),us.getClave(),us.getTipoU(),ControlLogIn.db,us.getCedula(),us.getNombre(),us.getApellido());
-        
-        // obtener bodega
-        // obtener repartidores
-        // obtener empleados adicionales
-        // obtener pedidos
-        //obtener productos
-        //CrearJefeBodega
-    
+        jb.cargarDatos();
         return jb;
     }
     

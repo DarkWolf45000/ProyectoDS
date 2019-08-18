@@ -43,19 +43,21 @@ public class Pedidos {
         
         TableView tvPedido=new TableView();
         
-        TableColumn<String, Pedido> column1 = new TableColumn<>("Estado");
-        column1.setCellValueFactory(new PropertyValueFactory<>("estadoEntrega"));
+        TableColumn<String, Pedido> column1 = new TableColumn<>("Id");
+        column1.setCellValueFactory(new PropertyValueFactory<>("id"));
+        
+        TableColumn<String, Pedido> column2 = new TableColumn<>("Estado");
+        column2.setCellValueFactory(new PropertyValueFactory<>("estadoEntrega"));
 
-        TableColumn<String, Pedido> column2 = new TableColumn<>("Direccion");
-        column2.setCellValueFactory(new PropertyValueFactory<>("direccion"));
+        TableColumn<String, Pedido> column3 = new TableColumn<>("Direccion");
+        column3.setCellValueFactory(new PropertyValueFactory<>("direccion"));
 
-        TableColumn<String, Pedido> column3 = new TableColumn<>("Descripcion");
-        column3.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
         
 
         tvPedido.getColumns().addAll(column1,column2,column3);
         //Conseguir lista con el controller
-        tvPedido.setItems(FXCollections.observableList(Pedido.listPedido));
+       // tvPedido.setItems(FXCollections.observableList(jb.getBodega().pedidosAEntregar()));
+        tvPedido.setItems(FXCollections.observableList(jb.getBodega().getListaPedidos()));
         
         TextArea ta=new TextArea();
         ta.setEditable(false);
@@ -79,8 +81,12 @@ public class Pedidos {
     
     public static void textoRuta(TextArea ta,Pedido ped,ArrayList<Pedido> ar){
         if(ta.getText().contains(ped.getDireccion())){
-            ta.setText(ta.getText().replaceAll(ped.getDireccion(), ""));
-            ta.setText(ta.getText().replaceAll("--", "-"));
+            if(ar.get(0).equals(ped)){
+                ta.setText(ta.getText().replaceAll(ped.getDireccion(), ""));
+                ta.setText(ta.getText().replaceAll("-", ""));
+            }else{
+                ta.setText(ta.getText().replaceAll("-"+ped.getDireccion(), ""));
+            }
             ar.remove(ped);
         }else{
             ar.add(ped);
@@ -155,7 +161,7 @@ public class Pedidos {
                 if(p==null){
                     //alerta de que no se encontro
                 }else{
-                    txtid.setText(p.getId());
+                    txtid.setText(String.valueOf(p.getId()));
                     txtdir.setText(p.getDireccion());
                 }
             }else{

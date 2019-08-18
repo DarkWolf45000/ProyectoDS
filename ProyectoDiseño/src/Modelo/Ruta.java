@@ -48,6 +48,6 @@ public class Ruta {
     }
 
     public void imprimirRuta(){
-        
+        System.out.println(this.camino);
     }
 }

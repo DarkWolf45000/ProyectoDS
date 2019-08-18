@@ -16,10 +16,9 @@ public class Venta extends Tramite{
     private Factura factura;
     private Pagar pagar;
 
-    public Venta(Factura factura, Pagar pagar, Cliente cliente, int idTramite, LocalDate fecha, HashMap<Integer, Producto> listProducto, DataBase db) {
-        super(cliente, idTramite, fecha, listProducto, db);
-        this.factura = factura;
-        this.pagar = pagar;
+    public Venta(Cliente cliente,DataBase db) {
+        super(cliente, db);
+        
     }
 
     public Factura getFactura() {
@@ -36,6 +35,10 @@ public class Venta extends Tramite{
 
     public void setPagar(Pagar pagar) {
         this.pagar = pagar;
+    }
+    
+    public void cargarDatosVenta(int idPedido){
+        this.listProducto=Producto.cargarDatosPedido(db, idPedido);
     }
     
     

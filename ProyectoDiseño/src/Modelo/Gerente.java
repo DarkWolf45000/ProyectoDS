@@ -5,6 +5,8 @@
  */
 package Modelo;
 
+import Singleton.Local;
+
 /**
  *
  * @author LuisEduardo

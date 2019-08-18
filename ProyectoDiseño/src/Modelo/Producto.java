@@ -5,34 +5,39 @@
  */
 package Modelo;
 
+import Estrategy.Buscar;
+import static Controlador.ControlLogIn.cn;
+import java.sql.CallableStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  *
  * @author LuisEduardo
  */
 public class Producto {
-    private String idProducto;
+    private int idProducto;
     private String descripcion;
     private float precio;
     private int cantDisp;
     private String modelo;
     private DataBase db;
-    private Buscar bq;
+    private static Buscar bq;
 
-    public Producto(String idProducto, String descripcion, float precio, int cantDisp, String modelo, DataBase db, Buscar bq) {
+    public Producto(int idProducto, String descripcion, float precio, int cantDisp, String modelo) {
         this.idProducto = idProducto;
         this.descripcion = descripcion;
         this.precio = precio;
         this.cantDisp = cantDisp;
         this.modelo = modelo;
-        this.db = db;
-        this.bq = bq;
     }
 
-    public String getIdProducto() {
+    public int getIdProducto() {
         return idProducto;
     }
 
-    public void setIdProducto(String idProducto) {
+    public void setIdProducto(int idProducto) {
         this.idProducto = idProducto;
     }
 
@@ -84,6 +89,41 @@ public class Producto {
         this.bq = bq;
     }
     
+    public static ArrayList<Producto> cargarDatosBodega(DataBase db,int idBodega){
+        ArrayList<Producto> listp=new ArrayList<>();
+        try{
+            String sql= "{call ObtenerProductosBodega(?)}";
+            CallableStatement cst=cn.prepareCall(sql);
+            cst.setInt(1, idBodega);
+            ResultSet rs = cst.executeQuery();
+            while(rs.next()){
+                Producto p=new Producto(rs.getInt(2),rs.getString(3),rs.getFloat(5),rs.getInt(1),rs.getString(4));
+                listp.add(p);
+            }
+            
+        }catch (Exception e){
+            System.out.println(e);
+            return listp;
+        }
+        return listp;
+    } 
+    
+    public static HashMap<Producto,Integer> cargarDatosPedido(DataBase db, int idPedido){
+        HashMap<Producto,Integer> hm=new HashMap<>();
+        try{
+            String sql= "{call obtenerProductosPedido(?)}";
+            CallableStatement cst=db.getC().prepareCall(sql);
+            cst.setInt(1, idPedido);
+            ResultSet rs = cst.executeQuery();
+            while(rs.next()){
+                Producto p=new Producto(rs.getInt(1),rs.getString(2),rs.getFloat(4),0,rs.getString(3));
+                hm.put(p,rs.getInt(5));
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return hm;
+    }
     
     
 }

@@ -5,6 +5,9 @@
  */
 package Modelo;
 
+import java.sql.CallableStatement;
+import java.sql.ResultSet;
+
 /**
  *
  * @author LuisEduardo
@@ -45,6 +48,20 @@ public class Cliente extends Persona{
         this.email = email;
     }
     
-    
+    public static Cliente cargarCliente(String idCliente,DataBase db){
+        try{
+            String sql= "{call obtenerCliente(?)}";
+            CallableStatement cst=db.getC().prepareCall(sql);
+            cst.setString(1, idCliente);
+            ResultSet rs = cst.executeQuery();
+            rs.next();
+            Cliente c=new Cliente(rs.getString(5),rs.getString(6),rs.getString(4),rs.getString(1),rs.getString(2),rs.getString(3));
+            return c;
+            
+        }catch (Exception e){
+            System.out.println(e);
+            return null;
+        }
+    }
     
 }

@@ -13,7 +13,7 @@ primary key (idCuenta)
 
 drop table if exists clientes;
 create table clientes(
-  idCliente int(10),
+  idCliente varchar(10),
   nombres varchar(50),
   apellidos varchar(50),
   edad int(5),
@@ -130,7 +130,7 @@ drop table if exists venta;
 create table venta(
 	idVenta int(10),
 	idSucursal int(10),
-	idCliente int(10),
+	idCliente varchar(10),
 	tipopago varchar(10),
 	fecha DATE,
 	eliminado tinyint(1),
@@ -151,7 +151,7 @@ create table factura(
 drop table if exists cotizacion;
 create table cotizacion(
 	idCotizacion int(10),
-	idCliente int(10),
+	idCliente varchar(10),
 	idSucursal int(10),
 	fecha Date,
 	primary key (idCotizacion),
@@ -182,7 +182,7 @@ create table productos_pedido(
 drop table if exists pedido_cliente;
 create table pedido_cliente(
 	idPedido int(10),
-	idCliente int(10),
+	idCliente varchar(10),
 	primary key(idPedido),
 	foreign key(idPedido) references pedido(idPedido),
 	foreign key(idCliente) references clientes(idCliente)

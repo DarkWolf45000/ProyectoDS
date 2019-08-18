@@ -9,6 +9,7 @@ import static Controlador.ControlLogIn.cn;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Queue;
 
 /**
@@ -18,13 +19,13 @@ import java.util.Queue;
 public class Bodega {
     private int idbodega; //
     private ArrayList<Repartidor> listaRepartidores;//
-    private Queue<Repartidor> colaRepartidores;
+    private Queue<Repartidor> colaRepartidores;//
     private ArrayList<Usuario> listaEmpleados;
-    private ArrayList<Pedido> listaPedidos;
-    private JefeBodega jefeBodega;
-    private ArrayList<Producto> listaProductos;
-    private String direccion;
-    private DataBase db;
+    private ArrayList<Pedido> listaPedidos;//
+    private JefeBodega jefeBodega; //
+    private ArrayList<Producto> listaProductos;//
+    private String direccion;//
+    private DataBase db;//
 
     public Bodega(DataBase db) {
         this.db = db;
@@ -115,6 +116,23 @@ public class Bodega {
             System.out.println(e);
         }
         this.listaRepartidores=Repartidor.cargarDatos(db,this.idbodega);
+        this.colaRepartidores=new LinkedList<>(this.listaRepartidores);
+        this.listaProductos=Producto.cargarDatosBodega(db, idbodega);
+        ArrayList<Pedido> listp=new ArrayList<>();
+        PedidoLocal.cargarDatosSucursalBodega(db, idbodega,listp);
+        PedidoCliente.cargarDatosClienteBodega(db, idbodega, listp);
+        this.listaPedidos=listp;
+        
+    }
+    
+    public ArrayList<Pedido> pedidosAEntregar(){
+        ArrayList<Pedido> listp=new ArrayList<>();
+        for(Pedido p:this.listaPedidos){
+            if(p.getEstadoEntrega().equalsIgnoreCase("aEntregar")){
+                listp.add(p);
+            }
+        }
+        return listp;
     }
     
 }

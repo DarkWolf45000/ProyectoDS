@@ -134,3 +134,68 @@ Begin
 	INNER JOIN jefeBodega ON jefeBodega.idJefe=idJefe and jefeBodega.idBodega=Bodega.idBodega;
 End //
 delimiter ;
+
+delimiter //
+drop procedure if exists obtenerProductosBodega;
+create procedure obtenerProductosBodega (IN idBodega int)
+Begin
+	SELECT productos_bodega.Cantidad, Producto.idProducto, Producto.descripcion, Producto.categoria, Producto.Precio
+	FROM Bodega
+	INNER JOIN productos_bodega ON Bodega.idBodega=productos_bodega.idBodega and Bodega.idBodega=idBodega
+    INNER JOIN Producto ON Producto.idProducto=productos_bodega.idProducto;
+End //
+delimiter ;
+
+delimiter //
+drop procedure if exists obtenerPedidosSucursalBodega;
+create procedure obtenerPedidosSucursalBodega (IN idBodega int)
+Begin
+	SELECT Pedido.idPedido, Pedido.estado, pedido_sucursal.idSucursal
+	FROM Bodega
+	INNER JOIN Pedido ON Pedido.idBodega=Bodega.idBodega and Bodega.idBodega=idBodega
+    INNER JOIN pedido_Sucursal ON pedido_sucursal.idPedido=Pedido.idPedido;
+End //
+delimiter ;
+
+delimiter //
+drop procedure if exists verificarMatriz;
+create procedure verificarMatriz(IN idSucursal int)
+Begin
+	SELECT Sucursal.direccion, Sucursal.matriz
+	FROM Sucursal
+	WHERE sucursal.idSucursal=idSucursal;
+End //
+delimiter ;
+
+delimiter //
+drop procedure if exists obtenerProductosPedido;
+create procedure obtenerProductosPedido(IN idPedido int)
+Begin
+	SELECT Producto.idProducto, Producto.descripcion, Producto.categoria , Producto.precio, productos_pedido.cantidad 
+	FROM Pedido
+	INNER JOIN productos_pedido ON productos_pedido.idPedido=Pedido.idPedido and idPedido=Pedido.idPedido
+    INNER JOIN Producto ON productos_pedido.idProducto=Producto.idProducto;
+End //
+delimiter ;
+
+delimiter //
+drop procedure if exists obtenerPedidosClienteBodega;
+create procedure obtenerPedidosClienteBodega (IN idBodega int)
+Begin
+	SELECT Pedido.idPedido, Pedido.estado, pedido_cliente.idCliente
+	FROM Bodega
+	INNER JOIN Pedido ON Pedido.idBodega=Bodega.idBodega and Bodega.idBodega=idBodega
+    INNER JOIN pedido_cliente ON pedido_cliente.idPedido=Pedido.idPedido;
+End //
+delimiter ;
+
+delimiter //
+drop procedure if exists obtenerCliente;
+create procedure obtenerCliente (IN idCliente varchar(10))
+Begin
+	SELECT clientes.idCliente, clientes.nombres, clientes.apellidos, clientes.email, clientes.direccion, clientes.numero
+	FROM clientes
+	WHERE clientes.idCliente=idCliente;
+End //
+delimiter ;
+

@@ -13,17 +13,13 @@ import java.util.HashMap;
  * @author LuisEduardo
  */
 public class Tramite {
-    private Cliente cliente;
-    private int idTramite;
-    private LocalDate fecha;
-    private HashMap<Integer,Producto> listProducto;
-    private DataBase db;
+    protected Cliente cliente;
+    protected LocalDate fecha;
+    protected HashMap<Producto,Integer> listProducto;
+    protected DataBase db;
 
-    public Tramite(Cliente cliente, int idTramite, LocalDate fecha, HashMap<Integer, Producto> listProducto, DataBase db) {
+    public Tramite(Cliente cliente,  DataBase db) {
         this.cliente = cliente;
-        this.idTramite = idTramite;
-        this.fecha = fecha;
-        this.listProducto = listProducto;
         this.db = db;
     }
 
@@ -35,13 +31,7 @@ public class Tramite {
         this.cliente = cliente;
     }
 
-    public int getIdTramite() {
-        return idTramite;
-    }
-
-    public void setIdTramite(int idTramite) {
-        this.idTramite = idTramite;
-    }
+  
 
     public LocalDate getFecha() {
         return fecha;
@@ -51,13 +41,15 @@ public class Tramite {
         this.fecha = fecha;
     }
 
-    public HashMap<Integer, Producto> getListProducto() {
+    public HashMap<Producto, Integer> getListProducto() {
         return listProducto;
     }
 
-    public void setListProducto(HashMap<Integer, Producto> listProducto) {
+    public void setListProducto(HashMap<Producto, Integer> listProducto) {
         this.listProducto = listProducto;
     }
+
+    
 
     public DataBase getDb() {
         return db;

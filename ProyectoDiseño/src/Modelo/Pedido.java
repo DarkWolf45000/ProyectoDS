@@ -12,35 +12,29 @@ import java.util.ArrayList;
  *
  * @author LuisEduardo
  */
-public class Pedido {
-    private String id;
-    private LocalDate horaS;
-    private LocalDate horaE;
-    private String estadoEntrega;
-    private String direccion;
-    private DataBase db;
-    public static ArrayList<Pedido> listPedido=new ArrayList<>();
+public abstract class Pedido {
+    protected int id;
+    protected LocalDate horaS;
+    protected LocalDate horaE;
+    protected String estadoEntrega;
+    protected DataBase db;
 
-    public Pedido(String id, String estadoEntrega, String direccion, DataBase db) {
+    public Pedido(int id, String estadoEntrega, DataBase db) {
         this.id = id;
         this.estadoEntrega = estadoEntrega;
-        this.direccion = direccion;
         this.db = db;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    
+    public abstract String getDireccion();
 
-    public String getDireccion() {
-        return direccion;
-    }
     
     public LocalDate getHoraS() {
         return horaS;
@@ -74,6 +68,8 @@ public class Pedido {
         this.db = db;
     }
     
-    
+    public void actualizarEstadoPedido(){
+        
+    }
     
 }
