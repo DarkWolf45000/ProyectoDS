@@ -115,6 +115,11 @@ public class Bodega {
         }catch (Exception e){
             System.out.println(e);
         }
+        this.cargarDatos();
+        
+    }
+    
+    private void cargarDatos(){
         this.listaRepartidores=Repartidor.cargarDatos(db,this.idbodega);
         this.colaRepartidores=new LinkedList<>(this.listaRepartidores);
         this.listaProductos=Producto.cargarDatosBodega(db, idbodega);
@@ -122,8 +127,8 @@ public class Bodega {
         PedidoLocal.cargarDatosSucursalBodega(db, idbodega,listp);
         PedidoCliente.cargarDatosClienteBodega(db, idbodega, listp);
         this.listaPedidos=listp;
-        
     }
+    
     
     public ArrayList<Pedido> pedidosAEntregar(){
         ArrayList<Pedido> listp=new ArrayList<>();
@@ -134,5 +139,7 @@ public class Bodega {
         }
         return listp;
     }
+    
+    
     
 }

@@ -10,6 +10,7 @@ import Modelo.DataBase;
 import Modelo.User;
 import Modelo.Usuario;
 import Vistas.AdminV;
+import Vistas.ManejarStock;
 import Vistas.Pedidos;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -141,6 +142,7 @@ public class ControlLogIn {
         u=obtenerGerente(usuario,cont);
         if(u!=null){
             System.out.println("Gerente");
+            st.setScene(ManejarStock.menuGerente(u, st, scp));
         }
         u=obtenerVendedor(usuario,cont);
         if(u!=null){

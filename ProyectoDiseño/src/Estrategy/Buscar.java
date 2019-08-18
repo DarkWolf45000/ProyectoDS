@@ -6,11 +6,13 @@
 package Estrategy;
 
 import Modelo.Producto;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
  * @author DiegoY
  */
 public interface Buscar {
-     public Producto Buscarproducto();
+     public ResultSet Buscarproducto(String parametro);
 }

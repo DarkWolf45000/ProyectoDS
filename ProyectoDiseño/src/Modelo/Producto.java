@@ -7,10 +7,16 @@ package Modelo;
 
 import Estrategy.Buscar;
 import static Controlador.ControlLogIn.cn;
+import Estrategy.BuscarCategoria;
+import Estrategy.BuscarDescripcion;
+import Estrategy.BuscarNombre;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,6 +24,7 @@ import java.util.HashMap;
  */
 public class Producto {
     private int idProducto;
+    private String nombre;
     private String descripcion;
     private float precio;
     private int cantDisp;
@@ -33,6 +40,15 @@ public class Producto {
         this.modelo = modelo;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    
     public int getIdProducto() {
         return idProducto;
     }
@@ -125,5 +141,52 @@ public class Producto {
         return hm;
     }
     
+    public static ArrayList<Producto> buscarNombre(String nom){
+        ArrayList<Producto> lp=new ArrayList<>();
+        Producto.bq=new BuscarNombre();
+        ResultSet rs=bq.Buscarproducto(nom);
+        try {
+            while(rs.next()){
+                Producto p=new Producto(rs.getInt(1),rs.getString(4),rs.getFloat(5),rs.getInt(6),rs.getString(3));
+                p.setNombre(rs.getString(2));
+                lp.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Producto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lp;
+    }
+    
+    public static ArrayList<Producto> buscarDescripcion(String desc){
+        ArrayList<Producto> lp=new ArrayList<>();
+        Producto.bq=new BuscarDescripcion();
+        ResultSet rs=bq.Buscarproducto(desc);
+        try {
+            while(rs.next()){
+                Producto p=new Producto(rs.getInt(1),rs.getString(4),rs.getFloat(5),rs.getInt(6),rs.getString(3));
+                p.setNombre(rs.getString(2));
+                lp.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Producto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lp;
+    }
+    
+    public static ArrayList<Producto> buscarCategoria(String cat){
+        ArrayList<Producto> lp=new ArrayList<>();
+        Producto.bq=new BuscarCategoria();
+        ResultSet rs=bq.Buscarproducto(cat);
+        try {
+            while(rs.next()){
+                Producto p=new Producto(rs.getInt(1),rs.getString(4),rs.getFloat(5),rs.getInt(6),rs.getString(3));
+                p.setNombre(rs.getString(2));
+                lp.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Producto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lp;
+    }
     
 }
