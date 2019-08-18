@@ -12,25 +12,42 @@ delimiter ;
 
 drop procedure if exists buscar_categoria;
 delimiter //
-create procedure buscar_categoria (IN categoria char(10))
+create procedure buscar_categoria (IN categoria char(20))
 Begin
-	Select nombre,categoria,descripcion,precio from producto where categoria=categoria and eliminado=0;
+	Select producto.idProducto,nombre,categoria,descripcion,precio,productos_bodega.cantidad 
+    from producto 
+    inner join productos_bodega on producto.categoria=categoria and productos_bodega.idProducto=producto.idProducto and eliminado=0;
 End //
 delimiter ;
 
 drop procedure if exists buscar_nombre;
 delimiter //
-create procedure buscar_nombre (IN nombre char(10))
+create procedure buscar_nombre (IN nombre char(50))
 Begin
-	Select nombre,categoria,descripcion,precio from producto where nombre=nombre and eliminado=0;
+	Select producto.idProducto,nombre,categoria,descripcion,precio,productos_bodega.cantidad 
+    from producto 
+    inner join productos_bodega on producto.nombre=nombre and productos_bodega.idProducto=producto.idProducto and producto.eliminado=0;
 End //
 delimiter ;
 
+drop procedure if exists obtenerProductosTodos;
+delimiter //
+create procedure obtenerProductosTodos ()
+Begin
+	Select producto.idProducto,nombre,categoria,descripcion,precio,productos_bodega.cantidad 
+    from producto 
+    inner join productos_bodega on productos_bodega.idProducto=producto.idProducto and producto.eliminado=0;
+End //
+delimiter ;
+
+
 drop procedure if exists buscar_descripcion;
 delimiter //
-create procedure buscar_descripcion (IN descripcion char(10))
+create procedure buscar_descripcion (IN descripcion char(100))
 Begin
-	Select nombre,categoria,descripcion,precio from producto where descripcion=descripcion and eliminado=0;
+	Select producto.idProducto,nombre,categoria,descripcion,precio,productos_bodega.cantidad
+    from producto 
+    inner join productos_bodega on producto.descripcion=descripcion and productos_bodega.idProducto=producto.idProducto and eliminado=0;
 End //
 delimiter ;
 
@@ -219,3 +236,6 @@ Begin
     INNER JOIN empleados ON empleados.Cedula=repartidor_bodega.idRepartidor and repartidor_bodega.idRepartidor=idrepartidor;
 End //
 delimiter ;
+
+
+

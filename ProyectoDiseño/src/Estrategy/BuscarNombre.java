@@ -5,10 +5,32 @@
  */
 package Estrategy;
 
+import Controlador.ControlLogIn;
+import Modelo.Producto;
+import java.sql.CallableStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
 /**
  *
  * @author LuisEduardo
  */
-public class BuscarNombre {
+public class BuscarNombre implements Buscar{
+
+    @Override
+    public ResultSet Buscarproducto(String parametro) {
+        try{
+            String sql= "{call buscar_nombre(?)}";
+            CallableStatement cst=ControlLogIn.db.getC().prepareCall(sql);
+            cst.setString(1, parametro);
+            ResultSet rs = cst.executeQuery();
+            return rs;
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return null;
+    }
+
+   
     
 }

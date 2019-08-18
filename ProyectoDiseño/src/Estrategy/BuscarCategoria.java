@@ -5,8 +5,12 @@
  */
 package Estrategy;
 
+import Controlador.ControlLogIn;
 import Estrategy.Buscar;
 import Modelo.Producto;
+import java.sql.CallableStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,7 +20,20 @@ public class BuscarCategoria implements Buscar{
     private String Categoria;
 
     @Override
-    public Producto Buscarproducto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ResultSet Buscarproducto(String parametro) {
+        try{
+            String sql= "{call buscar_categoria(?)}";
+            CallableStatement cst=ControlLogIn.db.getC().prepareCall(sql);
+            cst.setString(1, parametro);
+            ResultSet rs = cst.executeQuery();
+            return rs;
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return null;
     }
+
+    
+
+    
 }
