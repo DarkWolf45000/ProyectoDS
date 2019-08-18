@@ -146,7 +146,7 @@ public class ControlLogIn {
         }
         u=obtenerJefeBodega(usuario,cont);
         if(u!=null){
-            st.setScene(Pedidos.visualizarRutas(u,st,scp));
+            st.setScene(Pedidos.menuJefeBodega(u,st,scp));
             System.out.println("JefeBodega");
         }
     }

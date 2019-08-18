@@ -12,6 +12,9 @@ import Modelo.Repartidor;
 import Modelo.Ruta;
 import Modelo.User;
 import Modelo.Usuario;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javafx.scene.control.TextArea;
 
@@ -21,28 +24,31 @@ import javafx.scene.control.TextArea;
  */
 public class ControlJefeBodega {
     
-    public void crearRuta(TextArea ta, ArrayList<Pedido> ped,JefeBodega jf){
+    public boolean crearRuta(TextArea ta, ArrayList<Pedido> ped,JefeBodega jf){
         Ruta r=jf.crearRuta(ped, ta.getText());
         
         if(r.getRep()==null){
             //alerta no hay repartidor disponible
             System.out.println("no hay repartidor :,v");
+            return false;
         }else{
+            for(Pedido p:ped){
+                p.actualizarEstadoPedido(r.getRep().getCedula(), "A_Entregar");
+            }
             r.imprimirRuta();
+            return true;
         }
         
-    }
-    
-    public ArrayList<Pedido> obtenerPedidos(){
-        
-        return null;
     }
     
     public Pedido consultarPedido(String id){
         Pedido p=null;
         try{
         int idp=Integer.parseInt(id);
-            //obtener pedido
+            p=Pedido.obtenerPedido(idp, ControlLogIn.db);
+            if(p==null){
+                return null;
+            }
             return p;
         }catch(Exception e){
             //alerta de que se escribieron letras en vez de numeros
@@ -50,7 +56,7 @@ public class ControlJefeBodega {
         return p;
     }
     
-    public Boolean actualizarPedido(String id, String idRep,String horaS,String horaE,String estado,JefeBodega jb){
+    public Boolean actualizarPedido(String id, String idRep,String horaS,String horaE,String estado){
         if(id.equalsIgnoreCase("")){
             //alerta
             return false;
@@ -82,17 +88,11 @@ public class ControlJefeBodega {
             idrep=Integer.parseInt(idRep);
             idped=Integer.parseInt(id);
         }catch(Exception e){
-            //alerta
+            //alerta de numero format
             return false;
         }
-        
-        //query para obtener repartidor
-        Repartidor rep=null;
-        
-        
-        
-        
-        //query para actualizar el pedido en la base de datos
+        //Fecha
+        Pedido.actualizarPedido(idped, idRep, estado, horaE, horaE, ControlLogIn.db);
         return true;
     }
     

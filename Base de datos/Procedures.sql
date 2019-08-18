@@ -54,7 +54,7 @@ drop procedure if exists ped_especifico;
 delimiter //
 create procedure ped_especifico (IN idpedido int)
 Begin
-	select idRepartidor,estado,HoraSalida,HoraEntrega from pedido where idPedido=idpedido and eliminado=0;
+	select idRepartidor,estado,HoraSalida,HoraEntrega from pedido where pedido.idPedido=idpedido and eliminado=0;
 End //
 delimiter ;
 
@@ -74,9 +74,9 @@ delimiter ;
 
 drop procedure if exists ped_actualizar;
 delimiter //
-create procedure ped_actualizar (IN idpedido int, idrepartidor char(10),idbodega int, estado char(15),horasal time,horaent time)
+create procedure ped_actualizar (IN idpedido int, idrepartidor char(10), estado char(15),horasal time,horaent time)
 Begin
-	update pedido set idRepartidor=idrepartidor,idBodega=idbodega,estado=estado,HoraSalida=horasal,HoraEntrada=horaent where idPedido=idpedido;
+	update pedido set idRepartidor=idrepartidor,estado=estado,HoraSalida=horasal,HoraEntrada=horaent where pedido.idPedido=idpedido;
 End //
 delimiter ;	
 
@@ -135,8 +135,8 @@ Begin
 End //
 delimiter ;
 
-delimiter //
 drop procedure if exists obtenerProductosBodega;
+delimiter //
 create procedure obtenerProductosBodega (IN idBodega int)
 Begin
 	SELECT productos_bodega.Cantidad, Producto.idProducto, Producto.descripcion, Producto.categoria, Producto.Precio
@@ -146,8 +146,8 @@ Begin
 End //
 delimiter ;
 
-delimiter //
 drop procedure if exists obtenerPedidosSucursalBodega;
+delimiter //
 create procedure obtenerPedidosSucursalBodega (IN idBodega int)
 Begin
 	SELECT Pedido.idPedido, Pedido.estado, pedido_sucursal.idSucursal
@@ -157,8 +157,8 @@ Begin
 End //
 delimiter ;
 
-delimiter //
 drop procedure if exists verificarMatriz;
+delimiter //
 create procedure verificarMatriz(IN idSucursal int)
 Begin
 	SELECT Sucursal.direccion, Sucursal.matriz
@@ -167,8 +167,8 @@ Begin
 End //
 delimiter ;
 
-delimiter //
 drop procedure if exists obtenerProductosPedido;
+delimiter //
 create procedure obtenerProductosPedido(IN idPedido int)
 Begin
 	SELECT Producto.idProducto, Producto.descripcion, Producto.categoria , Producto.precio, productos_pedido.cantidad 
@@ -178,8 +178,8 @@ Begin
 End //
 delimiter ;
 
-delimiter //
 drop procedure if exists obtenerPedidosClienteBodega;
+delimiter //
 create procedure obtenerPedidosClienteBodega (IN idBodega int)
 Begin
 	SELECT Pedido.idPedido, Pedido.estado, pedido_cliente.idCliente
@@ -189,8 +189,9 @@ Begin
 End //
 delimiter ;
 
-delimiter //
+
 drop procedure if exists obtenerCliente;
+delimiter //
 create procedure obtenerCliente (IN idCliente varchar(10))
 Begin
 	SELECT clientes.idCliente, clientes.nombres, clientes.apellidos, clientes.email, clientes.direccion, clientes.numero
@@ -199,3 +200,20 @@ Begin
 End //
 delimiter ;
 
+drop procedure if exists ped_actualizarEstado;
+delimiter //
+create procedure ped_actualizarEstado(IN idpedido int, idrepartidor char(10), estado char(15))
+Begin
+	update pedido set idRepartidor=idrepartidor,estado=estado where idPedido=idpedido;
+End //
+delimiter ;
+
+drop procedure if exists obtenerRepartidor;
+delimiter //
+create procedure obtenerRepartidor(IN idrepartidor char(10))
+Begin
+	select empleados.cedula, empleados.nombres, empleados.apellidos
+    from repartidor_bodega
+    INNER JOIN empleados ON empleados.Cedula=repartidor_bodega.idRepartidor and repartidor_bodega.idRepartidor=idrepartidor;
+End //
+delimiter ;

@@ -41,7 +41,21 @@ public class Repartidor extends Persona{
         return listr;
     }
     
-
+    public static Repartidor obtenerRepartidor(String idRepartidor,DataBase db){
+        Repartidor rep=null;
+        try{
+            String sql= "{call obtenerRepartidor(?)}";
+            CallableStatement cst=db.getC().prepareCall(sql);
+            cst.setString(1, idRepartidor);
+            ResultSet rs = cst.executeQuery();
+            rs.next();
+            rep=new Repartidor(rs.getString(1),rs.getString(2),rs.getString(3));
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return rep;
+    }
+    
     public boolean isDisponible() {
         return disponible;
     }

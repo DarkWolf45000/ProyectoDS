@@ -5,10 +5,17 @@
  */
 package Controlador;
 
+import javafx.scene.Scene;
+
 /**
  *
  * @author LuisEduardo
  */
 public class ControlStock {
+    
+    
+    public static Scene menuGerente(){
+        return null;
+    }
     
 }

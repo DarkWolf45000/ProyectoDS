@@ -40,6 +40,7 @@ Insert into producto values (1,"Aromatel","Higiene","Producto para limpiar",1.55
 							(5,"Club Social","Alimentos","Comestible para fiestas",0.15,0);
                             
 Insert into pedido values (1,"0950950950",1,"Entregado",'10:00','11:15',0);
+Insert into pedido values (2,"0950950950",1,"Entregado",'10:00','11:15',0);
 
 Insert into venta values (1,1,"1","efectivo",'2019-08-15',0);
 
@@ -53,7 +54,7 @@ Insert into productos_pedido values (1,1,2),(2,1,1),(3,1,2);
 
 Insert into pedido_cliente values (1,"1");
 
-Insert into pedido_sucursal values (1,1);
+Insert into pedido_sucursal values (2,1);
 
 Insert into productos_bodega values (1,1,200),(2,1,150),(3,1,250),(4,1,300),(5,1,350);
 

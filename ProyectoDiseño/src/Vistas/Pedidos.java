@@ -33,6 +33,31 @@ import javafx.stage.Stage;
  */
 public class Pedidos {
     
+    public static Scene menuJefeBodega(User u,Stage st,Scene scp){
+        VBox vb=new VBox(20);
+        Label lbtit=new Label("MENU JEFE BODEGA");
+        Button btnvr=new Button("Crear Rutas");
+        Button btnap=new Button("Actualizar Rutas");
+        Button btnmen=new Button("Salir");
+        vb.getChildren().addAll(lbtit,btnvr,btnap,btnmen);
+        Scene sc=new Scene(vb,300,300);
+        
+        btnmen.setOnMouseClicked((MouseEvent e)->{
+            st.setScene(scp);
+        });
+        
+        btnap.setOnMouseClicked((MouseEvent e)->{
+            st.setScene(Pedidos.actualizarPedidos(u, st, sc));
+        });
+        
+        btnvr.setOnMouseClicked((MouseEvent e)->{
+            st.setScene(Pedidos.visualizarRutas(u, st, sc));
+        });
+        
+        return sc;
+    }
+    
+    
     public static Scene visualizarRutas(User u,Stage st, Scene scp){
         
         VBox vb=new VBox(20);
@@ -57,13 +82,17 @@ public class Pedidos {
         tvPedido.getColumns().addAll(column1,column2,column3);
         //Conseguir lista con el controller
        // tvPedido.setItems(FXCollections.observableList(jb.getBodega().pedidosAEntregar()));
-        tvPedido.setItems(FXCollections.observableList(jb.getBodega().getListaPedidos()));
+        ArrayList<Pedido> listpd=jb.getBodega().getListaPedidos();
+        tvPedido.setItems(FXCollections.observableList(listpd));
         
         TextArea ta=new TextArea();
         ta.setEditable(false);
         
         Button btncr=new Button("Crear");
-        vb.getChildren().addAll(lbtit,tvPedido,ta,btncr);
+        Button btnmen=new Button("Menu");
+        HBox hb=new HBox();
+        hb.getChildren().addAll(btncr,btnmen);
+        vb.getChildren().addAll(lbtit,tvPedido,ta,hb);
         Scene sc=new Scene(vb,500,500);
         ArrayList<Pedido> ar=new ArrayList<>();
         tvPedido.setOnMouseClicked((MouseEvent e)->{
@@ -72,9 +101,20 @@ public class Pedidos {
         });
         
         btncr.setOnMouseClicked((MouseEvent e)->{
-            cjb.crearRuta(ta, ar,jb);
+            if(cjb.crearRuta(ta, ar,jb)){
+                ta.clear();
+                listpd.removeAll(ar);
+                ar.clear();
+                tvPedido.refresh();
+            }else{
+                
+            }
+            
         });
         
+        btnmen.setOnMouseClicked((MouseEvent e)->{
+            st.setScene(scp);
+        });
         
         return sc;
     }
@@ -98,23 +138,25 @@ public class Pedidos {
         }
     }
     
-    public static Scene actualizarPedidos(){
+    public static Scene actualizarPedidos(User u,Stage st, Scene scp){
         ControlJefeBodega cjb=new ControlJefeBodega();
         VBox vb=new VBox();
+        Label lbtitr=new Label("ACTUALIZAR PEDIDOS");
+        
         Label lbtit=new Label("Buscar Pedido");
         
         TextField txtidb=new TextField();
-        Button btnbus=new Button();
+        Button btnbus=new Button("Buscar");
         
-        HBox hb=new HBox();
+        HBox hb=new HBox(20);
         hb.getChildren().addAll(lbtit,txtidb,btnbus);
         
         Label lbid=new Label("Id: ");
         TextField txtid=new TextField();
         txtid.setEditable(false);
-        Label lbdir=new Label("Direccion: ");
+     /*   Label lbdir=new Label("Direccion: ");
         TextField txtdir=new TextField();
-        txtdir.setEditable(false);
+        txtdir.setEditable(false);*/
         
         Label lbes=new Label("Estado de entrega:");
         TextField txtes=new TextField();
@@ -127,50 +169,74 @@ public class Pedidos {
         
         Label lbrep=new Label("Cedula Repartidor: ");
         TextField txtrep=new TextField();
-        
+        txtrep.setEditable(false);
         GridPane gp=new GridPane();
         
         gp.add(lbid, 0, 0);
         gp.add(txtid, 1, 0);
         
-        gp.add(lbdir, 0, 1);
-        gp.add(txtdir, 1, 1);
+       /* gp.add(lbdir, 0, 1);
+        gp.add(txtdir, 1, 1);*/
         
-        gp.add(lbes, 0, 2);
-        gp.add(txtes, 1, 2);
+        gp.add(lbrep, 0, 2);
+        gp.add(txtrep, 1, 2);
         
-        gp.add(lbhs, 0, 3);
-        gp.add(txths, 1, 3);
+        gp.add(lbes, 0, 3);
+        gp.add(txtes, 1, 3);
         
-        gp.add(lbhe, 0, 4);
-        gp.add(txthe, 1, 4);
+        gp.add(lbhs, 0, 4);
+        gp.add(txths, 1, 4);
         
-        gp.add(lbrep, 0, 5);
-        gp.add(txtrep, 1, 5);
+        gp.add(lbhe, 0, 5);
+        gp.add(txthe, 1, 5);
+        
         
         Button btng=new Button("Guardar");
-        StackPane sp=new StackPane();
-        sp.getChildren().add(btng);
-        vb.getChildren().addAll(hb,gp,sp);
+        Button btnmen=new Button("Menu");
+        HBox hbb=new HBox(20);
+        hbb.getChildren().addAll(btng,btnmen);
+        vb.getChildren().addAll(lbtitr,hb,gp,hbb);
         Scene sc=new Scene(vb,500,500);
         
         btnbus.setOnMouseClicked((MouseEvent e)->{
             String id=txtidb.getText();
-            if(id.equalsIgnoreCase("")){
+            if(!id.equalsIgnoreCase("")){
                 Pedido p=cjb.consultarPedido(id);
                 if(p==null){
                     //alerta de que no se encontro
+                    System.out.println("no se encontro la wea :,v");
+                    txtid.clear();
+                  //  txtdir.setText(p.getDireccion());
+                    txtes.clear();
+                    txtrep.clear();
                 }else{
                     txtid.setText(String.valueOf(p.getId()));
-                    txtdir.setText(p.getDireccion());
+                  //  txtdir.setText(p.getDireccion());
+                    txtes.setText(p.getEstadoEntrega());
+                    txtrep.setText(p.getRep().getCedula());
                 }
             }else{
                 //alerta de que no se puso el id
+                System.out.println(".,v");
             }
         });
         
         btng.setOnMouseClicked((MouseEvent e)->{
-           cjb.actualizarPedido(txtid.getText(), txtrep.getText(), txths.getText(), txthe.getText(), txtes.getText(),null);
+            
+           if(cjb.actualizarPedido(txtid.getText(), txtrep.getText(), txths.getText(), txthe.getText(), txtes.getText())){
+               txtid.clear();
+               txtes.clear();
+               txtrep.clear();
+               txths.clear();
+               txthe.clear();
+           }else{
+               //alerta de error
+           }
+        
+        });
+        
+        btnmen.setOnMouseClicked((MouseEvent e)->{
+           st.setScene(scp);
         
         });
         
