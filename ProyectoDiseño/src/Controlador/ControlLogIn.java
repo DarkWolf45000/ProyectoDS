@@ -5,11 +5,11 @@
  */
 package Controlador;
 
-import Modelo.AdminDecorator;
 import Modelo.BD;
 import Modelo.DataBase;
 import Modelo.User;
 import Modelo.Usuario;
+import Vistas.AdminV;
 import Vistas.Pedidos;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -136,7 +136,7 @@ public class ControlLogIn {
         if(u!=null){
             //cabiar al menu de admin
             System.out.println("Admin");
-            st.setScene(AdminDecorator.menuAdmin(u,st,scp));
+            st.setScene(AdminV.menuAdmin(u,st,scp));
         }
         u=obtenerGerente(usuario,cont);
         if(u!=null){
