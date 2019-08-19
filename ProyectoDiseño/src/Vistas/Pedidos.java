@@ -12,6 +12,7 @@ import Modelo.Pedido;
 import Modelo.User;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -34,12 +35,22 @@ import javafx.stage.Stage;
 public class Pedidos {
     
     public static Scene menuJefeBodega(User u,Stage st,Scene scp){
+        ControlJefeBodega cjb=new ControlJefeBodega();
+        JefeBodega jb=cjb.cargarDatos(u);
         VBox vb=new VBox(20);
         Label lbtit=new Label("MENU JEFE BODEGA");
+        StackPane sp=new StackPane();
+        sp.getChildren().add(lbtit);
         Button btnvr=new Button("Crear Rutas");
-        Button btnap=new Button("Actualizar Rutas");
+        StackPane sp2=new StackPane();
+        sp2.getChildren().add(btnvr);
+        Button btnap=new Button("Actualizar Pedido");
+        StackPane sp3=new StackPane();
+        sp3.getChildren().add(btnap);
         Button btnmen=new Button("Salir");
-        vb.getChildren().addAll(lbtit,btnvr,btnap,btnmen);
+        StackPane sp4=new StackPane();
+        sp4.getChildren().add(btnmen);
+        vb.getChildren().addAll(sp,sp2,sp3,sp4);
         Scene sc=new Scene(vb,300,300);
         
         btnmen.setOnMouseClicked((MouseEvent e)->{
@@ -47,42 +58,41 @@ public class Pedidos {
         });
         
         btnap.setOnMouseClicked((MouseEvent e)->{
-            st.setScene(Pedidos.actualizarPedidos(u, st, sc));
+            st.setScene(Pedidos.actualizarPedidos(jb,cjb, st, sc));
         });
         
         btnvr.setOnMouseClicked((MouseEvent e)->{
-            st.setScene(Pedidos.visualizarRutas(u, st, sc));
+            st.setScene(Pedidos.visualizarRutas(jb,cjb, st, sc));
         });
         
         return sc;
     }
     
     
-    public static Scene visualizarRutas(User u,Stage st, Scene scp){
-        
+    public static Scene visualizarRutas(JefeBodega jb,ControlJefeBodega cjb,Stage st, Scene scp){
+        jb.getBodega().cargarPedidos();
         VBox vb=new VBox(20);
-        ControlJefeBodega cjb=new ControlJefeBodega();
-        JefeBodega jb=cjb.cargarDatos(u);
         
         Label lbtit=new Label("Creacion de Rutas");
-        
+        StackPane sp=new StackPane();
+        sp.getChildren().add(lbtit);
         TableView tvPedido=new TableView();
         
         TableColumn<String, Pedido> column1 = new TableColumn<>("Id");
         column1.setCellValueFactory(new PropertyValueFactory<>("id"));
-        
+        column1.setPrefWidth(100);
         TableColumn<String, Pedido> column2 = new TableColumn<>("Estado");
         column2.setCellValueFactory(new PropertyValueFactory<>("estadoEntrega"));
-
+        column2.setPrefWidth(200);
         TableColumn<String, Pedido> column3 = new TableColumn<>("Direccion");
         column3.setCellValueFactory(new PropertyValueFactory<>("direccion"));
-
+        column3.setPrefWidth(200);
         
 
         tvPedido.getColumns().addAll(column1,column2,column3);
         //Conseguir lista con el controller
        // tvPedido.setItems(FXCollections.observableList(jb.getBodega().pedidosAEntregar()));
-        ArrayList<Pedido> listpd=jb.getBodega().getListaPedidos();
+        ArrayList<Pedido> listpd=jb.getBodega().pedidosAEntregar();
         tvPedido.setItems(FXCollections.observableList(listpd));
         
         TextArea ta=new TextArea();
@@ -90,14 +100,16 @@ public class Pedidos {
         
         Button btncr=new Button("Crear");
         Button btnmen=new Button("Menu");
-        HBox hb=new HBox();
+        HBox hb=new HBox(40);
         hb.getChildren().addAll(btncr,btnmen);
-        vb.getChildren().addAll(lbtit,tvPedido,ta,hb);
+        hb.setAlignment(Pos.CENTER);
+        vb.getChildren().addAll(sp,tvPedido,ta,hb);
         Scene sc=new Scene(vb,500,500);
         ArrayList<Pedido> ar=new ArrayList<>();
         tvPedido.setOnMouseClicked((MouseEvent e)->{
+            if(tvPedido.getSelectionModel().getSelectedItem()!=null){
             textoRuta(ta,(Pedido) tvPedido.getSelectionModel().getSelectedItem(),ar);
-            
+            }
         });
         
         btncr.setOnMouseClicked((MouseEvent e)->{
@@ -138,17 +150,18 @@ public class Pedidos {
         }
     }
     
-    public static Scene actualizarPedidos(User u,Stage st, Scene scp){
-        ControlJefeBodega cjb=new ControlJefeBodega();
-        VBox vb=new VBox();
+    public static Scene actualizarPedidos(JefeBodega jb,ControlJefeBodega cjb,Stage st, Scene scp){
+        VBox vb=new VBox(20);
         Label lbtitr=new Label("ACTUALIZAR PEDIDOS");
-        
+        StackPane sp=new StackPane();
+        sp.getChildren().add(lbtitr);
         Label lbtit=new Label("Buscar Pedido");
         
         TextField txtidb=new TextField();
         Button btnbus=new Button("Buscar");
         
         HBox hb=new HBox(20);
+        hb.setAlignment(Pos.CENTER);
         hb.getChildren().addAll(lbtit,txtidb,btnbus);
         
         Label lbid=new Label("Id: ");
@@ -161,17 +174,17 @@ public class Pedidos {
         Label lbes=new Label("Estado de entrega:");
         TextField txtes=new TextField();
         
-        Label lbhs=new Label("Hora de Salida: ");
+        Label lbhs=new Label("Hora de Salida(ss:mm:hh): ");
         TextField txths=new TextField();
         
-        Label lbhe=new Label("Hora de Entrega: ");
+        Label lbhe=new Label("Hora de Entrega(ss:mm:hh): ");
         TextField txthe=new TextField();
         
         Label lbrep=new Label("Cedula Repartidor: ");
         TextField txtrep=new TextField();
         txtrep.setEditable(false);
         GridPane gp=new GridPane();
-        
+        gp.setAlignment(Pos.CENTER);
         gp.add(lbid, 0, 0);
         gp.add(txtid, 1, 0);
         
@@ -195,7 +208,10 @@ public class Pedidos {
         Button btnmen=new Button("Menu");
         HBox hbb=new HBox(20);
         hbb.getChildren().addAll(btng,btnmen);
-        vb.getChildren().addAll(lbtitr,hb,gp,hbb);
+        hbb.setAlignment(Pos.CENTER);
+        gp.setHgap(10);
+        gp.setVgap(10);
+        vb.getChildren().addAll(sp,hb,gp,hbb);
         Scene sc=new Scene(vb,500,500);
         
         btnbus.setOnMouseClicked((MouseEvent e)->{
@@ -223,7 +239,7 @@ public class Pedidos {
         
         btng.setOnMouseClicked((MouseEvent e)->{
             
-           if(cjb.actualizarPedido(txtid.getText(), txtrep.getText(), txths.getText(), txthe.getText(), txtes.getText())){
+           if(cjb.actualizarPedido(txtid.getText(), txtrep.getText(), txths.getText(), txthe.getText(), txtes.getText(),jb)){
                txtid.clear();
                txtes.clear();
                txtrep.clear();

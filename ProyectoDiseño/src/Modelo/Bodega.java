@@ -100,8 +100,13 @@ public class Bodega {
         return this.colaRepartidores.poll();
     }
     
-    public void agregarRepartidor(Repartidor rep){
-        this.colaRepartidores.offer(rep);
+    public void agregarRepartidor(String idrep){
+        
+        for(Repartidor rep:this.listaRepartidores){
+            if(rep.getCedula().equalsIgnoreCase(idrep)){
+                this.colaRepartidores.offer(rep);
+            }
+        }
     }
     
     public void cargarBodega(String idJefe){
@@ -124,17 +129,20 @@ public class Bodega {
         this.listaRepartidores=Repartidor.cargarDatos(db,this.idbodega);
         this.colaRepartidores=new LinkedList<>(this.listaRepartidores);
         this.listaProductos=Producto.cargarDatosBodega(db, idbodega);
+        this.cargarPedidos();
+    }
+    
+    public void cargarPedidos(){
         ArrayList<Pedido> listp=new ArrayList<>();
         PedidoLocal.cargarDatosSucursalBodega(db, idbodega,listp);
         PedidoCliente.cargarDatosClienteBodega(db, idbodega, listp);
         this.listaPedidos=listp;
     }
     
-    
     public ArrayList<Pedido> pedidosAEntregar(){
         ArrayList<Pedido> listp=new ArrayList<>();
         for(Pedido p:this.listaPedidos){
-            if(p.getEstadoEntrega().equalsIgnoreCase("aEntregar")){
+            if(!p.getEstadoEntrega().equalsIgnoreCase("Entregado") && !p.getEstadoEntrega().equalsIgnoreCase("En_Proceso")){
                 listp.add(p);
             }
         }

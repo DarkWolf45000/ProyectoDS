@@ -33,7 +33,7 @@ public class ControlJefeBodega {
             return false;
         }else{
             for(Pedido p:ped){
-                p.actualizarEstadoPedido(r.getRep().getCedula(), "A_Entregar");
+                p.actualizarEstadoPedido(r.getRep().getCedula(), "En_Proceso");
             }
             r.imprimirRuta();
             return true;
@@ -56,7 +56,7 @@ public class ControlJefeBodega {
         return p;
     }
     
-    public Boolean actualizarPedido(String id, String idRep,String horaS,String horaE,String estado){
+    public Boolean actualizarPedido(String id, String idRep,String horaS,String horaE,String estado,JefeBodega jb){
         if(id.equalsIgnoreCase("")){
             //alerta
             return false;
@@ -93,6 +93,7 @@ public class ControlJefeBodega {
         }
         //Fecha
         Pedido.actualizarPedido(idped, idRep, estado, horaE, horaE, ControlLogIn.db);
+        jb.ColocarRepartidor(idRep);
         return true;
     }
     

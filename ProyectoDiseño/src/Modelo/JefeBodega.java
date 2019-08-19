@@ -54,8 +54,8 @@ public class JefeBodega extends Usuario{
         
     }
     
-    public boolean ColocarRepartidor(Repartidor rep){
-        this.bodega.agregarRepartidor(rep);
+    public boolean ColocarRepartidor(String idRep){
+        this.bodega.agregarRepartidor(idRep);
         return true;
     }
 }
