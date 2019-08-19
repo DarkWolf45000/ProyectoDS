@@ -100,8 +100,13 @@ public class Bodega {
         return this.colaRepartidores.poll();
     }
     
-    public void agregarRepartidor(Repartidor rep){
-        this.colaRepartidores.offer(rep);
+    public void agregarRepartidor(String idrep){
+        
+        for(Repartidor rep:this.listaRepartidores){
+            if(rep.getCedula().equalsIgnoreCase(idrep)){
+                this.colaRepartidores.offer(rep);
+            }
+        }
     }
     
     public void cargarBodega(String idJefe){

@@ -96,8 +96,9 @@ public class Pedidos {
         Scene sc=new Scene(vb,500,500);
         ArrayList<Pedido> ar=new ArrayList<>();
         tvPedido.setOnMouseClicked((MouseEvent e)->{
+            if(tvPedido.getSelectionModel().getSelectedItem()!=null){
             textoRuta(ta,(Pedido) tvPedido.getSelectionModel().getSelectedItem(),ar);
-            
+            }
         });
         
         btncr.setOnMouseClicked((MouseEvent e)->{
@@ -140,6 +141,7 @@ public class Pedidos {
     
     public static Scene actualizarPedidos(User u,Stage st, Scene scp){
         ControlJefeBodega cjb=new ControlJefeBodega();
+        JefeBodega jb=cjb.cargarDatos(u);
         VBox vb=new VBox();
         Label lbtitr=new Label("ACTUALIZAR PEDIDOS");
         
@@ -223,7 +225,7 @@ public class Pedidos {
         
         btng.setOnMouseClicked((MouseEvent e)->{
             
-           if(cjb.actualizarPedido(txtid.getText(), txtrep.getText(), txths.getText(), txthe.getText(), txtes.getText())){
+           if(cjb.actualizarPedido(txtid.getText(), txtrep.getText(), txths.getText(), txthe.getText(), txtes.getText(),jb)){
                txtid.clear();
                txtes.clear();
                txtrep.clear();
