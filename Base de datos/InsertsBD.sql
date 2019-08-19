@@ -31,7 +31,7 @@ Insert into vendedor values ("0910910910",1);
 
 Insert into jefebodega values ("0940940940",1);
 
-Insert into repartidor_bodega values ("0950950950",1);
+Insert into repartidor_bodega values (1,"0950950950",1);
 
 Insert into producto values (1,"Aromatel","Higiene","Producto para limpiar",1.55,0),
 							(2,"Kchitos","Alimentos","Comestible para fiestas",0.25,0),
@@ -48,15 +48,15 @@ Insert into factura values (1,1,4.00);
 
 Insert into cotizacion values (1,1,"1",'2019-08-13');
 
-Insert into productos_local values (1,1,20),(2,1,15),(3,1,25),(4,1,30),(5,1,35);
+Insert into productos_local values (1,1,1,20),(2,2,1,15),(3,3,1,25),(4,4,1,30),(5,5,1,35);
 
-Insert into productos_pedido values (1,1,2),(2,1,1),(3,1,2);
+Insert into productos_pedido values (1,1,1,2),(2,2,1,1),(3,3,1,2);
 
-Insert into pedido_cliente values (1,"1");
+Insert into pedido_cliente values (1,1,"1");
 
-Insert into pedido_sucursal values (2,1);
+Insert into pedido_sucursal values (1,2,1);
 
-Insert into productos_bodega values (1,1,200),(2,1,150),(3,1,250),(4,1,300),(5,1,350);
+Insert into productos_bodega values (1,1,1,200),(2,2,1,150),(3,3,1,250),(4,4,1,300),(5,5,1,350);
 
-Insert into productos_factura values (2,1,10),(4,1,10);
+Insert into productos_factura values (1,2,1,10),(2,4,1,10);
 							

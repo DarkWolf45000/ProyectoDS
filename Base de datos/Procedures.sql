@@ -55,7 +55,7 @@ drop procedure if exists dar_admin;
 delimiter //
 create procedure dar_admin (IN cedula char(10), idSuc int)
 Begin
-	Insert into administrador values (cedula,idSuc);
+	Insert into administrador(idAdministrador,idSucursal) values (cedula,idSuc);
 End //
 delimiter ;
 
@@ -119,7 +119,7 @@ Begin
 	INNER JOIN Cuentas ON empleados.idCuenta=Cuentas.idCuenta and Cuentas.usuario=usuarios and Cuentas.clave=contrasena
     INNER JOIN gerente ON gerente.idGerente=empleados.Cedula;
 End //
-delimiter; 
+delimiter ; 
 
 drop procedure if exists obtenerVendedor;
 delimiter //
@@ -271,7 +271,7 @@ drop procedure if exists insertarPedido;
 delimiter //
 create procedure insertarPedido(IN idPedido int, idBodega int, estado char(10))
 Begin
-	Insert into pedido values (idPedido,null,idBodega,estado,null,null,0);
+	Insert into pedido(idPedido,idBodega,estado,eliminado) values (idPedido,idBodega,estado,0);
 End //
 delimiter ;
 
@@ -279,7 +279,7 @@ drop procedure if exists insertarProductoPedido;
 delimiter //
 create procedure insertarProductoPedido(IN idPedido int, idProducto int, cantidad int)
 Begin
-	Insert into productos_pedido values (idProducto,idPedido,cantidad);
+	Insert into productos_pedido(idProducto,idPedido,cantidad) values (idProducto,idPedido,cantidad);
 End //
 delimiter ;
 
@@ -287,7 +287,7 @@ drop procedure if exists insertarProductoLocal;
 delimiter //
 create procedure insertarProductoLocal(IN idPedido int, idLocal int)
 Begin
-	Insert into pedido_sucursal values (idPedido,idLocal);
+	Insert into pedido_sucursal(idPedido,idSucursal) values (idPedido,idLocal);
 End //
 delimiter ;
 
@@ -300,3 +300,30 @@ Begin
 End //
 delimiter ;
 
+drop procedure if exists prec_actualizar;
+delimiter //
+create procedure prec_actualizar(IN idprod int, nombre char(20), categoria char(20), prec float)
+Begin
+	update producto 
+    set nombre = nombre, categoria = categoria, precio = prec 
+    where idProducto=idprod;
+End //
+delimiter ;
+
+drop procedure if exists stock_actualizar;
+delimiter //
+create procedure stock_actualizar(IN idprod int, idloc int, cant int)
+Begin
+	update productos_local
+    set cantidad=cant
+    where idProducto=idprod and idSucursal=idloc;
+End //
+delimiter ;
+
+drop procedure if exists stock_ingresar;
+delimiter //
+create procedure stock_ingresar(IN idprod int, idloc int, cant int)
+Begin
+	Insert into productos_local(idProducto,idSucursal,cantidad) values (idprod,idloc,cant);
+End //
+delimiter ;
