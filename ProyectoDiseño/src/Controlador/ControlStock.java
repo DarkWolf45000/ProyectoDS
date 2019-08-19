@@ -39,6 +39,37 @@ public class ControlStock {
         }
         return lib;
     }
-            
+     public Producto consultarProducto(String nombre){
+        ArrayList<Producto> p=new ArrayList<>();
+       
+        try{
+            p=Producto.buscarNombre(nombre);
+            if(p==null){
+                return null;
+            }
+            Producto prod= p.get(0);
+            return prod;
+        }catch(Exception e){
+            //alerta de que se escribieron letras en vez de numeros
+        }
+        return null;
+    }       
+
+    public boolean actualizarPrecio(String id, String nombre, String categoria, String precio) {
+        if(id.isEmpty() && nombre.isEmpty() && categoria.isEmpty() && precio.isEmpty()){
+            return false;
+        }
+        int idPrec;
+        float prec;
+        try{
+             idPrec= Integer.parseInt(id);
+             prec= Float.parseFloat(precio);
+        } catch (Exception e){
+            return false;
+            //crear alerta de que datos ingresados estan en formato invalido
+        }
+        Producto.actualizarprecio(idPrec,nombre,categoria,prec);
+        return true;
+    }
     
 }

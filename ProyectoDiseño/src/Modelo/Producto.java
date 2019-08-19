@@ -24,6 +24,8 @@ import java.util.logging.Logger;
  * @author LuisEduardo
  */
 public class Producto {
+
+    
     private int idProducto;
     private String nombre;
     private String descripcion;
@@ -206,5 +208,17 @@ public class Producto {
         }
         return lp;
     }
-    
+    public void actualizarprecio(int idPrec, String nombre, String categoria, float prec) {
+        try{
+            String sql= "{call proc_actualizar(?,?,?,?)}";
+            CallableStatement cst=db.getC().prepareCall(sql);
+            cst.setInt(1, idPrec);
+            cst.setString(2, nombre);
+            cst.setString(3, categoria);
+            cst.setFloat(4, prec);
+            cst.executeQuery();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
 }
