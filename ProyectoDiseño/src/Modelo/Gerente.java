@@ -50,7 +50,7 @@ public class Gerente extends Usuario{
         int idLocal=this.obteneridLocal();
         System.out.println("second");
         for(Integer i: hmp.keySet()){
-            PedidoLocal pl=new PedidoLocal(5,"Aentregar",this.db);
+            PedidoLocal pl=new PedidoLocal(Pedido.obtenerSiguienteId(db),"Aentregar",this.db);
             pl.cargarDatosLocal(idLocal);
             HashMap<Producto,Integer> hm=new HashMap<>();
             for(Producto p: hmp.get(i)){

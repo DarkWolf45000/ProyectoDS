@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/gianc/Desktop/ProyectoFinalDS/ProyectoDS/ProyectoDiseño/src/Modelo/BD.java</file>
-            <file>file:/C:/Users/gianc/Desktop/ProyectoFinalDS/ProyectoDS/ProyectoDiseño/src/proyectodiseño/LogIn.java</file>
-            <file>file:/C:/Users/gianc/Desktop/ProyectoFinalDS/ProyectoDS/ProyectoDiseño/src/Modelo/Local.java</file>
-            <file>file:/C:/Users/gianc/Desktop/ProyectoFinalDS/ProyectoDS/ProyectoDiseño/src/Modelo/DataBase.java</file>
+            <file>file:/C:/Users/LuisEduardo/Documents/NetBeansProjects/ProyectoDS/ProyectoDiseño/src/Controlador/ControlLogIn.java</file>
+            <file>file:/C:/Users/LuisEduardo/Documents/NetBeansProjects/ProyectoDS/ProyectoDiseño/src/Modelo/Gerente.java</file>
+            <file>file:/C:/Users/LuisEduardo/Documents/NetBeansProjects/ProyectoDS/ProyectoDiseño/src/Modelo/BD.java</file>
+            <file>file:/C:/Users/LuisEduardo/Documents/NetBeansProjects/ProyectoDS/ProyectoDiseño/src/Modelo/JefeBodega.java</file>
         </group>
     </open-files>
 </project-private>

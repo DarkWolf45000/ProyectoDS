@@ -291,4 +291,12 @@ Begin
 End //
 delimiter ;
 
+drop procedure if exists MaxIDPedido;
+delimiter //
+create procedure MaxIDPedido()
+Begin
+	select idpedido
+    from (select MAX(idpedido)idpedido from pedido) tabla1; 
+End //
+delimiter ;
 
