@@ -10,6 +10,7 @@ import Modelo.Producto;
 import Modelo.User;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -20,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -31,11 +33,23 @@ public class ManejarStock {
     
     public static Scene menuGerente(User u,Stage st,Scene scp){
         Label labeltit=new Label("MENU GERENTE");
+        StackPane sp=new StackPane();
+        sp.getChildren().add(labeltit);
+        
         Button btnop=new Button("Otorgar Permisos");
+        StackPane sp2=new StackPane();
+        sp2.getChildren().add(btnop);
+        
         Button btnpa=new Button("Pedido de Abastecimiento");
+        StackPane sp3=new StackPane();
+        sp3.getChildren().add(btnpa);
+        
         Button btnsa=new Button("Salir");
-        VBox vb=new VBox();
-        vb.getChildren().addAll(labeltit,btnop,btnpa,btnsa);
+        StackPane sp4=new StackPane();
+        sp4.getChildren().add(btnsa);
+        
+        VBox vb=new VBox(20);
+        vb.getChildren().addAll(sp,sp2,sp3,sp4);
         Scene sc=new Scene(vb,300,300);
         btnsa.setOnMouseClicked((MouseEvent e)->{
             st.setScene(scp);
@@ -53,6 +67,8 @@ public class ManejarStock {
         ControlStock cs=new ControlStock();
         VBox vb=new VBox(20);
         Label lbtit=new Label("PEDIDO ABASTECIMIENTO");
+        StackPane sp=new StackPane();
+        sp.getChildren().add(lbtit);
         
         Label lbbus=new Label("Criterio de busqueda:"); 
         TextField txtbus=new TextField();
@@ -97,7 +113,7 @@ public class ManejarStock {
         
         Button btnmenu=new Button("Menu");
         Button btnped=new Button("Crear Pedido");
-        HBox hb2=new HBox();
+        HBox hb2=new HBox(20);
         hb2.getChildren().addAll(btnmenu,btnped);
         buscar.setOnMouseClicked((MouseEvent e)->{
             String parametro=txtbus.getText();
@@ -107,8 +123,9 @@ public class ManejarStock {
         btnped.setOnMouseClicked((MouseEvent e)->{
             cs.crearPedido(tvP.getItems(), u);
         });
-        
-        vb.getChildren().addAll(lbtit,hb,tvP,hb2);
+        hb.setAlignment(Pos.CENTER);
+        hb2.setAlignment(Pos.CENTER);
+        vb.getChildren().addAll(sp,hb,tvP,hb2);
          btnmenu.setOnMouseClicked((MouseEvent e)->{
             st.setScene(scp);
         });

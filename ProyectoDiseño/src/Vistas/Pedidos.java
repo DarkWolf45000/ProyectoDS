@@ -12,6 +12,7 @@ import Modelo.Pedido;
 import Modelo.User;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -38,10 +39,18 @@ public class Pedidos {
         JefeBodega jb=cjb.cargarDatos(u);
         VBox vb=new VBox(20);
         Label lbtit=new Label("MENU JEFE BODEGA");
+        StackPane sp=new StackPane();
+        sp.getChildren().add(lbtit);
         Button btnvr=new Button("Crear Rutas");
+        StackPane sp2=new StackPane();
+        sp2.getChildren().add(btnvr);
         Button btnap=new Button("Actualizar Pedido");
+        StackPane sp3=new StackPane();
+        sp3.getChildren().add(btnap);
         Button btnmen=new Button("Salir");
-        vb.getChildren().addAll(lbtit,btnvr,btnap,btnmen);
+        StackPane sp4=new StackPane();
+        sp4.getChildren().add(btnmen);
+        vb.getChildren().addAll(sp,sp2,sp3,sp4);
         Scene sc=new Scene(vb,300,300);
         
         btnmen.setOnMouseClicked((MouseEvent e)->{
@@ -65,18 +74,19 @@ public class Pedidos {
         VBox vb=new VBox(20);
         
         Label lbtit=new Label("Creacion de Rutas");
-        
+        StackPane sp=new StackPane();
+        sp.getChildren().add(lbtit);
         TableView tvPedido=new TableView();
         
         TableColumn<String, Pedido> column1 = new TableColumn<>("Id");
         column1.setCellValueFactory(new PropertyValueFactory<>("id"));
-        
+        column1.setPrefWidth(100);
         TableColumn<String, Pedido> column2 = new TableColumn<>("Estado");
         column2.setCellValueFactory(new PropertyValueFactory<>("estadoEntrega"));
-
+        column2.setPrefWidth(200);
         TableColumn<String, Pedido> column3 = new TableColumn<>("Direccion");
         column3.setCellValueFactory(new PropertyValueFactory<>("direccion"));
-
+        column3.setPrefWidth(200);
         
 
         tvPedido.getColumns().addAll(column1,column2,column3);
@@ -90,9 +100,10 @@ public class Pedidos {
         
         Button btncr=new Button("Crear");
         Button btnmen=new Button("Menu");
-        HBox hb=new HBox();
+        HBox hb=new HBox(40);
         hb.getChildren().addAll(btncr,btnmen);
-        vb.getChildren().addAll(lbtit,tvPedido,ta,hb);
+        hb.setAlignment(Pos.CENTER);
+        vb.getChildren().addAll(sp,tvPedido,ta,hb);
         Scene sc=new Scene(vb,500,500);
         ArrayList<Pedido> ar=new ArrayList<>();
         tvPedido.setOnMouseClicked((MouseEvent e)->{
@@ -140,15 +151,17 @@ public class Pedidos {
     }
     
     public static Scene actualizarPedidos(JefeBodega jb,ControlJefeBodega cjb,Stage st, Scene scp){
-        VBox vb=new VBox();
+        VBox vb=new VBox(20);
         Label lbtitr=new Label("ACTUALIZAR PEDIDOS");
-        
+        StackPane sp=new StackPane();
+        sp.getChildren().add(lbtitr);
         Label lbtit=new Label("Buscar Pedido");
         
         TextField txtidb=new TextField();
         Button btnbus=new Button("Buscar");
         
         HBox hb=new HBox(20);
+        hb.setAlignment(Pos.CENTER);
         hb.getChildren().addAll(lbtit,txtidb,btnbus);
         
         Label lbid=new Label("Id: ");
@@ -171,7 +184,7 @@ public class Pedidos {
         TextField txtrep=new TextField();
         txtrep.setEditable(false);
         GridPane gp=new GridPane();
-        
+        gp.setAlignment(Pos.CENTER);
         gp.add(lbid, 0, 0);
         gp.add(txtid, 1, 0);
         
@@ -195,7 +208,10 @@ public class Pedidos {
         Button btnmen=new Button("Menu");
         HBox hbb=new HBox(20);
         hbb.getChildren().addAll(btng,btnmen);
-        vb.getChildren().addAll(lbtitr,hb,gp,hbb);
+        hbb.setAlignment(Pos.CENTER);
+        gp.setHgap(10);
+        gp.setVgap(10);
+        vb.getChildren().addAll(sp,hb,gp,hbb);
         Scene sc=new Scene(vb,500,500);
         
         btnbus.setOnMouseClicked((MouseEvent e)->{
