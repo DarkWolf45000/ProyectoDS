@@ -237,5 +237,58 @@ Begin
 End //
 delimiter ;
 
+drop procedure if exists obtenerBodegaPorProducto;
+delimiter //
+create procedure obtenerBodegaPorProducto(IN idProducto int, cantidad int)
+Begin
+	select productos_bodega.idBodega
+    from productos_bodega
+    where productos_bodega.idProducto=idProducto and productos_bodega.cantidad=cantidad;
+End //
+delimiter ;
+
+drop procedure if exists actualizarBodegaPorProducto;
+delimiter //
+create procedure actualizarBodegaPorProducto(IN idBodega int,idProducto int, cantidad int)
+Begin
+	update productos_bodega 
+    set productos_bodega.cantidad=cantidad 
+    where productos_bodega.idBodega=idBodega and productos_bodega.idProducto=idProducto;
+End //
+delimiter ;
+
+drop procedure if exists obtenerLocalporGerente;
+delimiter //
+create procedure obtenerLocalporGerente(IN idGerente char(10))
+Begin
+	select gerente.idSucursal
+    from gerente
+    where gerente.idGerente=idGerente;
+End //
+delimiter ;
+
+drop procedure if exists insertarPedido;
+delimiter //
+create procedure insertarPedido(IN idPedido int, idBodega int, estado char(10))
+Begin
+	Insert into pedido values (idPedido,null,idBodega,estado,null,null,0);
+End //
+delimiter ;
+
+drop procedure if exists insertarProductoPedido;
+delimiter //
+create procedure insertarProductoPedido(IN idPedido int, idProducto int, cantidad int)
+Begin
+	Insert into productos_pedido values (idProducto,idPedido,cantidad);
+End //
+delimiter ;
+
+drop procedure if exists insertarProductoLocal;
+delimiter //
+create procedure insertarProductoLocal(IN idPedido int, idLocal int)
+Begin
+	Insert into pedido_sucursal values (idPedido,idLocal);
+End //
+delimiter ;
 
 
