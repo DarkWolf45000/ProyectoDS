@@ -129,17 +129,20 @@ public class Bodega {
         this.listaRepartidores=Repartidor.cargarDatos(db,this.idbodega);
         this.colaRepartidores=new LinkedList<>(this.listaRepartidores);
         this.listaProductos=Producto.cargarDatosBodega(db, idbodega);
+        this.cargarPedidos();
+    }
+    
+    public void cargarPedidos(){
         ArrayList<Pedido> listp=new ArrayList<>();
         PedidoLocal.cargarDatosSucursalBodega(db, idbodega,listp);
         PedidoCliente.cargarDatosClienteBodega(db, idbodega, listp);
         this.listaPedidos=listp;
     }
     
-    
     public ArrayList<Pedido> pedidosAEntregar(){
         ArrayList<Pedido> listp=new ArrayList<>();
         for(Pedido p:this.listaPedidos){
-            if(!p.getEstadoEntrega().equalsIgnoreCase("Entregado")){
+            if(!p.getEstadoEntrega().equalsIgnoreCase("Entregado") && !p.getEstadoEntrega().equalsIgnoreCase("En_Proceso")){
                 listp.add(p);
             }
         }

@@ -39,7 +39,7 @@ public class Pedidos {
         VBox vb=new VBox(20);
         Label lbtit=new Label("MENU JEFE BODEGA");
         Button btnvr=new Button("Crear Rutas");
-        Button btnap=new Button("Actualizar Rutas");
+        Button btnap=new Button("Actualizar Pedido");
         Button btnmen=new Button("Salir");
         vb.getChildren().addAll(lbtit,btnvr,btnap,btnmen);
         Scene sc=new Scene(vb,300,300);
@@ -61,7 +61,7 @@ public class Pedidos {
     
     
     public static Scene visualizarRutas(JefeBodega jb,ControlJefeBodega cjb,Stage st, Scene scp){
-        
+        jb.getBodega().cargarPedidos();
         VBox vb=new VBox(20);
         
         Label lbtit=new Label("Creacion de Rutas");
