@@ -34,6 +34,8 @@ import javafx.stage.Stage;
 public class Pedidos {
     
     public static Scene menuJefeBodega(User u,Stage st,Scene scp){
+        ControlJefeBodega cjb=new ControlJefeBodega();
+        JefeBodega jb=cjb.cargarDatos(u);
         VBox vb=new VBox(20);
         Label lbtit=new Label("MENU JEFE BODEGA");
         Button btnvr=new Button("Crear Rutas");
@@ -47,22 +49,20 @@ public class Pedidos {
         });
         
         btnap.setOnMouseClicked((MouseEvent e)->{
-            st.setScene(Pedidos.actualizarPedidos(u, st, sc));
+            st.setScene(Pedidos.actualizarPedidos(jb,cjb, st, sc));
         });
         
         btnvr.setOnMouseClicked((MouseEvent e)->{
-            st.setScene(Pedidos.visualizarRutas(u, st, sc));
+            st.setScene(Pedidos.visualizarRutas(jb,cjb, st, sc));
         });
         
         return sc;
     }
     
     
-    public static Scene visualizarRutas(User u,Stage st, Scene scp){
+    public static Scene visualizarRutas(JefeBodega jb,ControlJefeBodega cjb,Stage st, Scene scp){
         
         VBox vb=new VBox(20);
-        ControlJefeBodega cjb=new ControlJefeBodega();
-        JefeBodega jb=cjb.cargarDatos(u);
         
         Label lbtit=new Label("Creacion de Rutas");
         
@@ -139,9 +139,7 @@ public class Pedidos {
         }
     }
     
-    public static Scene actualizarPedidos(User u,Stage st, Scene scp){
-        ControlJefeBodega cjb=new ControlJefeBodega();
-        JefeBodega jb=cjb.cargarDatos(u);
+    public static Scene actualizarPedidos(JefeBodega jb,ControlJefeBodega cjb,Stage st, Scene scp){
         VBox vb=new VBox();
         Label lbtitr=new Label("ACTUALIZAR PEDIDOS");
         
