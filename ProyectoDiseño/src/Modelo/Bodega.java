@@ -134,7 +134,7 @@ public class Bodega {
     public ArrayList<Pedido> pedidosAEntregar(){
         ArrayList<Pedido> listp=new ArrayList<>();
         for(Pedido p:this.listaPedidos){
-            if(p.getEstadoEntrega().equalsIgnoreCase("aEntregar")){
+            if(!p.getEstadoEntrega().equalsIgnoreCase("Entregado")){
                 listp.add(p);
             }
         }

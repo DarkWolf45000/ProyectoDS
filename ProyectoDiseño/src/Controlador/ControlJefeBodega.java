@@ -33,7 +33,7 @@ public class ControlJefeBodega {
             return false;
         }else{
             for(Pedido p:ped){
-                p.actualizarEstadoPedido(r.getRep().getCedula(), "A_Entregar");
+                p.actualizarEstadoPedido(r.getRep().getCedula(), "En_Proceso");
             }
             r.imprimirRuta();
             return true;

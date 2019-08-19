@@ -82,7 +82,7 @@ public class Pedidos {
         tvPedido.getColumns().addAll(column1,column2,column3);
         //Conseguir lista con el controller
        // tvPedido.setItems(FXCollections.observableList(jb.getBodega().pedidosAEntregar()));
-        ArrayList<Pedido> listpd=jb.getBodega().getListaPedidos();
+        ArrayList<Pedido> listpd=jb.getBodega().pedidosAEntregar();
         tvPedido.setItems(FXCollections.observableList(listpd));
         
         TextArea ta=new TextArea();
@@ -161,10 +161,10 @@ public class Pedidos {
         Label lbes=new Label("Estado de entrega:");
         TextField txtes=new TextField();
         
-        Label lbhs=new Label("Hora de Salida: ");
+        Label lbhs=new Label("Hora de Salida(ss:mm:hh): ");
         TextField txths=new TextField();
         
-        Label lbhe=new Label("Hora de Entrega: ");
+        Label lbhe=new Label("Hora de Entrega(ss:mm:hh): ");
         TextField txthe=new TextField();
         
         Label lbrep=new Label("Cedula Repartidor: ");

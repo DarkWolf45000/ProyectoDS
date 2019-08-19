@@ -6,10 +6,12 @@
 package Modelo;
 
 import java.sql.CallableStatement;
+import java.sql.Date;
 import java.sql.ResultSet;
+import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  *
@@ -123,8 +125,8 @@ public abstract class Pedido {
             cst.setInt(1, idPedido);
             cst.setString(2, idRepartidor);
             cst.setString(3, estado);
-          //  cst.setDate(4, horasal);
-        //    cst.setDate(5, horaent);
+            cst.setTime(4, Time.valueOf(horasal));
+            cst.setTime(5, Time.valueOf(horaent));
             ResultSet rs = cst.executeQuery();
         }catch (Exception e){
             System.out.println(e);

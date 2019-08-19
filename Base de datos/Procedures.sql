@@ -93,7 +93,7 @@ drop procedure if exists ped_actualizar;
 delimiter //
 create procedure ped_actualizar (IN idpedido int, idrepartidor char(10), estado char(15),horasal time,horaent time)
 Begin
-	update pedido set idRepartidor=idrepartidor,estado=estado,HoraSalida=horasal,HoraEntrada=horaent where pedido.idPedido=idpedido;
+	update pedido set idRepartidor=idrepartidor,estado=estado,HoraSalida=horasal,HoraEntrega=horaent where pedido.idPedido=idpedido;
 End //
 delimiter ;	
 
