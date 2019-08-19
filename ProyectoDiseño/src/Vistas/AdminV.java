@@ -53,23 +53,23 @@ public class AdminV {
         
         Label lbnom=new Label("Nombre:");
         TextField txtnom=new TextField();
+        txtnom.setEditable(false);
         
         Label lbcat=new Label("Categoria: ");
         TextField txtcat=new TextField();
+        txtcat.setEditable(false);
         
         Label lbprec=new Label("Precio: ");
         TextField txtprec=new TextField();
         
-        Label lbbusc=new Label("Buscar nombre: ");
-        TextField txtbusc=new TextField();
+        
         
         GridPane gp=new GridPane();
         
         gp.add(lbid, 0, 0);
         gp.add(txtid, 1, 0);
         
-        gp.add(lbbusc, 0, 2);
-        gp.add(txtbusc, 1, 2);
+       
         
         gp.add(lbnom, 0, 3);
         gp.add(txtnom, 1, 3);
@@ -85,7 +85,7 @@ public class AdminV {
         HBox hbb=new HBox(20);
         hbb.getChildren().addAll(btng,btnmen);
         vb.getChildren().addAll(lbtitr,hb,gp,hbb);
-        Scene sc=new Scene(vb,500,500);
+        Scene sc=new Scene(vb,400,400);
         
         btnbus.setOnMouseClicked((MouseEvent e)->{
             String id=txtidb.getText();
@@ -124,7 +124,7 @@ public class AdminV {
         });
         
         btnmen.setOnMouseClicked((MouseEvent e)->{
-           st.setScene(scp);
+           st.setScene(menuAdmin(u,st,scp));
         
         });
         
@@ -134,69 +134,33 @@ public class AdminV {
         ControlStock cs=new ControlStock();
         VBox vb=new VBox();
         Label lbtitr=new Label("ACTUALIZAR Stock");
-        
-        /*Label lbtit=new Label("Buscar Producto");
-        
-        TextField txtidb=new TextField();
-        Button btnbus=new Button("Buscar");
-        
-        HBox hb=new HBox(20);
-        hb.getChildren().addAll(lbtit,txtidb,btnbus);*/
-        
         Label lbid=new Label("Id: ");
         TextField txtid=new TextField();
         
-        Label lbnom=new Label("Bodega:");
+        Label lbnom=new Label("Local:");
         TextField txtidbod=new TextField();
         
         Label lbcat=new Label("Cantidad: ");
         TextField txtcat=new TextField();
-        
-        Label lbbusc=new Label("Buscar nombre: ");
-        TextField txtbusc=new TextField();
         
         GridPane gp=new GridPane();
         
         gp.add(lbid, 0, 0);
         gp.add(txtid, 1, 0);
         
-        gp.add(lbbusc, 0, 2);
-        gp.add(txtbusc, 1, 2);
-        
         gp.add(lbnom, 0, 3);
         gp.add(txtidbod, 1, 3);
         
-        gp.add(lbcat, 0, 4);
-        gp.add(txtcat, 1, 4);
+        gp.add(lbcat, 0, 5);
+        gp.add(txtcat, 1, 5);
         
         Button btng=new Button("Actualizar");
         Button btnmen=new Button("Menu");
         HBox hbb=new HBox(20);
         hbb.getChildren().addAll(btng,btnmen);
         vb.getChildren().addAll(lbtitr,gp,hbb);
-        Scene sc=new Scene(vb,500,500);
+        Scene sc=new Scene(vb,300,300);
         
-       /* btnbus.setOnMouseClicked((MouseEvent e)->{
-            String id=txtidb.getText();
-            if(!id.equalsIgnoreCase("")){
-                Producto p=cs.consultarProducto(id);
-                if(p==null){
-                    //alerta de que no se encontro
-                    System.out.println("no se encontro la wea :,v");
-                    txtid.clear();
-                    txtidbod.clear();
-                    txtcat.clear();
-                }else{
-                    txtid.setText(String.valueOf(p.getIdProducto()));
-                    txtidbod.setText(p.getNombre());
-                    txtcat.setText(p.getModelo());
-                }
-            }else{
-                //alerta de que no se puso el id
-                System.out.println(".,v");
-            }
-        });
-        */
         btng.setOnMouseClicked((MouseEvent e)->{
             
            if(cs.actualizarStock(txtid.getText(), txtidbod.getText(), txtcat.getText())){
@@ -211,7 +175,58 @@ public class AdminV {
         });
         
         btnmen.setOnMouseClicked((MouseEvent e)->{
-           st.setScene(scp);
+           st.setScene(menuAdmin(u,st,scp));
+        
+        });
+        
+        return sc;
+    }
+    public static Scene ingresarStock(User u,Stage st, Scene scp){
+        ControlStock cs=new ControlStock();
+        VBox vb=new VBox();
+        Label lbtitr=new Label("INGRESAR Stock");
+        Label lbid=new Label("Id: ");
+        TextField txtid=new TextField();
+        
+        Label lbnom=new Label("Local:");
+        TextField txtidbod=new TextField();
+        
+        Label lbcat=new Label("Cantidad: ");
+        TextField txtcat=new TextField();
+        
+        GridPane gp=new GridPane();
+        
+        gp.add(lbid, 0, 0);
+        gp.add(txtid, 1, 0);
+        
+        gp.add(lbnom, 0, 3);
+        gp.add(txtidbod, 1, 3);
+        
+        gp.add(lbcat, 0, 5);
+        gp.add(txtcat, 1, 5);
+        
+        Button btng=new Button("Ingresar");
+        Button btnmen=new Button("Menu");
+        HBox hbb=new HBox(20);
+        hbb.getChildren().addAll(btng,btnmen);
+        vb.getChildren().addAll(lbtitr,gp,hbb);
+        Scene sc=new Scene(vb,300,300);
+        
+        btng.setOnMouseClicked((MouseEvent e)->{
+            
+           if(cs.ingresarStock(txtid.getText(), txtidbod.getText(), txtcat.getText())){
+               txtid.clear();
+               txtidbod.clear();
+               txtcat.clear();
+               
+           }else{
+               //alerta de error
+           }
+        
+        });
+        
+        btnmen.setOnMouseClicked((MouseEvent e)->{
+           st.setScene(menuAdmin(u,st,scp));
         
         });
         
@@ -219,7 +234,7 @@ public class AdminV {
     }
     public static Scene menuAdmin(User u,Stage st,Scene scp){
         VBox vb=new VBox(20);
-        Label lbtit=new Label("MENU JEFE BODEGA");
+        Label lbtit=new Label("MENU ADMIN");
         Button btncl=new Button("Modificar Clientes");
         Button btnven=new Button("Modificar vendedores");
         Button btnger=new Button("Modificar gerentes");
@@ -257,15 +272,15 @@ public class AdminV {
         });
         
         btnist.setOnMouseClicked((MouseEvent e)->{
-            st.setScene(scp);
+            st.setScene(ingresarStock(u,st,scp));
         });
         
         btnast.setOnMouseClicked((MouseEvent e)->{
-            actualizarStock(u, st, scp);
+            st.setScene(actualizarStock(u, st, scp));
         });
         
         btnapr.setOnMouseClicked((MouseEvent e)->{
-            actualizarPrecio(u,st,scp);
+            st.setScene(actualizarPrecio(u,st,scp));
         });
         return sc;
     }

@@ -106,5 +106,20 @@ public class ControlStock {
         Producto.actualizarStock(idProd,idBod, Cant);
         return true;
     }
-        
+    public boolean ingresarStock(String id, String idbod, String cant) {
+        if(id.isEmpty() && idbod.isEmpty() && cant.isEmpty()){
+            return false;
+        }
+        int idProd,idBod,Cant;
+        try{
+             idProd= Integer.parseInt(id);
+             idBod= Integer.parseInt(idbod);
+             Cant= Integer.parseInt(cant);
+        } catch (Exception e){
+            return false;
+            //crear alerta de que datos ingresados estan en formato invalido
+        }
+        Producto.ingresarStock(idProd,idBod, Cant);
+        return true;
+    }    
 }
