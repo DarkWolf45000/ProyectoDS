@@ -130,7 +130,93 @@ public class AdminV {
         
         return sc;
     }
-    
+    public static Scene actualizarStock(User u,Stage st, Scene scp){
+        ControlStock cs=new ControlStock();
+        VBox vb=new VBox();
+        Label lbtitr=new Label("ACTUALIZAR Stock");
+        
+        /*Label lbtit=new Label("Buscar Producto");
+        
+        TextField txtidb=new TextField();
+        Button btnbus=new Button("Buscar");
+        
+        HBox hb=new HBox(20);
+        hb.getChildren().addAll(lbtit,txtidb,btnbus);*/
+        
+        Label lbid=new Label("Id: ");
+        TextField txtid=new TextField();
+        
+        Label lbnom=new Label("Bodega:");
+        TextField txtidbod=new TextField();
+        
+        Label lbcat=new Label("Cantidad: ");
+        TextField txtcat=new TextField();
+        
+        Label lbbusc=new Label("Buscar nombre: ");
+        TextField txtbusc=new TextField();
+        
+        GridPane gp=new GridPane();
+        
+        gp.add(lbid, 0, 0);
+        gp.add(txtid, 1, 0);
+        
+        gp.add(lbbusc, 0, 2);
+        gp.add(txtbusc, 1, 2);
+        
+        gp.add(lbnom, 0, 3);
+        gp.add(txtidbod, 1, 3);
+        
+        gp.add(lbcat, 0, 4);
+        gp.add(txtcat, 1, 4);
+        
+        Button btng=new Button("Actualizar");
+        Button btnmen=new Button("Menu");
+        HBox hbb=new HBox(20);
+        hbb.getChildren().addAll(btng,btnmen);
+        vb.getChildren().addAll(lbtitr,gp,hbb);
+        Scene sc=new Scene(vb,500,500);
+        
+       /* btnbus.setOnMouseClicked((MouseEvent e)->{
+            String id=txtidb.getText();
+            if(!id.equalsIgnoreCase("")){
+                Producto p=cs.consultarProducto(id);
+                if(p==null){
+                    //alerta de que no se encontro
+                    System.out.println("no se encontro la wea :,v");
+                    txtid.clear();
+                    txtidbod.clear();
+                    txtcat.clear();
+                }else{
+                    txtid.setText(String.valueOf(p.getIdProducto()));
+                    txtidbod.setText(p.getNombre());
+                    txtcat.setText(p.getModelo());
+                }
+            }else{
+                //alerta de que no se puso el id
+                System.out.println(".,v");
+            }
+        });
+        */
+        btng.setOnMouseClicked((MouseEvent e)->{
+            
+           if(cs.actualizarStock(txtid.getText(), txtidbod.getText(), txtcat.getText())){
+               txtid.clear();
+               txtidbod.clear();
+               txtcat.clear();
+               
+           }else{
+               //alerta de error
+           }
+        
+        });
+        
+        btnmen.setOnMouseClicked((MouseEvent e)->{
+           st.setScene(scp);
+        
+        });
+        
+        return sc;
+    }
     public static Scene menuAdmin(User u,Stage st,Scene scp){
         VBox vb=new VBox(20);
         Label lbtit=new Label("MENU JEFE BODEGA");
@@ -144,7 +230,7 @@ public class AdminV {
         Button btnapr=new Button("Actualizar precio de venta");
         Button btnmen=new Button("Salir");
         vb.getChildren().addAll(lbtit,btncl,btnven,btnger,btnrep,btnjef,btnist,btnast,btnapr,btnmen);
-        Scene sc=new Scene(vb,350,350);
+        Scene sc=new Scene(vb,350,450);
         
         btnmen.setOnMouseClicked((MouseEvent e)->{
             st.setScene(scp);
@@ -175,7 +261,7 @@ public class AdminV {
         });
         
         btnast.setOnMouseClicked((MouseEvent e)->{
-            st.setScene(scp);
+            actualizarStock(u, st, scp);
         });
         
         btnapr.setOnMouseClicked((MouseEvent e)->{

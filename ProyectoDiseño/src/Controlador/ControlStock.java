@@ -71,7 +71,7 @@ public class ControlStock {
             return false;
             //crear alerta de que datos ingresados estan en formato invalido
         }
-        
+        Producto.actualizarprecio(idPrec, nombre, categoria, prec);
         return true;
     }
             
@@ -87,6 +87,23 @@ public class ControlStock {
         }
         
         g.crearPedido(lp);
+        return true;
+    }
+
+    public boolean actualizarStock(String id, String idbod, String cant) {
+        if(id.isEmpty() && idbod.isEmpty() && cant.isEmpty()){
+            return false;
+        }
+        int idProd,idBod,Cant;
+        try{
+             idProd= Integer.parseInt(id);
+             idBod= Integer.parseInt(idbod);
+             Cant= Integer.parseInt(cant);
+        } catch (Exception e){
+            return false;
+            //crear alerta de que datos ingresados estan en formato invalido
+        }
+        Producto.actualizarStock(idProd,idBod, Cant);
         return true;
     }
         

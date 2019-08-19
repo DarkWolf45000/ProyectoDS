@@ -28,13 +28,15 @@ import javafx.scene.control.TextField;
 public class Producto {
 
     
+
+    
     private int idProducto;
     private String nombre;
     private String descripcion;
     private float precio;
     private int cantDisp;
     private String modelo;
-    private DataBase db;
+    protected DataBase db;
     private static Buscar bq;
     private TextField cantdeseada=new TextField();
     private CheckBox isdeseado=new CheckBox();
@@ -231,14 +233,38 @@ public class Producto {
         }
         return lp;
     }
-    public void actualizarprecio(int idPrec, String nombre, String categoria, float prec) {
+    public static void actualizarprecio(int idPrec, String nombre, String categoria, float prec) {
         try{
-            String sql= "{call proc_actualizar(?,?,?,?)}";
-            CallableStatement cst=db.getC().prepareCall(sql);
+            String sql= "{call prec_actualizar(?,?,?,?)}";
+            CallableStatement cst=ControlLogIn.db.getC().prepareCall(sql);
             cst.setInt(1, idPrec);
             cst.setString(2, nombre);
             cst.setString(3, categoria);
             cst.setFloat(4, prec);
+            cst.executeQuery();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+    public static void actualizarStock(int idProd, int idLocal, int cant) {
+        try{
+            String sql= "{call stock_actualizar(?,?,?)}";
+            CallableStatement cst=ControlLogIn.db.getC().prepareCall(sql);
+            cst.setInt(1, idProd);
+            cst.setInt(2,idLocal);
+            cst.setInt(3, cant);
+            cst.executeQuery();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+    public static void ingresarStock(int idProd, int idLocal, int cant) {
+        try{
+            String sql= "{call stock_ingresar(?,?,?)}";
+            CallableStatement cst=ControlLogIn.db.getC().prepareCall(sql);
+            cst.setInt(1, idProd);
+            cst.setInt(2,idLocal);
+            cst.setInt(3, cant);
             cst.executeQuery();
         }catch (Exception e){
             System.out.println(e);
