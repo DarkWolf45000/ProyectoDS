@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.TextField;
 
 /**
  *
@@ -34,7 +36,10 @@ public class Producto {
     private String modelo;
     private DataBase db;
     private static Buscar bq;
-
+    private TextField cantdeseada=new TextField();
+    private CheckBox isdeseado=new CheckBox();
+            
+            
     public Producto(int idProducto, String descripcion, float precio, int cantDisp, String modelo) {
         this.idProducto = idProducto;
         this.descripcion = descripcion;
@@ -43,6 +48,24 @@ public class Producto {
         this.modelo = modelo;
     }
 
+    public TextField getCantdeseada() {
+        return cantdeseada;
+    }
+
+    public void setCantdeseada(TextField cantdeseada) {
+        this.cantdeseada = cantdeseada;
+    }
+
+    public CheckBox getIsdeseado() {
+        return isdeseado;
+    }
+
+    public void setIsdeseado(CheckBox isdeseado) {
+        this.isdeseado = isdeseado;
+    }
+
+    
+    
     public String getNombre() {
         return nombre;
     }

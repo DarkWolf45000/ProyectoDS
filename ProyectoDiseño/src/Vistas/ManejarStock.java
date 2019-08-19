@@ -67,7 +67,6 @@ public class ManejarStock {
         cb.getSelectionModel().selectFirst();
         
         hb.getChildren().addAll(lbbus,cb,txtbus,buscar);
-        //cargar bodegas
         TableView tvP=new TableView();
         
         TableColumn<String, Producto> column1 = new TableColumn<>("Id");
@@ -84,24 +83,36 @@ public class ManejarStock {
         
         TableColumn<String, Producto> column5 = new TableColumn<>("Cantidad Disponible");
         column5.setCellValueFactory(new PropertyValueFactory<>("cantDisp"));
-        
+        column5.setPrefWidth(125);
         TableColumn<String, Producto> column6 = new TableColumn<>("Categoria");
         column6.setCellValueFactory(new PropertyValueFactory<>("modelo"));
-
-        tvP.getColumns().addAll(column1,column2,column3,column4,column5,column6);
+        
+        TableColumn<String, Producto> column7 = new TableColumn<>("Cantidad a Pedir");
+        column7.setCellValueFactory(new PropertyValueFactory<>("cantdeseada"));    
+        column7.setPrefWidth(125);
+        TableColumn<String, Producto> column8 = new TableColumn<>("Seleccionar");
+        column8.setCellValueFactory(new PropertyValueFactory<>("isdeseado"));
+        
+        tvP.getColumns().addAll(column1,column2,column3,column4,column5,column6,column7,column8);
         
         Button btnmenu=new Button("Menu");
-        
+        Button btnped=new Button("Crear Pedido");
+        HBox hb2=new HBox();
+        hb2.getChildren().addAll(btnmenu,btnped);
         buscar.setOnMouseClicked((MouseEvent e)->{
             String parametro=txtbus.getText();
             tvP.setItems(FXCollections.observableList(cs.obtenerProductos(parametro, (String)cb.getSelectionModel().getSelectedItem())));
         });
         
-        vb.getChildren().addAll(lbtit,hb,tvP,btnmenu);
+        btnped.setOnMouseClicked((MouseEvent e)->{
+            cs.crearPedido(tvP.getItems(), u);
+        });
+        
+        vb.getChildren().addAll(lbtit,hb,tvP,hb2);
          btnmenu.setOnMouseClicked((MouseEvent e)->{
             st.setScene(scp);
         });
-         Scene sc=new Scene(vb,500,500);
+         Scene sc=new Scene(vb,725,500);
          return sc;
     }
     

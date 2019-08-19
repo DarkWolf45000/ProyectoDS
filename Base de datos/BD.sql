@@ -33,7 +33,7 @@ create table empleados(
   edad varchar(10),
   idCuenta integer(10),
 primary key (Cedula),
-foreign key(idCuenta) references cuentas(idCuenta)
+foreign key(idCuenta) references Cuentas(idCuenta)
 );
 
 

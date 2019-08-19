@@ -131,4 +131,18 @@ public abstract class Pedido {
         }
     }
     
+    public static int obtenerSiguienteId(DataBase db){
+        try{
+            String sql= "{call MaxIDPedido()}";
+            CallableStatement cst=db.getC().prepareCall(sql);
+            ResultSet rs = cst.executeQuery();
+            if(rs.next()){
+                return rs.getInt(1)+1;
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return 0;
+    }
+    
 }
