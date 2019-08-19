@@ -35,7 +35,6 @@ public class Gerente extends Usuario{
         HashMap<Integer,ArrayList<Producto>> hmp=new HashMap<>();
         for(Producto p:lp){
             int idBodega= Bodega.obteneridBodega(p.getIdProducto(), p.getCantDisp(),this.db);
-            System.out.println("first");
             if(hmp.keySet().contains(idBodega)){
                 ArrayList<Producto> ltemp=hmp.get(idBodega);
                 ltemp.add(p);
@@ -48,7 +47,6 @@ public class Gerente extends Usuario{
             Bodega.actualizarProductoBodega(idBodega, p.getIdProducto(), p.getCantDisp()-Integer.parseInt(p.getCantdeseada().getText()),this.db);
         }
         int idLocal=this.obteneridLocal();
-        System.out.println("second");
         for(Integer i: hmp.keySet()){
             PedidoLocal pl=new PedidoLocal(Pedido.obtenerSiguienteId(db),"Aentregar",this.db);
             pl.cargarDatosLocal(idLocal);

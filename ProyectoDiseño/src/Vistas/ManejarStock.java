@@ -118,10 +118,12 @@ public class ManejarStock {
         buscar.setOnMouseClicked((MouseEvent e)->{
             String parametro=txtbus.getText();
             tvP.setItems(FXCollections.observableList(cs.obtenerProductos(parametro, (String)cb.getSelectionModel().getSelectedItem())));
+        
         });
         
         btnped.setOnMouseClicked((MouseEvent e)->{
             cs.crearPedido(tvP.getItems(), u);
+            tvP.refresh();
         });
         hb.setAlignment(Pos.CENTER);
         hb2.setAlignment(Pos.CENTER);

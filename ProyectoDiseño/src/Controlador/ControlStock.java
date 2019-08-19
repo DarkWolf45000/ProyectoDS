@@ -81,12 +81,18 @@ public class ControlStock {
         ArrayList<Producto> lp=new ArrayList<>();
         for(Producto p:listp){
             if(p.getIsdeseado().isSelected()){
-                System.out.println(p.getNombre());
                 lp.add(p);
             }
         }
         
         g.crearPedido(lp);
+        for(Producto p:listp){
+            if(p.getIsdeseado().isSelected()){
+                p.getIsdeseado().setSelected(false);
+                p.setCantDisp(p.getCantDisp()-Integer.parseInt(p.getCantdeseada().getText()));
+                p.getCantdeseada().clear();
+            }
+        }
         return true;
     }
 

@@ -100,7 +100,6 @@ public class PedidoLocal extends Pedido {
             cst.setInt(2, idBodega);
             cst.setString(3, this.estadoEntrega);
             ResultSet rs = cst.executeQuery();
-            System.out.println("paso esto");
             for(Producto p:this.listProducto.keySet()){
                 //creo producto_pedido
                 sql= "{call insertarProductoPedido(?,?,?)}";
@@ -111,14 +110,12 @@ public class PedidoLocal extends Pedido {
                 rs = cst.executeQuery();
             }
             
-            System.out.println("paso aquello");
             //creo pedido_local
-            sql= "{call insertarProductoLocal(?,?}";
+            sql= "{call insertarProductoLocal(?,?)}";
             cst=db.getC().prepareCall(sql);
             cst.setInt(1, this.id);
             cst.setInt(2, this.local.getIdlocal());
             rs = cst.executeQuery();
-            System.out.println("paso todo");
         }catch (Exception e){
             System.out.println(e);
         }
