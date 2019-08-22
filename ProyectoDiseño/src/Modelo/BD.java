@@ -21,7 +21,7 @@ public class BD implements DataBase{
         //Se Realiza la conexion  
         try{
             Class.forName("com.mysql.jdbc.Driver"); //cambiar la ip dependiendo del contenedor
-            c= (Connection) DriverManager.getConnection("jdbc:mysql://192.168.99.101/DBProyecto","root","root");
+            c= (Connection) DriverManager.getConnection("jdbc:mysql://localhost/DBProyecto","root","root");
             //Verfificar que la conexion fue exitosa
             if(c!=null){
                 System.out.println("Conexion establecida");
