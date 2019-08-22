@@ -1,15 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Estrategy;
 
 import Controlador.ControlLogIn;
-import Modelo.Producto;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 
 /**
  *
@@ -23,8 +17,7 @@ public class BuscarNombre implements Buscar{
             String sql= "{call buscar_nombre(?)}";
             CallableStatement cst=ControlLogIn.db.getC().prepareCall(sql);
             cst.setString(1, parametro);
-            ResultSet rs = cst.executeQuery();
-            return rs;
+            return cst.executeQuery();
         }catch (Exception e){
             System.out.println(e);
         }

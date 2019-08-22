@@ -5,9 +5,8 @@
  */
 package Estrategy;
 
-import Modelo.Producto;
+
 import java.sql.ResultSet;
-import java.util.ArrayList;
 
 /**
  *

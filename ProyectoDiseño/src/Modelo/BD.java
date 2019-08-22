@@ -13,40 +13,39 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class BD implements DataBase{
+public class BD implements DataBase {
+
     public Connection c;
+
     //Se realiza metodo que retorna la Conexion
-    public Connection getConexion(){
-        c=null;
+    public Connection getConexion() {
+        c = null;
         //Se Realiza la conexion  
-        try{
+        try {
             Class.forName("com.mysql.jdbc.Driver"); //cambiar la ip dependiendo del contenedor
-            c= (Connection) DriverManager.getConnection("jdbc:mysql://localhost/DBProyecto","root","root");
+            c = DriverManager.getConnection("jdbc:mysql://localHost:3306/DBProyecto", "root", "1234");
             //Verfificar que la conexion fue exitosa
-            if(c!=null){
-                System.out.println("Conexion establecida");
-            }
-        }
-        //Capturando la excepcion
-        catch(ClassNotFoundException | SQLException e){
-            System.out.println("Error de conexion"+ e);
+            System.out.println("Conexion establecida");
+
+        } //Capturando la excepcion
+        catch (ClassNotFoundException | SQLException e) {
+            System.out.println("Error de conexion" + e);
         }
         //Finalmente se retorna
-        return(c);
+        return (c);
     }
+
     //Metodo para Desconectar de la Base de datos
-    public void Desconectar(){
-        c=null;
-        if(c==null){
-            System.out.println("Conexion finalizada");
-        }
+    public void Desconectar() {
+        c = null;
+
+        System.out.println("Conexion finalizada");
+
     }
 
     @Override
     public Connection getC() {
         return c;
     }
- 
-    
-    
+
 }
