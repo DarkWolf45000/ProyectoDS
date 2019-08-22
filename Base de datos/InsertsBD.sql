@@ -6,7 +6,7 @@ Insert into Cuentas values (1,"dyance","espol1",0),
 							(2,"lsalazar","espol2",0),
 							(3,"csanchez","espol3",0),
 							(4,"lpod","espol4",0),
-							(5,"podcast","espol5",0)
+							(5,"podcast","espol5",0),
 							(6,"mamadisimo","espol6",0),
 							(7,"bysua","espol7",0),
 							(8,"sanlo","espol8",0);
@@ -19,7 +19,7 @@ Insert into empleados values ("0943842997","Diego","Yance",22,1),
 							("0920920920","Luis","Salazar",21,2),
 							("0910910910","Carlos","Sanchez",22,3),
 							("0940940940","Lucas","Pod",23,4),
-							("0950950950","Lapras","Yoshi",57,5)
+							("0950950950","Lapras","Yoshi",57,5),
 							("0933452254","Michael","Perez",30,6),
 							("0979845447","Byron","Suarez",32,7),
 							("0933654410","Sandro","Lopez",31,8);
@@ -37,7 +37,7 @@ Insert into vendedor values ("0910910910",1);
 
 Insert into jefebodega values ("0940940940",1);
 
-Insert into repartidor_bodega values (1,"0950950950",1)
+Insert into repartidor_bodega values (1,"0950950950",1),
 									 (2,"0933452254",1),
 									 (3,"0979845447",1),
 									 (4,"0933654410",1);
@@ -65,7 +65,8 @@ Insert into productos_local values (1,1,1,20),(2,2,1,15),(3,3,1,25),(4,4,1,30),(
 
 Insert into productos_pedido values (1,1,1,2),(2,2,1,1),(3,3,1,2);
 
-Insert into pedido_cliente values (1,1,"1");
+Insert into pedido_cliente values (1,1,"1"),
+								  (2,1,"2");
 
 Insert into pedido_sucursal values (1,2,1);
 

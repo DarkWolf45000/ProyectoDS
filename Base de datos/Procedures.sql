@@ -148,9 +148,9 @@ drop procedure if exists obtenerBodega;
 delimiter //
 create procedure obtenerBodega (IN idJefe char(10))
 Begin
-	SELECT Bodega.idBodega, Bodega.direccion
-	FROM Bodega
-	INNER JOIN jefebodega ON jefebodega.idJefe=idJefe and jefebodega.idBodega=Bodega.idBodega;
+	SELECT bodega.idBodega, bodega.direccion
+	FROM bodega
+	INNER JOIN jefebodega ON jefebodega.idJefe=idJefe and jefebodega.idBodega=bodega.idBodega;
 End //
 delimiter ;
 
@@ -158,10 +158,10 @@ drop procedure if exists obtenerProductosBodega;
 delimiter //
 create procedure obtenerProductosBodega (IN idBodega int)
 Begin
-	SELECT productos_bodega.Cantidad, Producto.idProducto, Producto.descripcion, Producto.categoria, Producto.Precio
-	FROM Bodega
-	INNER JOIN productos_bodega ON Bodega.idBodega=productos_bodega.idBodega and Bodega.idBodega=idBodega
-    INNER JOIN Producto ON Producto.idProducto=productos_bodega.idProducto;
+	SELECT productos_bodega.Cantidad, producto.idProducto, producto.descripcion, producto.categoria, producto.Precio
+	FROM bodega
+	INNER JOIN productos_bodega ON bodega.idBodega=productos_bodega.idBodega and bodega.idBodega=idBodega
+    INNER JOIN producto ON producto.idProducto=productos_bodega.idProducto;
 End //
 delimiter ;
 
@@ -169,10 +169,10 @@ drop procedure if exists obtenerPedidosSucursalBodega;
 delimiter //
 create procedure obtenerPedidosSucursalBodega (IN idBodega int)
 Begin
-	SELECT Pedido.idPedido, Pedido.estado, pedido_sucursal.idSucursal
-	FROM Bodega
-	INNER JOIN Pedido ON Pedido.idBodega=Bodega.idBodega and Bodega.idBodega=idBodega
-    INNER JOIN pedido_Sucursal ON pedido_sucursal.idPedido=Pedido.idPedido;
+	SELECT pedido.idPedido, pedido.estado, pedido_sucursal.idSucursal
+	FROM bodega
+	INNER JOIN pedido ON pedido.idBodega=bodega.idBodega and bodega.idBodega=idBodega
+    INNER JOIN pedido_sucursal ON pedido_sucursal.idPedido=pedido.idPedido;
 End //
 delimiter ;
 
@@ -180,8 +180,8 @@ drop procedure if exists verificarMatriz;
 delimiter //
 create procedure verificarMatriz(IN idSucursal int)
 Begin
-	SELECT Sucursal.direccion, Sucursal.matriz
-	FROM Sucursal
+	SELECT sucursal.direccion, sucursal.matriz
+	FROM sucursal
 	WHERE sucursal.idSucursal=idSucursal;
 End //
 delimiter ;
@@ -190,10 +190,10 @@ drop procedure if exists obtenerProductosPedido;
 delimiter //
 create procedure obtenerProductosPedido(IN idPedido int)
 Begin
-	SELECT Producto.idProducto, Producto.descripcion, Producto.categoria , Producto.precio, productos_pedido.cantidad 
-	FROM Pedido
-	INNER JOIN productos_pedido ON productos_pedido.idPedido=Pedido.idPedido and idPedido=Pedido.idPedido
-    INNER JOIN Producto ON productos_pedido.idProducto=Producto.idProducto;
+	SELECT producto.idProducto, producto.descripcion, producto.categoria , producto.precio, productos_pedido.cantidad 
+	FROM pedido
+	INNER JOIN productos_pedido ON productos_pedido.idPedido=pedido.idPedido and idPedido=pedido.idPedido
+    INNER JOIN producto ON productos_pedido.idProducto=producto.idProducto;
 End //
 delimiter ;
 
@@ -201,10 +201,10 @@ drop procedure if exists obtenerPedidosClienteBodega;
 delimiter //
 create procedure obtenerPedidosClienteBodega (IN idBodega int)
 Begin
-	SELECT Pedido.idPedido, Pedido.estado, pedido_cliente.idCliente
-	FROM Bodega
-	INNER JOIN Pedido ON Pedido.idBodega=Bodega.idBodega and Bodega.idBodega=idBodega
-    INNER JOIN pedido_cliente ON pedido_cliente.idPedido=Pedido.idPedido;
+	SELECT pedido.idPedido, pedido.estado, pedido_cliente.idCliente
+	FROM bodega
+	INNER JOIN pedido ON pedido.idBodega=bodega.idBodega and bodega.idBodega=idBodega
+    INNER JOIN pedido_cliente ON pedido_cliente.idPedido=pedido.idPedido;
 End //
 delimiter ;
 
@@ -223,7 +223,7 @@ drop procedure if exists ped_actualizarEstado;
 delimiter //
 create procedure ped_actualizarEstado(IN idpedido int, idrepartidor char(10), estado char(15))
 Begin
-	update pedido set idRepartidor=idrepartidor,estado=estado where idPedido=idpedido;
+	update pedido set idRepartidor=idrepartidor,estado=estado where pedido.idPedido=idpedido;
 End //
 delimiter ;
 
