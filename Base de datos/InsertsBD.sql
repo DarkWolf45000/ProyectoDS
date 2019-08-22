@@ -66,7 +66,7 @@ Insert into productos_local values (1,1,1,20),(2,2,1,15),(3,3,1,25),(4,4,1,30),(
 Insert into productos_pedido values (1,1,1,2),(2,2,1,1),(3,3,1,2);
 
 Insert into pedido_cliente values (1,1,"1"),
-								  (2,1,"2");
+								  (2,3,"2");
 
 Insert into pedido_sucursal values (1,2,1);
 

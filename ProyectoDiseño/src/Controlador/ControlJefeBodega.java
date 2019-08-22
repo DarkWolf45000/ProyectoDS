@@ -5,17 +5,14 @@
  */
 package Controlador;
 
-import Modelo.Bodega;
+
 import Modelo.JefeBodega;
 import Modelo.Pedido;
-import Modelo.Repartidor;
 import Modelo.Ruta;
 import Modelo.User;
 import Modelo.Usuario;
-import java.sql.Date;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 import javafx.scene.control.TextArea;
 
 /**
@@ -29,7 +26,7 @@ public class ControlJefeBodega {
         
         if(r.getRep()==null){
             //alerta no hay repartidor disponible
-            System.out.println("no hay repartidor :,v");
+            Logger.getLogger("No hay repatidor");
             return false;
         }else{
             for(Pedido p:ped){
@@ -82,10 +79,10 @@ public class ControlJefeBodega {
             return false;
         }
         
-        int idrep=0;
+      
         int idped=0;
         try{
-            idrep=Integer.parseInt(idRep);
+            
             idped=Integer.parseInt(id);
         }catch(Exception e){
             //alerta de numero format
