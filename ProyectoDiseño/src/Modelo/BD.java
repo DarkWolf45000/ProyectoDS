@@ -21,11 +21,11 @@ public class BD implements DataBase{
         //Se Realiza la conexion  
         try{
             Class.forName("com.mysql.jdbc.Driver"); //cambiar la ip dependiendo del contenedor
-            c= (Connection) DriverManager.getConnection("jdbc:mysql://192.168.99.101/DBProyecto","root","root");
+            c=  DriverManager.getConnection("jdbc:mysql://localHost:3306/DBProyecto","root","1234");
             //Verfificar que la conexion fue exitosa
-            if(c!=null){
+            
                 System.out.println("Conexion establecida");
-            }
+            
         }
         //Capturando la excepcion
         catch(ClassNotFoundException | SQLException e){
@@ -37,9 +37,9 @@ public class BD implements DataBase{
     //Metodo para Desconectar de la Base de datos
     public void Desconectar(){
         c=null;
-        if(c==null){
+        
             System.out.println("Conexion finalizada");
-        }
+        
     }
 
     @Override

@@ -5,12 +5,12 @@
  */
 package Modelo;
 
-import static Controlador.ControlLogIn.cn;
-import Singleton.Local;
+
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 /**
@@ -32,7 +32,7 @@ public class Bodega {
         this.db = db;
     }
 
-    public ArrayList<Repartidor> getListaRepartidores() {
+    public List<Repartidor> getListaRepartidores() {
         return listaRepartidores;
     }
 
@@ -174,7 +174,7 @@ public class Bodega {
             cst.setInt(1, idBodega);
             cst.setInt(2, idProducto);
             cst.setInt(3, cantidad);
-            ResultSet rs = cst.executeQuery();
+            cst.executeQuery();
             
         }catch (Exception e){
             System.out.println(e);

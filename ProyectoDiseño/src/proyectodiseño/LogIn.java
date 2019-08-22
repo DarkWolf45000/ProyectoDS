@@ -26,7 +26,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import Modelo.User;
 import Modelo.Usuario;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author LuisEduardo
@@ -88,8 +91,12 @@ public class LogIn extends Application {
                     alert.showAndWait();
                 }else{
                     if(cgl.verificar(us,cont)){
-                        //procedimiento que lleve a la ventana de empleados o admin segun sea el caso
-                        cgl.siguientePantalla(us,cont,primaryStage,scene);
+                        try {
+                            //procedimiento que lleve a la ventana de empleados o admin segun sea el caso
+                            cgl.siguientePantalla(us,cont,primaryStage,scene);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(LogIn.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }else{
                     
                     alert.setTitle("Error Dialog");
