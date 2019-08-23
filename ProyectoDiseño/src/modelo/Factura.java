@@ -6,30 +6,30 @@
 package modelo;
 
 import java.time.LocalDate;
-import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
  * @author LuisEduardo
  */
 public class Factura {
-    private HashMap<Integer,Producto> listProducto;
+    private Map<Integer,Producto> listProducto;
     private LocalDate fecha;
     private int precioTotal;
-    private int DataBase;
+    private DataBase db;
 
-    public Factura(HashMap<Integer, Producto> listProducto, LocalDate fecha, int precioTotal, int DataBase) {
+    public Factura(Map<Integer, Producto> listProducto, LocalDate fecha, int precioTotal, DataBase DataBase) {
         this.listProducto = listProducto;
         this.fecha = fecha;
         this.precioTotal = precioTotal;
-        this.DataBase = DataBase;
+        this.db = DataBase;
     }
 
-    public HashMap<Integer, Producto> getListProducto() {
+    public Map<Integer, Producto> getListProducto() {
         return listProducto;
     }
 
-    public void setListProducto(HashMap<Integer, Producto> listProducto) {
+    public void setListProducto(Map<Integer, Producto> listProducto) {
         this.listProducto = listProducto;
     }
 
@@ -49,12 +49,12 @@ public class Factura {
         this.precioTotal = precioTotal;
     }
 
-    public int getDataBase() {
-        return DataBase;
+    public DataBase getDataBase() {
+        return db;
     }
 
-    public void setDataBase(int DataBase) {
-        this.DataBase = DataBase;
+    public void setDataBase(DataBase DataBase) {
+        this.db = DataBase;
     }
     
 }

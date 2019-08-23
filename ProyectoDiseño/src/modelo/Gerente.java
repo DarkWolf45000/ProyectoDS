@@ -10,6 +10,7 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Logger;
 
 /**
  *
@@ -71,7 +72,7 @@ public class Gerente extends Usuario{
             return rs.getInt(1);
             
         }catch (Exception e){
-            System.out.println(e);
+            Logger.getLogger(Gerente.class.getName()).warning("Error en conexión obtener id local");
         }
         return 0;
     }

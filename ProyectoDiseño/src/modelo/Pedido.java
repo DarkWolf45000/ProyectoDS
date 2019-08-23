@@ -4,6 +4,7 @@ import java.sql.CallableStatement;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Time;
+import java.util.logging.Logger;
 
 /**
  *
@@ -83,9 +84,9 @@ public abstract class Pedido {
             cst.setInt(1, this.id);
             cst.setString(2, idRepartidor);
             cst.setString(3, estado);
-            ResultSet rs = cst.executeQuery();
+            cst.executeQuery();
         }catch (Exception e){
-            System.out.println(e);
+            Logger.getLogger(Pedido.class.getName()).warning("Error en conexión estado pedido");
         }
     }
     
@@ -96,7 +97,6 @@ public abstract class Pedido {
             cst.setInt(1, idPedido);
             ResultSet rs = cst.executeQuery();
             if(rs.next()){
-                System.out.println(rs.getString(2));
                 Pedido ped=new PedidoLocal(idPedido,rs.getString(2),db);
                 ped.setHoraE(rs.getDate(4));
                 ped.setHoraS(rs.getDate(3));
@@ -105,7 +105,7 @@ public abstract class Pedido {
             }
             return null;
         }catch (Exception e){
-            System.out.println(e);
+            Logger.getLogger(Pedido.class.getName()).warning("Error en conexión obtener pedido");
             return null;
         }
     }
@@ -119,9 +119,9 @@ public abstract class Pedido {
             cst.setString(3, estado);
             cst.setTime(4, Time.valueOf(horasal));
             cst.setTime(5, Time.valueOf(horaent));
-            ResultSet rs = cst.executeQuery();
+            cst.executeQuery();
         }catch (Exception e){
-            System.out.println(e);
+            Logger.getLogger(Pedido.class.getName()).warning("Error en conexión actualizar pedido");
         }
     }
     
@@ -134,7 +134,7 @@ public abstract class Pedido {
                 return rs.getInt(1)+1;
             }
         }catch (Exception e){
-            System.out.println(e);
+            Logger.getLogger(Pedido.class.getName()).warning("Error en conexión obtener id");
         }
         return 0;
     }

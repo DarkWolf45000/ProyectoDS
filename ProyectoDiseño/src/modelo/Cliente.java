@@ -7,6 +7,7 @@ package modelo;
 
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
+import java.util.logging.Logger;
 
 /**
  *
@@ -55,11 +56,11 @@ public class Cliente extends Persona{
             cst.setString(1, idCliente);
             ResultSet rs = cst.executeQuery();
             rs.next();
-            Cliente c=new Cliente(rs.getString(5),rs.getString(6),rs.getString(4),rs.getString(1),rs.getString(2),rs.getString(3));
-            return c;
+            return new Cliente(rs.getString(5),rs.getString(6),rs.getString(4),rs.getString(1),rs.getString(2),rs.getString(3));
+            
             
         }catch (Exception e){
-            System.out.println(e);
+            Logger.getLogger(Cliente.class.getName()).warning("Error en conexión cargar Cliente");
             return null;
         }
     }
