@@ -26,6 +26,10 @@ import javafx.stage.Stage;
  */
 public class ManejarStock {
     
+    private ManejarStock(){
+        
+    }
+    
     public static Scene menuGerente(User u,Stage st,Scene scp){
         Label labeltit=new Label("MENU GERENTE");
         StackPane sp=new StackPane();
@@ -46,13 +50,13 @@ public class ManejarStock {
         VBox vb=new VBox(20);
         vb.getChildren().addAll(sp,sp2,sp3,sp4);
         Scene sc=new Scene(vb,300,300);
-        btnsa.setOnMouseClicked((MouseEvent e)->{
-            st.setScene(scp);
-        });
+        btnsa.setOnMouseClicked((MouseEvent e)->
+            st.setScene(scp)
+        );
         
-        btnpa.setOnMouseClicked((MouseEvent e)->{
-            st.setScene(abastecimiento(u,st,sc));
-        });
+        btnpa.setOnMouseClicked((MouseEvent e)->
+            st.setScene(abastecimiento(u,st,sc))
+        );
         
         return sc;
     }
@@ -123,11 +127,10 @@ public class ManejarStock {
         hb.setAlignment(Pos.CENTER);
         hb2.setAlignment(Pos.CENTER);
         vb.getChildren().addAll(sp,hb,tvP,hb2);
-         btnmenu.setOnMouseClicked((MouseEvent e)->{
-            st.setScene(scp);
-        });
-         Scene sc=new Scene(vb,725,500);
-         return sc;
+         btnmenu.setOnMouseClicked((MouseEvent e)->
+            st.setScene(scp)
+        );
+         return new Scene(vb,725,500);
     }
     
 }

@@ -22,7 +22,6 @@ public class BuscarDescripcion implements Buscar{
             CallableStatement cst=ControlLogIn.db.getC().prepareCall(sql);
             cst.setString(1, parametro);
             return cst.executeQuery();
-    
         }catch (Exception e){
             System.out.println(e);
         }
