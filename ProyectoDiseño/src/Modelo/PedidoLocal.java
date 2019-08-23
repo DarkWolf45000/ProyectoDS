@@ -8,9 +8,8 @@ package Modelo;
 import Singleton.Local;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  *
@@ -65,11 +64,10 @@ public class PedidoLocal extends Pedido {
             }
             
         }catch (Exception e){
-            System.out.println(e);
         }
     }
     
-    public static void cargarDatosSucursalBodega(DataBase db, int idBodega,ArrayList<Pedido> lp){
+    public static void cargarDatosSucursalBodega(DataBase db, int idBodega,List<Pedido> lp){
         try{
             String sql= "{call obtenerPedidosSucursalBodega(?)}";
             CallableStatement cst=db.getC().prepareCall(sql);
@@ -81,7 +79,6 @@ public class PedidoLocal extends Pedido {
                 lp.add(pl);
             }
         }catch (Exception e){
-            System.out.println(e);
         }
         
     }
@@ -99,7 +96,7 @@ public class PedidoLocal extends Pedido {
             cst.setInt(1, this.id);
             cst.setInt(2, idBodega);
             cst.setString(3, this.estadoEntrega);
-            ResultSet rs = cst.executeQuery();
+            cst.executeQuery();
             for(Producto p:this.listProducto.keySet()){
                 //creo producto_pedido
                 sql= "{call insertarProductoPedido(?,?,?)}";
@@ -107,7 +104,7 @@ public class PedidoLocal extends Pedido {
                 cst.setInt(1, this.id);
                 cst.setInt(2, p.getIdProducto());
                 cst.setInt(3, this.listProducto.get(p));
-                rs = cst.executeQuery();
+                cst.executeQuery();
             }
             
             //creo pedido_local
@@ -115,9 +112,8 @@ public class PedidoLocal extends Pedido {
             cst=db.getC().prepareCall(sql);
             cst.setInt(1, this.id);
             cst.setInt(2, this.local.getIdlocal());
-            rs = cst.executeQuery();
+            cst.executeQuery();
         }catch (Exception e){
-            System.out.println(e);
         }
     }
     
