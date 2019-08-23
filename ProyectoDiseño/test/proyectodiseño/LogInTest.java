@@ -22,28 +22,7 @@ import static org.junit.Assert.*;
  *
  * @author Charles
  */
-public class LogInTest {
-    
-    public LogInTest() {
-       
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-    
+public class LogInTest { 
     //Se espera que al cargar la Bodega, se tenga un id
     @Test
     public void testBodega(){
