@@ -21,8 +21,8 @@ import javafx.stage.Stage;
  */
 public class ControlLogIn {
 
-    public static DataBase db = new BD();
-    public static Connection cn = db.getConexion();
+    public static final DataBase db = new BD();
+    public static final Connection cn = db.getConexion();
 
     public boolean verificar(String usuario, String contra) {
         try {
