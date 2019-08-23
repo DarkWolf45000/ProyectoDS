@@ -6,6 +6,7 @@
 package vistas;
 
 import controlador.ControlJefeBodega;
+import controlador.ControlLogIn;
 import modelo.JefeBodega;
 import modelo.Pedido;
 import modelo.User;
@@ -208,7 +209,7 @@ public class Pedidos {
         btnbus.setOnMouseClicked((MouseEvent e)->{
             String id=txtidb.getText();
             if(!id.equalsIgnoreCase("")){
-                Pedido p=cjb.consultarPedido(id);
+                Pedido p=cjb.consultarPedido(id,ControlLogIn.db);
                 if(p==null){
                     //alerta de que no se encontro
                     txtid.clear();

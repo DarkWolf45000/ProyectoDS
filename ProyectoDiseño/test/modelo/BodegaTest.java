@@ -25,15 +25,7 @@ public class BodegaTest {
         assertEquals("Costa Este",bodeg.getDireccion());
         
     }
-    //Se espera que al consultar un pedido por su id, lo devuelva
-    @Test
-    public void testConsultaPedido(){
-         BD bdtest = new BD();
-        bdtest.getConexion();
-        ControlJefeBodega cjb = new ControlJefeBodega();
-        Pedido p = cjb.consultarPedido("1");
-        assertNotNull(p);
-    }
+    
     //Se espera que se regrese una lista de productos con un determinado nombre
     @Test
     public void testBuscoProductoNombre(){

@@ -9,6 +9,7 @@ import modelo.Usuario;
 import java.util.List;
 import java.util.logging.Logger;
 import javafx.scene.control.TextArea;
+import modelo.DataBase;
 
 /**
  *
@@ -33,11 +34,11 @@ public class ControlJefeBodega {
         
     }
     
-    public Pedido consultarPedido(String id){
+    public Pedido consultarPedido(String id,DataBase db){
         Pedido p=null;
         try{
         int idp=Integer.parseInt(id);
-            p=Pedido.obtenerPedido(idp, ControlLogIn.db);
+            p=Pedido.obtenerPedido(idp, db);
             if(p==null){
                 return null;
             }
