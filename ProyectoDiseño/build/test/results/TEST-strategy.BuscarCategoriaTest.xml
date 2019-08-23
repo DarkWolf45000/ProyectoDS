@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="Luis_Salazar" name="modelo.RepartidorTest" skipped="0" tests="1" time="3.042" timestamp="2019-08-23T23:17:10">
+<testsuite errors="0" failures="0" hostname="Luis_Salazar" name="strategy.BuscarCategoriaTest" skipped="0" tests="1" time="3.488" timestamp="2019-08-23T23:30:54">
   <properties>
     <property name="netbeans.autoupdate.country" value="EC" />
     <property name="ant.file.type.ProyectoDiseño" value="file" />
     <property name="javafx.binarycss" value="false" />
     <property name="javac.test.classpath" value="C:\Program Files\Java\jdk1.8.0_201\jre/lib/javaws.jar:C:\Program Files\Java\jdk1.8.0_201\jre/lib/deploy.jar:C:\Program Files\Java\jdk1.8.0_201\jre/lib/plugin.jar:mysql-connector-java-5.1.48.jar:junit-4.13-beta-3.jar:hamcrest-core-1.3.jar:build/classes:C:\Users\LuisEduardo\Documents\NetBeansProjects\ProyectoDS\ProyectoDiseño\junit-4.13-beta-3.jar:C:\Users\LuisEduardo\Documents\NetBeansProjects\ProyectoDS\ProyectoDiseño\hamcrest-core-1.3.jar" />
     <property name="manifest.custom.codebase" value="*" />
-    <property name="javac.includes" value="modelo/RepartidorTest.java" />
+    <property name="javac.includes" value="strategy/BuscarCategoriaTest.java" />
     <property name="ant.core.lib" value="C:\Program Files\NetBeans 8.0.2\extide\ant\lib\ant.jar" />
     <property name="javadoc.windowtitle" value="" />
     <property name="javafx.preloader.enabled" value="false" />
@@ -45,7 +45,7 @@
     <property name="user.name" value="LuisEduardo" />
     <property name="copylibs.rebase" value="true" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner modelo.RepartidorTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\LuisEduardo\Documents\NetBeansProjects\ProyectoDS\ProyectoDiseño\build\test\results\TEST-modelo.RepartidorTest.xml crashfile=C:\Users\LuisEduardo\Documents\NetBeansProjects\ProyectoDS\ProyectoDiseño\build\junitvmwatcher617583585501423227.properties propsfile=C:\Users\LuisEduardo\Documents\NetBeansProjects\ProyectoDS\ProyectoDiseño\build\junit2979104187417791298.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner strategy.BuscarCategoriaTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\LuisEduardo\Documents\NetBeansProjects\ProyectoDS\ProyectoDiseño\build\test\results\TEST-strategy.BuscarCategoriaTest.xml crashfile=C:\Users\LuisEduardo\Documents\NetBeansProjects\ProyectoDS\ProyectoDiseño\build\junitvmwatcher5573678815872260406.properties propsfile=C:\Users\LuisEduardo\Documents\NetBeansProjects\ProyectoDS\ProyectoDiseño\build\junit3164533861007236050.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="build.sysclasspath" value="ignore" />
@@ -67,7 +67,7 @@
     <property name="build.compiler.emacs" value="true" />
     <property name="javafx.deploy.includeDT" value="true" />
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_201\jre\lib\endorsed" />
-    <property name="test.includes" value="modelo/RepartidorTest.java" />
+    <property name="test.includes" value="strategy/BuscarCategoriaTest.java" />
     <property name="netbeans.dynamic.classpath" value="C:\Program Files\NetBeans 8.0.2\platform\core\core.jar;C:\Program Files\NetBeans 8.0.2\platform\core\org-openide-filesystems.jar;C:\Program Files\NetBeans 8.0.2\platform\core\locale\core_ja.jar;C:\Program Files\NetBeans 8.0.2\platform\core\locale\core_pt_BR.jar;C:\Program Files\NetBeans 8.0.2\platform\core\locale\core_ru.jar;C:\Program Files\NetBeans 8.0.2\platform\core\locale\core_zh_CN.jar;C:\Program Files\NetBeans 8.0.2\platform\core\locale\org-openide-filesystems_ja.jar;C:\Program Files\NetBeans 8.0.2\platform\core\locale\org-openide-filesystems_pt_BR.jar;C:\Program Files\NetBeans 8.0.2\platform\core\locale\org-openide-filesystems_ru.jar;C:\Program Files\NetBeans 8.0.2\platform\core\locale\org-openide-filesystems_zh_CN.jar;C:\Program Files\NetBeans 8.0.2\nb\core\org-netbeans-upgrader.jar;C:\Program Files\NetBeans 8.0.2\nb\core\locale\core_nb.jar;C:\Program Files\NetBeans 8.0.2\nb\core\locale\core_nb_ja.jar;C:\Program Files\NetBeans 8.0.2\nb\core\locale\core_nb_pt_BR.jar;C:\Program Files\NetBeans 8.0.2\nb\core\locale\core_nb_ru.jar;C:\Program Files\NetBeans 8.0.2\nb\core\locale\core_nb_zh_CN.jar;C:\Program Files\NetBeans 8.0.2\nb\core\locale\org-netbeans-upgrader_ja.jar;C:\Program Files\NetBeans 8.0.2\nb\core\locale\org-netbeans-upgrader_pt_BR.jar;C:\Program Files\NetBeans 8.0.2\nb\core\locale\org-netbeans-upgrader_ru.jar;C:\Program Files\NetBeans 8.0.2\nb\core\locale\org-netbeans-upgrader_zh_CN.jar" />
     <property name="jnlp.enabled" value="false" />
     <property name="java.vm.specification.version" value="1.8" />
@@ -82,7 +82,7 @@
     <property name="javac.debug" value="true" />
     <property name="javadoc.splitindex" value="true" />
     <property name="file.separator" value="\" />
-    <property name="javac.includesfile.binary" value="C:\Users\LuisEduardo\Documents\NetBeansProjects\ProyectoDS\ProyectoDiseño\null643852902" />
+    <property name="javac.includesfile.binary" value="C:\Users\LuisEduardo\Documents\NetBeansProjects\ProyectoDS\ProyectoDiseño\null608755755" />
     <property name="libs.junit_4.maven-pom" value="" />
     <property name="javac.test.processorpath" value="C:\Program Files\Java\jdk1.8.0_201\jre/lib/javaws.jar:C:\Program Files\Java\jdk1.8.0_201\jre/lib/deploy.jar:C:\Program Files\Java\jdk1.8.0_201\jre/lib/plugin.jar:mysql-connector-java-5.1.48.jar:junit-4.13-beta-3.jar:hamcrest-core-1.3.jar:build/classes:C:\Users\LuisEduardo\Documents\NetBeansProjects\ProyectoDS\ProyectoDiseño\junit-4.13-beta-3.jar:C:\Users\LuisEduardo\Documents\NetBeansProjects\ProyectoDS\ProyectoDiseño\hamcrest-core-1.3.jar" />
     <property name="netbeans.buildnumber" value="201411181905" />
@@ -93,7 +93,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD" />
     <property name="libs.hibernate4-persistencemodelgen.javadoc" value="" />
     <property name="libs.jaxb.javadoc" value="C:\Program Files\NetBeans 8.0.2\ide\docs\jaxb-api-doc.zip" />
-    <property name="javac.includes.binary" value="C:\Users\LuisEduardo\Documents\NetBeansProjects\ProyectoDS\ProyectoDiseño\build\test\classes\modelo\RepartidorTest.class" />
+    <property name="javac.includes.binary" value="C:\Users\LuisEduardo\Documents\NetBeansProjects\ProyectoDS\ProyectoDiseño\build\test\classes\strategy\BuscarCategoriaTest.class" />
     <property name="ant.home" value="C:\Program Files\NetBeans 8.0.2\extide\ant" />
     <property name="libs.junit_4.src" value="" />
     <property name="javafx.run.height" value="600" />
@@ -336,9 +336,9 @@
     <property name="platform.active" value="default_platform" />
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
   </properties>
-  <testcase classname="modelo.RepartidorTest" name="testObtenerRepartidor" time="2.919" />
-  <system-out><![CDATA[obtenerRepartidor
+  <testcase classname="strategy.BuscarCategoriaTest" name="testBuscarproducto" time="3.192" />
+  <system-out><![CDATA[Buscarproducto Categoria
 ]]></system-out>
-  <system-err><![CDATA[Fri Aug 23 18:17:10 CDT 2019 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+  <system-err><![CDATA[Fri Aug 23 18:30:55 CDT 2019 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
 ]]></system-err>
 </testsuite>
