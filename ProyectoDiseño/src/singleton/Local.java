@@ -71,7 +71,7 @@ public class Local {
         return listProducto;
     }
 
-    public void setListProducto(ArrayList<Producto> listProducto) {
+    public void setListProducto(List<Producto> listProducto) {
         this.listProducto = listProducto;
     }
 
@@ -79,7 +79,7 @@ public class Local {
         return listVendedores;
     }
 
-    public void setListVendedores(ArrayList<Usuario> listVendedores) {
+    public void setListVendedores(List<Usuario> listVendedores) {
         this.listVendedores = listVendedores;
     }
 
