@@ -24,17 +24,17 @@ public class ControlLogIn {
     public static DataBase db = new BD();
     public static Connection cn = db.getConexion();
 
-    public boolean verificar(String usuario, String contraseña) {
+    public boolean verificar(String usuario, String contra) {
         try {
             String sql = "{call verificar(?,?)}";
             CallableStatement cst = cn.prepareCall(sql);
             cst.setString(1, usuario);
-            cst.setString(2, contraseña);
+            cst.setString(2, contra);
             ResultSet rs = cst.executeQuery();
             while (rs.next()) {
                 String user = rs.getString(1);
                 String pass = rs.getString(2);
-                if (usuario.equals(user) && contraseña.equals(pass)) {
+                if (usuario.equals(user) && contra.equals(pass)) {
                     return true;
                 }
             }
@@ -45,11 +45,11 @@ public class ControlLogIn {
         }
     }
 
-    private ResultSet getUsuario(String sql, String usuario, String contraseña) {
+    private ResultSet getUsuario(String sql, String usuario, String contra) {
         try {
             CallableStatement cst = cn.prepareCall(sql);
             cst.setString(1, usuario);
-            cst.setString(2, contraseña);
+            cst.setString(2, contra);
             ResultSet rs = cst.executeQuery();
             return rs;
 
@@ -60,42 +60,41 @@ public class ControlLogIn {
 
     }
 
-    public User obtenerAdministrador(String usuario, String contraseña) throws SQLException {
+    public User obtenerAdministrador(String usuario, String contra) throws SQLException {
         String sql = "{call obtenerAdmins(?,?)}";
-        ResultSet rs = getUsuario(sql, usuario, contraseña);
+        ResultSet rs = getUsuario(sql, usuario, contra);
         while (rs.next()) {
-            Usuario u = new Usuario(usuario, contraseña, "Administrador", null, rs.getString(1), rs.getString(2), rs.getString(3));
-            return u;
+            return new Usuario(usuario, contra, "Administrador", null, rs.getString(1), rs.getString(2), rs.getString(3));
+          
         }
         return null;
     }
 
-    public User obtenerGerente(String usuario, String contraseña) throws SQLException {
+    public User obtenerGerente(String usuario, String contra) throws SQLException {
         String sql = "{call obtenerGerente(?,?)}";
-        ResultSet rs = getUsuario(sql, usuario, contraseña);
+        ResultSet rs = getUsuario(sql, usuario, contra);
         while (rs.next()) {
-            Usuario u = new Usuario(usuario, contraseña, "Gerente", null, rs.getString(1), rs.getString(2), rs.getString(3));
-            return u;
+            return new Usuario(usuario, contra, "Gerente", null, rs.getString(1), rs.getString(2), rs.getString(3)); 
         }
         return null;
     }
 
-    public User obtenerVendedor(String usuario, String contraseña) throws SQLException {
+    public User obtenerVendedor(String usuario, String contra) throws SQLException {
         String sql = "{call obtenerVendedor(?,?)}";
-        ResultSet rs = getUsuario(sql, usuario, contraseña);
+        ResultSet rs = getUsuario(sql, usuario, contra);
         while (rs.next()) {
-            Usuario u = new Usuario(usuario, contraseña, "Administrador", null, rs.getString(1), rs.getString(2), rs.getString(3));
-            return u;
+            return new Usuario(usuario, contra, "Administrador", null, rs.getString(1), rs.getString(2), rs.getString(3));
+            
         }
         return null;
     }
 
-    public User obtenerJefeBodega(String usuario, String contraseña) throws SQLException {
+    public User obtenerJefeBodega(String usuario, String contra) throws SQLException {
         String sql = "{call obtenerJefeBodega(?,?)}";
-        ResultSet rs = getUsuario(sql, usuario, contraseña);
+        ResultSet rs = getUsuario(sql, usuario, contra);
         while (rs.next()) {
-            Usuario u = new Usuario(usuario, contraseña, "Administrador", null, rs.getString(1), rs.getString(2), rs.getString(3));
-            return u;
+            return new Usuario(usuario, contra, "Administrador", null, rs.getString(1), rs.getString(2), rs.getString(3));
+            
         }
         return null;
     }

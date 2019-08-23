@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Modelo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -13,10 +10,10 @@ import java.util.ArrayList;
  */
 public class Ruta {
     private Repartidor rep;
-    private ArrayList<Pedido> listPedidos;
+    private List<Pedido> listPedidos = new ArrayList<>();
     private String camino;
 
-    public Ruta(ArrayList<Pedido> listPedidos, String camino) {
+    public Ruta(List<Pedido> listPedidos, String camino) {
         this.listPedidos = listPedidos;
         this.camino = camino;
     }
@@ -31,11 +28,11 @@ public class Ruta {
 
     
 
-    public ArrayList<Pedido> getListPedidos() {
+    public List<Pedido> getListPedidos() {
         return listPedidos;
     }
 
-    public void setListPedidos(ArrayList<Pedido> listPedidos) {
+    public void setListPedidos(List<Pedido> listPedidos) {
         this.listPedidos = listPedidos;
     }
 

@@ -6,6 +6,7 @@
 package Modelo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -33,7 +34,7 @@ public class JefeBodega extends Usuario{
         this.bodega = bodega;
     }
     
-    public Ruta crearRuta(ArrayList<Pedido> listp,String camino){
+    public Ruta crearRuta(List<Pedido> listp,String camino){
         Ruta r=new Ruta(listp,camino);
         if(this.AsignarRepartidor(r)){
             return r;

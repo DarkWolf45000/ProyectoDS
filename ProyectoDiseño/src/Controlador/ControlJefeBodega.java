@@ -7,6 +7,7 @@ import Modelo.Ruta;
 import Modelo.User;
 import Modelo.Usuario;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 import javafx.scene.control.TextArea;
 
@@ -16,7 +17,7 @@ import javafx.scene.control.TextArea;
  */
 public class ControlJefeBodega {
     
-    public boolean crearRuta(TextArea ta, ArrayList<Pedido> ped,JefeBodega jf){
+    public boolean crearRuta(TextArea ta, List<Pedido> ped,JefeBodega jf){
         Ruta r=jf.crearRuta(ped, ta.getText());
         
         if(r.getRep()==null){
