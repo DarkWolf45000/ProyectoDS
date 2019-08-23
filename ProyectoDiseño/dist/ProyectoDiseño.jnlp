@@ -8,16 +8,9 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <jar href="ProyectoDiseño.jar" size="53605" download="eager" />
-=======
-    <jar href="ProyectoDiseño.jar" size="53741" download="eager" />
->>>>>>> f9adbfaeda7b16c4eae34167f54a343f83e19c8e
-=======
-    <jar href="ProyectoDiseño.jar" size="53775" download="eager" />
+    <jar href="ProyectoDiseño.jar" size="53783" download="eager" />
+    <jar href="lib\hamcrest-core-1.3.jar" size="45024" download="eager" />
     <jar href="lib\junit-4.13-beta-3.jar" size="381075" download="eager" />
->>>>>>> 8b4b28a1c17fde40146f7d520794492941afa8c3
     <jar href="lib\mysql-connector-java-5.1.48.jar" size="1006956" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="ProyectoDiseño" >

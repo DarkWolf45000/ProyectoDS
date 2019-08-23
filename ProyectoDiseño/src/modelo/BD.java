@@ -23,7 +23,7 @@ public class BD implements DataBase {
         c = null;
         //Se Realiza la conexion  
         try { //cambiar la ip dependiendo del contenedor
-            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBProyecto", "root", "root");
+            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBProyecto", "root", "1234");
             //Verfificar que la conexion fue exitosa
 
         } //Capturando la excepcion
