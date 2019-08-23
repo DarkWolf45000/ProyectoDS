@@ -6,21 +6,20 @@
 package proyectodiseño;
 
 import controlador.ControlJefeBodega;
-import modelo.Bodega;
+import java.util.List;
 import modelo.BD;
+import modelo.Bodega;
 import modelo.Pedido;
 import modelo.Producto;
-import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/** 
+/**
  *
  * @author Charles
  */
-public class LogInTest { 
-    //Se espera que al cargar la Bodega, se tenga un id
-    @Test
+public class LogInTest {
+   @Test
     public void testBodega(){
         BD bdtest = new BD();
         bdtest.getConexion();
@@ -43,10 +42,9 @@ public class LogInTest {
     public void testBuscoProductoNombre(){
         BD bdtest = new BD();
         bdtest.getConexion();
-        ArrayList<Producto> h = Producto.buscarNombre("Aromatel");
+        List<Producto> h = Producto.buscarNombre("Aromatel");
         assertNotNull(h);
         
     }
-    
     
 }

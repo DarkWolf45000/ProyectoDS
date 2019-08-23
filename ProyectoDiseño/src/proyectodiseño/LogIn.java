@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static javafx.application.Application.launch;
 /**
  *
  * @author LuisEduardo
