@@ -50,8 +50,7 @@ public class ControlLogIn {
             CallableStatement cst = cn.prepareCall(sql);
             cst.setString(1, usuario);
             cst.setString(2, contra);
-            ResultSet rs = cst.executeQuery();
-            return rs;
+            return cst.executeQuery();
 
         } catch (SQLException e) {
             Logger.getLogger(e.toString());
@@ -63,7 +62,7 @@ public class ControlLogIn {
     public User obtenerAdministrador(String usuario, String contra) throws SQLException {
         String sql = "{call obtenerAdmins(?,?)}";
         ResultSet rs = getUsuario(sql, usuario, contra);
-        while (rs.next()) {
+        if (rs.next()) {
             return new Usuario(usuario, contra, "Administrador", null, rs.getString(1), rs.getString(2), rs.getString(3));
           
         }
@@ -73,7 +72,7 @@ public class ControlLogIn {
     public User obtenerGerente(String usuario, String contra) throws SQLException {
         String sql = "{call obtenerGerente(?,?)}";
         ResultSet rs = getUsuario(sql, usuario, contra);
-        while (rs.next()) {
+        if (rs.next()) {
             return new Usuario(usuario, contra, "Gerente", null, rs.getString(1), rs.getString(2), rs.getString(3)); 
         }
         return null;
@@ -82,7 +81,7 @@ public class ControlLogIn {
     public User obtenerVendedor(String usuario, String contra) throws SQLException {
         String sql = "{call obtenerVendedor(?,?)}";
         ResultSet rs = getUsuario(sql, usuario, contra);
-        while (rs.next()) {
+        if (rs.next()) {
             return new Usuario(usuario, contra, "Vendedor", null, rs.getString(1), rs.getString(2), rs.getString(3));
             
         }
@@ -92,7 +91,7 @@ public class ControlLogIn {
     public User obtenerJefeBodega(String usuario, String contra) throws SQLException {
         String sql = "{call obtenerJefeBodega(?,?)}";
         ResultSet rs = getUsuario(sql, usuario, contra);
-        while (rs.next()) {
+        if (rs.next()) {
             return new Usuario(usuario, contra, "JefeBodega", null, rs.getString(1), rs.getString(2), rs.getString(3));
             
         }
