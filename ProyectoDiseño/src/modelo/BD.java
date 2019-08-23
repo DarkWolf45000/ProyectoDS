@@ -12,6 +12,7 @@ package modelo;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 public class BD implements DataBase {
 
@@ -25,11 +26,10 @@ public class BD implements DataBase {
             Class.forName("com.mysql.jdbc.Driver"); //cambiar la ip dependiendo del contenedor
             c = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBProyecto", "root", "root");
             //Verfificar que la conexion fue exitosa
-            System.out.println("Conexion establecida");
 
         } //Capturando la excepcion
         catch (ClassNotFoundException | SQLException e) {
-            System.out.println("Error de conexion" + e);
+            Logger.getLogger(BD.class.getName()).warning("Error en conexión");
         }
         //Finalmente se retorna
         return (c);
@@ -39,7 +39,6 @@ public class BD implements DataBase {
     public void Desconectar() {
         c = null;
 
-        System.out.println("Conexion finalizada");
 
     }
 

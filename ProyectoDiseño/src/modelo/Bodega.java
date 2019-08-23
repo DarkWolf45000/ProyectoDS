@@ -37,7 +37,7 @@ public class Bodega {
         return listaRepartidores;
     }
 
-    public void setListaRepartidores(ArrayList<Repartidor> listaRepartidores) {
+    public void setListaRepartidores(List<Repartidor> listaRepartidores) {
         this.listaRepartidores = listaRepartidores;
     }
 
@@ -53,7 +53,7 @@ public class Bodega {
         return listaEmpleados;
     }
 
-    public void setListaEmpleados(ArrayList<Usuario> listaEmpleados) {
+    public void setListaEmpleados(List<Usuario> listaEmpleados) {
         this.listaEmpleados = listaEmpleados;
     }
 
@@ -61,7 +61,7 @@ public class Bodega {
         return listaPedidos;
     }
 
-    public void setListaPedidos(ArrayList<Pedido> listaPedidos) {
+    public void setListaPedidos(List<Pedido> listaPedidos) {
         this.listaPedidos = listaPedidos;
     }
 
@@ -77,7 +77,7 @@ public class Bodega {
         return listaProductos;
     }
 
-    public void setListaProductos(ArrayList<Producto> listaProductos) {
+    public void setListaProductos(List<Producto> listaProductos) {
         this.listaProductos = listaProductos;
     }
 
@@ -120,7 +120,7 @@ public class Bodega {
             this.idbodega=rs.getInt(1);
             this.direccion=rs.getString(2);
         }catch (Exception e){
-            Logger.getLogger(Bodega.class.getName()).warning("Error en conexión");
+            Logger.getLogger(Bodega.class.getName()).warning("Error en conexión cargar bodega");
         }
         this.cargarDatos();
         
@@ -140,7 +140,7 @@ public class Bodega {
         this.listaPedidos=listp;
     }
     
-    public ArrayList<Pedido> pedidosAEntregar(){
+    public List<Pedido> pedidosAEntregar(){
         ArrayList<Pedido> listp=new ArrayList<>();
         for(Pedido p:this.listaPedidos){
             if(!p.getEstadoEntrega().equalsIgnoreCase("Entregado") && !p.getEstadoEntrega().equalsIgnoreCase("En_Proceso")){
@@ -153,7 +153,6 @@ public class Bodega {
     public static int obteneridBodega(int idproducto, int cantidad,DataBase db){
         try{
             String sql= "{call obtenerBodegaPorProducto(?,?)}";
-            System.out.println(db);
             CallableStatement cst=db.getC().prepareCall(sql);
             cst.setInt(1, idproducto);
             cst.setInt(2, cantidad);
@@ -162,7 +161,7 @@ public class Bodega {
             return rs.getInt(1);
             
         }catch (Exception e){
-            Logger.getLogger(Bodega.class.getName()).warning("Error en conexión");
+            Logger.getLogger(Bodega.class.getName()).warning("Error en conexión obtener bodega por producto");
         }
         return 0;
     } 
@@ -177,7 +176,7 @@ public class Bodega {
             cst.executeQuery();
             
         }catch (Exception e){
-            Logger.getLogger(Bodega.class.getName()).warning("Error en conexión");
+            Logger.getLogger(Bodega.class.getName()).warning("Error en conexión actualizar bodega por producto");
         }
     }
     

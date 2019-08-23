@@ -92,7 +92,7 @@ public class Pedidos {
         
 
         tvPedido.getColumns().addAll(column1,column2,column3);
-        ArrayList<Pedido> listpd=jb.getBodega().pedidosAEntregar();
+        List<Pedido> listpd=jb.getBodega().pedidosAEntregar();
         tvPedido.setItems(FXCollections.observableList(listpd));
         
         TextArea ta=new TextArea();

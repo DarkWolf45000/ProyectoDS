@@ -65,7 +65,7 @@ public class PedidoLocal extends Pedido {
             }
             
         }catch (Exception e){
-            Logger.getLogger(PedidoLocal.class.getName()).warning("Error en conexión");
+            Logger.getLogger(PedidoLocal.class.getName()).warning("Error en conexión datos local");
         }
     }
     
@@ -81,7 +81,7 @@ public class PedidoLocal extends Pedido {
                 lp.add(pl);
             }
         }catch (Exception e){
-            Logger.getLogger(PedidoLocal.class.getName()).warning("Error en conexión");
+            Logger.getLogger(PedidoLocal.class.getName()).warning("Error en conexión sucursal bodega");
         }
         
     }
@@ -117,7 +117,7 @@ public class PedidoLocal extends Pedido {
             cst.setInt(2, this.local.getIdlocal());
             cst.executeQuery();
         }catch (Exception e){
-            Logger.getLogger(PedidoLocal.class.getName()).warning("Error en conexión");
+            Logger.getLogger(PedidoLocal.class.getName()).warning("Error en conexión registar pedido");
         }
     }
     
