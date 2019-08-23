@@ -7,10 +7,10 @@ package Vistas;
 
 import Controlador.ControlJefeBodega;
 import Modelo.JefeBodega;
-import Modelo.Ruta;
 import Modelo.Pedido;
 import Modelo.User;
 import java.util.ArrayList;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -34,6 +34,8 @@ import javafx.stage.Stage;
  */
 public class Pedidos {
     
+    private Pedidos(){}
+    
     public static Scene menuJefeBodega(User u,Stage st,Scene scp){
         ControlJefeBodega cjb=new ControlJefeBodega();
         JefeBodega jb=cjb.cargarDatos(u);
@@ -53,17 +55,17 @@ public class Pedidos {
         vb.getChildren().addAll(sp,sp2,sp3,sp4);
         Scene sc=new Scene(vb,300,300);
         
-        btnmen.setOnMouseClicked((MouseEvent e)->{
-            st.setScene(scp);
-        });
+        btnmen.setOnMouseClicked((MouseEvent e)->
+            st.setScene(scp)
+        );
         
-        btnap.setOnMouseClicked((MouseEvent e)->{
-            st.setScene(Pedidos.actualizarPedidos(jb,cjb, st, sc));
-        });
+        btnap.setOnMouseClicked((MouseEvent e)->
+            st.setScene(Pedidos.actualizarPedidos(jb,cjb, st, sc))
+        );
         
-        btnvr.setOnMouseClicked((MouseEvent e)->{
-            st.setScene(Pedidos.visualizarRutas(jb,cjb, st, sc));
-        });
+        btnvr.setOnMouseClicked((MouseEvent e)->
+            st.setScene(Pedidos.visualizarRutas(jb,cjb, st, sc))
+        );
         
         return sc;
     }
@@ -90,8 +92,6 @@ public class Pedidos {
         
 
         tvPedido.getColumns().addAll(column1,column2,column3);
-        //Conseguir lista con el controller
-       // tvPedido.setItems(FXCollections.observableList(jb.getBodega().pedidosAEntregar()));
         ArrayList<Pedido> listpd=jb.getBodega().pedidosAEntregar();
         tvPedido.setItems(FXCollections.observableList(listpd));
         
@@ -118,20 +118,17 @@ public class Pedidos {
                 listpd.removeAll(ar);
                 ar.clear();
                 tvPedido.refresh();
-            }else{
-                
             }
-            
         });
         
-        btnmen.setOnMouseClicked((MouseEvent e)->{
-            st.setScene(scp);
-        });
+        btnmen.setOnMouseClicked((MouseEvent e)->
+            st.setScene(scp)
+        );
         
         return sc;
     }
     
-    public static void textoRuta(TextArea ta,Pedido ped,ArrayList<Pedido> ar){
+    public static void textoRuta(TextArea ta,Pedido ped,List<Pedido> ar){
         if(ta.getText().contains(ped.getDireccion())){
             if(ar.get(0).equals(ped)){
                 ta.setText(ta.getText().replaceAll(ped.getDireccion(), ""));
@@ -167,9 +164,6 @@ public class Pedidos {
         Label lbid=new Label("Id: ");
         TextField txtid=new TextField();
         txtid.setEditable(false);
-     /*   Label lbdir=new Label("Direccion: ");
-        TextField txtdir=new TextField();
-        txtdir.setEditable(false);*/
         
         Label lbes=new Label("Estado de entrega:");
         TextField txtes=new TextField();
@@ -187,9 +181,6 @@ public class Pedidos {
         gp.setAlignment(Pos.CENTER);
         gp.add(lbid, 0, 0);
         gp.add(txtid, 1, 0);
-        
-       /* gp.add(lbdir, 0, 1);
-        gp.add(txtdir, 1, 1);*/
         
         gp.add(lbrep, 0, 2);
         gp.add(txtrep, 1, 2);
@@ -220,20 +211,16 @@ public class Pedidos {
                 Pedido p=cjb.consultarPedido(id);
                 if(p==null){
                     //alerta de que no se encontro
-                    System.out.println("no se encontro la wea :,v");
                     txtid.clear();
-                  //  txtdir.setText(p.getDireccion());
                     txtes.clear();
                     txtrep.clear();
                 }else{
                     txtid.setText(String.valueOf(p.getId()));
-                  //  txtdir.setText(p.getDireccion());
                     txtes.setText(p.getEstadoEntrega());
                     txtrep.setText(p.getRep().getCedula());
                 }
             }else{
                 //alerta de que no se puso el id
-                System.out.println(".,v");
             }
         });
         
@@ -251,10 +238,10 @@ public class Pedidos {
         
         });
         
-        btnmen.setOnMouseClicked((MouseEvent e)->{
-           st.setScene(scp);
+        btnmen.setOnMouseClicked((MouseEvent e)->
+           st.setScene(scp)
         
-        });
+        );
         
         return sc;
     }

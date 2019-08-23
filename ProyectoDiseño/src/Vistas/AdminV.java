@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Vistas;
 
 import Controlador.ControlStock;
-import Modelo.Pedido;
 import Modelo.Producto;
 import Modelo.User;
 import javafx.scene.Scene;
@@ -26,7 +21,9 @@ import javafx.stage.Stage;
  */
 public class AdminV {
     
-    private static void InfoImplementacion(){
+    private AdminV(){}
+    
+    private static void infoImplementacion(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Info Dialog");
         alert.setHeaderText("INFO");
@@ -93,7 +90,6 @@ public class AdminV {
                 Producto p=cs.consultarProducto(id);
                 if(p==null){
                     //alerta de que no se encontro
-                    System.out.println("no se encontro la wea :,v");
                     txtid.clear();
                     txtnom.clear();
                     txtcat.clear();
@@ -106,7 +102,6 @@ public class AdminV {
                 }
             }else{
                 //alerta de que no se puso el id
-                System.out.println(".,v");
             }
         });
         
@@ -123,10 +118,10 @@ public class AdminV {
         
         });
         
-        btnmen.setOnMouseClicked((MouseEvent e)->{
-           st.setScene(menuAdmin(u,st,scp));
+        btnmen.setOnMouseClicked((MouseEvent e)->
+           st.setScene(menuAdmin(u,st,scp))
         
-        });
+        );
         
         return sc;
     }
@@ -174,10 +169,10 @@ public class AdminV {
         
         });
         
-        btnmen.setOnMouseClicked((MouseEvent e)->{
-           st.setScene(menuAdmin(u,st,scp));
+        btnmen.setOnMouseClicked((MouseEvent e)->
+           st.setScene(menuAdmin(u,st,scp))
         
-        });
+        );
         
         return sc;
     }
@@ -225,10 +220,10 @@ public class AdminV {
         
         });
         
-        btnmen.setOnMouseClicked((MouseEvent e)->{
-           st.setScene(menuAdmin(u,st,scp));
+        btnmen.setOnMouseClicked((MouseEvent e)->
+           st.setScene(menuAdmin(u,st,scp))
         
-        });
+        );
         
         return sc;
     }
@@ -247,41 +242,41 @@ public class AdminV {
         vb.getChildren().addAll(lbtit,btncl,btnven,btnger,btnrep,btnjef,btnist,btnast,btnapr,btnmen);
         Scene sc=new Scene(vb,350,450);
         
-        btnmen.setOnMouseClicked((MouseEvent e)->{
-            st.setScene(scp);
-        });
+        btnmen.setOnMouseClicked((MouseEvent e)->
+            st.setScene(scp)
+        );
         
-        btncl.setOnMouseClicked((MouseEvent e)->{
-            InfoImplementacion();
-        });
+        btncl.setOnMouseClicked((MouseEvent e)->
+            infoImplementacion()
+        );
         
-        btnven.setOnMouseClicked((MouseEvent e)->{
-            InfoImplementacion();
-        });
+        btnven.setOnMouseClicked((MouseEvent e)->
+            infoImplementacion()
+        );
         
-        btnger.setOnMouseClicked((MouseEvent e)->{
-            InfoImplementacion();
-        });
+        btnger.setOnMouseClicked((MouseEvent e)->
+            infoImplementacion()
+        );
         
-        btnrep.setOnMouseClicked((MouseEvent e)->{
-            InfoImplementacion();
-        });
+        btnrep.setOnMouseClicked((MouseEvent e)->
+            infoImplementacion()
+        );
         
-        btnjef.setOnMouseClicked((MouseEvent e)->{
-            InfoImplementacion();
-        });
+        btnjef.setOnMouseClicked((MouseEvent e)->
+            infoImplementacion()
+        );
         
-        btnist.setOnMouseClicked((MouseEvent e)->{
-            st.setScene(ingresarStock(u,st,scp));
-        });
+        btnist.setOnMouseClicked((MouseEvent e)->
+            st.setScene(ingresarStock(u,st,scp))
+        );
         
-        btnast.setOnMouseClicked((MouseEvent e)->{
-            st.setScene(actualizarStock(u, st, scp));
-        });
+        btnast.setOnMouseClicked((MouseEvent e)->
+            st.setScene(actualizarStock(u, st, scp))
+        );
         
-        btnapr.setOnMouseClicked((MouseEvent e)->{
-            st.setScene(actualizarPrecio(u,st,scp));
-        });
+        btnapr.setOnMouseClicked((MouseEvent e)->
+            st.setScene(actualizarPrecio(u,st,scp))
+        );
         return sc;
     }
 }

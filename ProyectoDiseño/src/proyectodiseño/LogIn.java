@@ -2,10 +2,6 @@
 package proyectodiseño;
 
 import Controlador.ControlLogIn;
-import Modelo.BD;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,10 +16,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import Modelo.User;
-import Modelo.Usuario;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**

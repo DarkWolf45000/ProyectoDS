@@ -6,10 +6,8 @@
 package Estrategy;
 
 import Controlador.ControlLogIn;
-import Modelo.Producto;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 
 /**
  *
@@ -23,8 +21,7 @@ public class BuscarDescripcion implements Buscar{
             String sql= "{call buscar_descripcion(?)}";
             CallableStatement cst=ControlLogIn.db.getC().prepareCall(sql);
             cst.setString(1, parametro);
-            ResultSet rs = cst.executeQuery();
-            return rs;
+            return cst.executeQuery();
         }catch (Exception e){
             System.out.println(e);
         }
