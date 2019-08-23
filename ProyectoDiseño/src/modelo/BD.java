@@ -16,19 +16,18 @@ import java.util.logging.Logger;
 
 public class BD implements DataBase {
 
-    private static Connection c;
+    private Connection c;
 
     //Se realiza metodo que retorna la Conexion
     public Connection getConexion() {
         c = null;
         //Se Realiza la conexion  
-        try {
-            Class.forName("com.mysql.jdbc.Driver"); //cambiar la ip dependiendo del contenedor
+        try { //cambiar la ip dependiendo del contenedor
             c = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBProyecto", "root", "root");
             //Verfificar que la conexion fue exitosa
 
         } //Capturando la excepcion
-        catch (ClassNotFoundException | SQLException e) {
+        catch ( SQLException e) {
             Logger.getLogger(BD.class.getName()).warning("Error en conexión");
         }
         //Finalmente se retorna

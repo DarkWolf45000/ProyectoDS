@@ -3,23 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectodiseño;
+package modelo;
 
 import controlador.ControlJefeBodega;
 import java.util.List;
-import modelo.BD;
-import modelo.Bodega;
-import modelo.Pedido;
-import modelo.Producto;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
  *
- * @author Charles
+ * @author LuisEduardo
  */
-public class LogInTest {
-   @Test
+
+public class BodegaTest {
+    @Test
     public void testBodega(){
         BD bdtest = new BD();
         bdtest.getConexion();
