@@ -43,7 +43,8 @@ public class ControlLogInTest {
         /**
      * Test of verificar method, of class ControlLogIn.
      */
-    @Test
+    //Se comprueba si es que se realiza correctamente la verificacion de los usuarios 
+    @Test 
     public void testVerificar() {
         System.out.println("verificar");
         String usuario = "lsalazar3";
@@ -54,6 +55,7 @@ public class ControlLogInTest {
         
     }
     
+    //Se comprueba que regrese un objeto gerente al ingresar el usuario y contraseña correctos
     @Test
     public void testObtenerGerente() throws Exception {
         System.out.println("obtenerGerente");
@@ -64,7 +66,7 @@ public class ControlLogInTest {
         assertNotNull(result);
     }
 
-
+    //Se comprueba que regrese un objeto JefeBodega al ingresar el usuario y contraseña correctos
     @Test
     public void testObtenerJefeBodega() throws Exception {
         System.out.println("obtenerJefeBodega");

@@ -15,6 +15,7 @@ import static org.junit.Assert.*;
  * @author LuisEduardo
  */
 
+//Se comprueba que regrese el objeto Bodega correcto al ingresar el id correspondiente
 public class BodegaTest {
     @Test
     public void testBodega(){

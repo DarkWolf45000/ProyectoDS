@@ -43,6 +43,8 @@ public class GerenteTest {
      * Test of getLocal method, of class Gerente.
      */
     
+    
+    //Se comprueba que retorne el id del local correspondiente al gerente
     @Test
     public void testObteneridLocal() {
         System.out.println("obteneridLocal");

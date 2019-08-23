@@ -38,7 +38,7 @@ public class RepartidorTest {
     public void tearDown() {
     }
 
-   
+    //Se comprueba que retorne un repartidor al enviar la id correspondinte
     @Test
     public void testObtenerRepartidor() {
         System.out.println("obtenerRepartidor");

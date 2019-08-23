@@ -43,6 +43,7 @@ public class BuscarCategoriaTest {
     /**
      * Test of Buscarproducto method, of class BuscarCategoria.
      */
+    //Se comprueba que se retorne productos al buscar usando la categoria correcta
     @Test
     public void testBuscarproducto() throws SQLException {
         System.out.println("Buscarproducto Categoria");

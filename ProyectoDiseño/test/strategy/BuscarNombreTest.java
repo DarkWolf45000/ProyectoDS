@@ -43,6 +43,7 @@ public class BuscarNombreTest {
     /**
      * Test of Buscarproducto method, of class BuscarNombre.
      */
+    //Se comprueba que retorne un producto al enviar un nombre
     @Test
     public void testBuscarproducto() throws SQLException {
         System.out.println("Buscarproducto Nombre");
