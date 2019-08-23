@@ -5,11 +5,11 @@
  */
 package Modelo;
 
-import static Controlador.ControlLogIn.cn;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  *
@@ -27,7 +27,7 @@ public class Repartidor extends Persona{
         ArrayList<Repartidor> listr=new ArrayList<>();
         try{
             String sql= "{call repartidor_bodega(?)}";
-            CallableStatement cst=cn.prepareCall(sql);
+            CallableStatement cst=db.getC().prepareCall(sql);
             cst.setInt(1, idBodega);
             ResultSet rs = cst.executeQuery();
             while(rs.next()){
@@ -36,7 +36,7 @@ public class Repartidor extends Persona{
             }
             
         }catch (Exception e){
-            System.out.println(e);
+            Logger.getLogger(e.toString());
             return listr;
         }
         return listr;
@@ -52,7 +52,7 @@ public class Repartidor extends Persona{
             rs.next();
             rep=new Repartidor(rs.getString(1),rs.getString(2),rs.getString(3));
         }catch (Exception e){
-            System.out.println(e);
+            Logger.getLogger(e.toString());
         }
         return rep;
     }

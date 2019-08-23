@@ -3,6 +3,7 @@ package Modelo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  *
@@ -45,6 +46,6 @@ public class Ruta {
     }
 
     public void imprimirRuta(){
-        System.out.println(this.camino);
+         Logger.getLogger(this.camino);
     }
 }

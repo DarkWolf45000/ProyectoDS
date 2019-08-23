@@ -138,7 +138,7 @@ public class Producto {
             }
             
         }catch (Exception e){
-            System.out.println(e);
+           Logger.getLogger(e.toString());
             return listp;
         }
         return listp;
@@ -156,7 +156,7 @@ public class Producto {
                 hm.put(p,rs.getInt(5));
             }
         }catch (Exception e){
-            System.out.println(e);
+            Logger.getLogger(e.toString());
         }
         return hm;
     }
@@ -234,8 +234,8 @@ public class Producto {
             cst.setString(3, categoria);
             cst.setFloat(4, prec);
             cst.executeQuery();
-        }catch (Exception e){
-            System.out.println(e);
+        }catch (SQLException ex){
+           Logger.getLogger(Producto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     public static void actualizarStock(int idProd, int idLocal, int cant) {
@@ -246,8 +246,8 @@ public class Producto {
             cst.setInt(2,idLocal);
             cst.setInt(3, cant);
             cst.executeQuery();
-        }catch (Exception e){
-            System.out.println(e);
+        }catch (SQLException ex){
+            Logger.getLogger(Producto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     public static void ingresarStock(int idProd, int idLocal, int cant) {
@@ -258,8 +258,8 @@ public class Producto {
             cst.setInt(2,idLocal);
             cst.setInt(3, cant);
             cst.executeQuery();
-        }catch (Exception e){
-            System.out.println(e);
+        }catch (SQLException ex){
+            Logger.getLogger(Producto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
