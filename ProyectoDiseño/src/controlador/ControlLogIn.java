@@ -60,40 +60,51 @@ public class ControlLogIn {
     }
 
     public User obtenerAdministrador(String usuario, String contra) throws SQLException {
-        String sql = "{call obtenerAdmins(?,?)}";
-        ResultSet rs = getUsuario(sql, usuario, contra);
-        if (rs.next()) {
-            return new Usuario(usuario, contra, "Administrador", null, rs.getString(1), rs.getString(2), rs.getString(3));
-          
+        try{
+            String sql = "{call obtenerAdmins(?,?)}";
+            ResultSet rs = getUsuario(sql, usuario, contra);
+            if (rs.next()) {
+                return new Usuario(usuario, contra, "Administrador", null, rs.getString(1), rs.getString(2), rs.getString(3));}
+        }catch(NullPointerException n){
+            Logger.getLogger(n.toString());
         }
         return null;
     }
 
     public User obtenerGerente(String usuario, String contra) throws SQLException {
-        String sql = "{call obtenerGerente(?,?)}";
+        try{
+            String sql = "{call obtenerGerente(?,?)}";
         ResultSet rs = getUsuario(sql, usuario, contra);
         if (rs.next()) {
             return new Usuario(usuario, contra, "Gerente", null, rs.getString(1), rs.getString(2), rs.getString(3)); 
+        }}catch(NullPointerException n){
+            Logger.getLogger(n.toString());
         }
         return null;
     }
 
     public User obtenerVendedor(String usuario, String contra) throws SQLException {
+        try{
         String sql = "{call obtenerVendedor(?,?)}";
         ResultSet rs = getUsuario(sql, usuario, contra);
         if (rs.next()) {
             return new Usuario(usuario, contra, "Vendedor", null, rs.getString(1), rs.getString(2), rs.getString(3));
             
+        }}catch(NullPointerException n){
+            Logger.getLogger(n.toString());
         }
         return null;
     }
 
     public User obtenerJefeBodega(String usuario, String contra) throws SQLException {
+        try{
         String sql = "{call obtenerJefeBodega(?,?)}";
         ResultSet rs = getUsuario(sql, usuario, contra);
         if (rs.next()) {
             return new Usuario(usuario, contra, "JefeBodega", null, rs.getString(1), rs.getString(2), rs.getString(3));
             
+        }}catch(NullPointerException n){
+            Logger.getLogger(n.toString());
         }
         return null;
     }
