@@ -10,6 +10,7 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import java.util.logging.Logger;
 /**
@@ -18,7 +19,7 @@ import java.util.logging.Logger;
  */
 public class PedidoLocal extends Pedido {
     private Local local;
-    private HashMap<Producto,Integer> listProducto;
+    private Map<Producto,Integer> listProducto;
 
     public PedidoLocal(int id, String estadoEntrega, DataBase db) {
         super(id, estadoEntrega, db);
@@ -32,7 +33,7 @@ public class PedidoLocal extends Pedido {
         this.local = local;
     }
 
-    public HashMap<Producto, Integer> getListProducto() {
+    public Map<Producto, Integer> getListProducto() {
         return listProducto;
     }
 

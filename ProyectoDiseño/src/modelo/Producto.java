@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.CheckBox;
@@ -125,7 +127,7 @@ public class Producto {
 
    
     
-    public static ArrayList<Producto> cargarDatosBodega(DataBase db,int idBodega){
+    public static List<Producto> cargarDatosBodega(DataBase db,int idBodega){
         ArrayList<Producto> listp=new ArrayList<>();
         try{
             String sql= "{call ObtenerProductosBodega(?)}";
@@ -143,7 +145,7 @@ public class Producto {
         return listp;
     } 
     
-    public static HashMap<Producto,Integer> cargarDatosPedido(DataBase db, int idPedido){
+    public static Map<Producto,Integer> cargarDatosPedido(DataBase db, int idPedido){
         HashMap<Producto,Integer> hm=new HashMap<>();
         try{
             String sql= "{call obtenerProductosPedido(?)}";
@@ -160,7 +162,7 @@ public class Producto {
         return hm;
     }
     
-    public static ArrayList<Producto> buscarNombre(String nom){
+    public static List<Producto> buscarNombre(String nom){
         ArrayList<Producto> lp=new ArrayList<>();
         Producto.bq=new BuscarNombre();
         ResultSet rs=bq.Buscarproducto(nom);
@@ -176,7 +178,7 @@ public class Producto {
         return lp;
     }
     
-    public static ArrayList<Producto> buscarDescripcion(String desc){
+    public static List<Producto> buscarDescripcion(String desc){
         ArrayList<Producto> lp=new ArrayList<>();
         Producto.bq=new BuscarDescripcion();
         ResultSet rs=bq.Buscarproducto(desc);
@@ -192,7 +194,7 @@ public class Producto {
         return lp;
     }
     
-    public static ArrayList<Producto> buscarCategoria(String cat){
+    public static List<Producto> buscarCategoria(String cat){
         ArrayList<Producto> lp=new ArrayList<>();
         Producto.bq=new BuscarCategoria();
         ResultSet rs=bq.Buscarproducto(cat);
@@ -208,7 +210,7 @@ public class Producto {
         return lp;
     }
     
-    public static ArrayList<Producto> productosTodos(){
+    public static List<Producto> productosTodos(){
         ArrayList<Producto> lp=new ArrayList<>();
         try {
             String sql= "{call obtenerProductosTodos}";
