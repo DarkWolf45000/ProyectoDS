@@ -9,6 +9,8 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 
 /**
  *
@@ -44,7 +46,7 @@ public class PedidoCliente extends Pedido{
         return this.cliente.getDireccion();
     }
     
-    public static void cargarDatosClienteBodega(DataBase db, int idBodega,ArrayList<Pedido> lp){
+    public static void cargarDatosClienteBodega(DataBase db, int idBodega,List<Pedido> lp){
         try{
             String sql= "{call obtenerPedidosClienteBodega(?)}";
             CallableStatement cst=db.getC().prepareCall(sql);
@@ -56,7 +58,7 @@ public class PedidoCliente extends Pedido{
                 lp.add(pc);
             }
         }catch (Exception e){
-            System.out.println(e);
+            Logger.getLogger(PedidoCliente.class.getName()).warning("Error en conexión");
         }
         
     }

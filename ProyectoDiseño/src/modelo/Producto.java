@@ -138,8 +138,7 @@ public class Producto {
             }
             
         }catch (Exception e){
-           Logger.getLogger(e.toString());
-            return listp;
+           Logger.getLogger(Producto.class.getName()).warning("Error en conexión");
         }
         return listp;
     } 
@@ -156,7 +155,7 @@ public class Producto {
                 hm.put(p,rs.getInt(5));
             }
         }catch (Exception e){
-            Logger.getLogger(e.toString());
+            Logger.getLogger(Producto.class.getName()).warning("Error en conexión");
         }
         return hm;
     }

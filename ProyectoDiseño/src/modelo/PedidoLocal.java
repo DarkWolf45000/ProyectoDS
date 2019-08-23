@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.List;
 
+import java.util.logging.Logger;
 /**
  *
  * @author LuisEduardo
@@ -64,6 +65,7 @@ public class PedidoLocal extends Pedido {
             }
             
         }catch (Exception e){
+            Logger.getLogger(PedidoLocal.class.getName()).warning("Error en conexión");
         }
     }
     
@@ -79,6 +81,7 @@ public class PedidoLocal extends Pedido {
                 lp.add(pl);
             }
         }catch (Exception e){
+            Logger.getLogger(PedidoLocal.class.getName()).warning("Error en conexión");
         }
         
     }
@@ -114,6 +117,7 @@ public class PedidoLocal extends Pedido {
             cst.setInt(2, this.local.getIdlocal());
             cst.executeQuery();
         }catch (Exception e){
+            Logger.getLogger(PedidoLocal.class.getName()).warning("Error en conexión");
         }
     }
     

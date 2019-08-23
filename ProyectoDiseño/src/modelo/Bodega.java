@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.logging.Logger;
 
 /**
  *
@@ -119,7 +120,7 @@ public class Bodega {
             this.idbodega=rs.getInt(1);
             this.direccion=rs.getString(2);
         }catch (Exception e){
-            System.out.println(e);
+            Logger.getLogger(Bodega.class.getName()).warning("Error en conexión");
         }
         this.cargarDatos();
         
@@ -161,8 +162,7 @@ public class Bodega {
             return rs.getInt(1);
             
         }catch (Exception e){
-            System.out.println("aqui sale el primero");
-            System.out.println(e);
+            Logger.getLogger(Bodega.class.getName()).warning("Error en conexión");
         }
         return 0;
     } 
@@ -177,7 +177,7 @@ public class Bodega {
             cst.executeQuery();
             
         }catch (Exception e){
-            System.out.println(e);
+            Logger.getLogger(Bodega.class.getName()).warning("Error en conexión");
         }
     }
     

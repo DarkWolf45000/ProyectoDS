@@ -4,6 +4,7 @@ package strategy;
 import controlador.ControlLogIn;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,7 +20,7 @@ public class BuscarNombre implements Buscar{
             cst.setString(1, parametro);
             return cst.executeQuery();
         }catch (Exception e){
-            System.out.println(e);
+            Logger.getLogger(BuscarNombre.class.getName()).warning("Error en conexión");
         }
         return null;
     }
