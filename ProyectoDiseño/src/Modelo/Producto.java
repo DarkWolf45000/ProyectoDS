@@ -123,9 +123,7 @@ public class Producto {
         return bq;
     }
 
-    public void setBq(Buscar bq) {
-        this.bq = bq;
-    }
+   
     
     public static ArrayList<Producto> cargarDatosBodega(DataBase db,int idBodega){
         ArrayList<Producto> listp=new ArrayList<>();

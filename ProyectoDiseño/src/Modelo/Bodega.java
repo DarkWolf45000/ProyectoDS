@@ -18,15 +18,15 @@ import java.util.Queue;
  * @author LuisEduardo
  */
 public class Bodega {
-    private int idbodega; //
-    private ArrayList<Repartidor> listaRepartidores;//
-    private Queue<Repartidor> colaRepartidores;//
-    private ArrayList<Usuario> listaEmpleados;
-    private ArrayList<Pedido> listaPedidos;//
-    private JefeBodega jefeBodega; //
-    private ArrayList<Producto> listaProductos;//
-    private String direccion;//
-    private DataBase db;//
+    private int idbodega; 
+    private List<Repartidor> listaRepartidores = new ArrayList<>();
+    private Queue<Repartidor> colaRepartidores;
+    private List<Usuario> listaEmpleados= new ArrayList<>();
+    private List<Pedido> listaPedidos= new ArrayList<>();
+    private JefeBodega jefeBodega; 
+    private List<Producto> listaProductos = new ArrayList<>();
+    private String direccion;
+    private DataBase db;
 
     public Bodega(DataBase db) {
         this.db = db;
@@ -48,7 +48,7 @@ public class Bodega {
         this.colaRepartidores = colaRepartidores;
     }
 
-    public ArrayList<Usuario> getListaEmpleados() {
+    public List<Usuario> getListaEmpleados() {
         return listaEmpleados;
     }
 
@@ -56,7 +56,7 @@ public class Bodega {
         this.listaEmpleados = listaEmpleados;
     }
 
-    public ArrayList<Pedido> getListaPedidos() {
+    public List<Pedido> getListaPedidos() {
         return listaPedidos;
     }
 
@@ -72,7 +72,7 @@ public class Bodega {
         this.jefeBodega = jefeBodega;
     }
 
-    public ArrayList<Producto> getListaProductos() {
+    public List<Producto> getListaProductos() {
         return listaProductos;
     }
 

@@ -6,7 +6,6 @@
 package Vistas;
 
 import Controlador.ControlStock;
-import Modelo.Pedido;
 import Modelo.Producto;
 import Modelo.User;
 import javafx.scene.Scene;
@@ -123,11 +122,7 @@ public class AdminV {
         
         });
         
-        btnmen.setOnMouseClicked((MouseEvent e)->{
-           st.setScene(menuAdmin(u,st,scp));
-        
-        });
-        
+        btnmen.setOnMouseClicked((MouseEvent e)-> st.setScene(menuAdmin(u,st,scp)));
         return sc;
     }
     public static Scene actualizarStock(User u,Stage st, Scene scp){
@@ -174,10 +169,7 @@ public class AdminV {
         
         });
         
-        btnmen.setOnMouseClicked((MouseEvent e)->{
-           st.setScene(menuAdmin(u,st,scp));
-        
-        });
+        btnmen.setOnMouseClicked((MouseEvent e)-> st.setScene(menuAdmin(u,st,scp)));
         
         return sc;
     }
@@ -225,10 +217,7 @@ public class AdminV {
         
         });
         
-        btnmen.setOnMouseClicked((MouseEvent e)->{
-           st.setScene(menuAdmin(u,st,scp));
-        
-        });
+        btnmen.setOnMouseClicked((MouseEvent e)-> st.setScene(menuAdmin(u,st,scp)));
         
         return sc;
     }
@@ -247,41 +236,38 @@ public class AdminV {
         vb.getChildren().addAll(lbtit,btncl,btnven,btnger,btnrep,btnjef,btnist,btnast,btnapr,btnmen);
         Scene sc=new Scene(vb,350,450);
         
-        btnmen.setOnMouseClicked((MouseEvent e)->{
-            st.setScene(scp);
-        });
+        btnmen.setOnMouseClicked((MouseEvent e)-> st.setScene(scp));
         
-        btncl.setOnMouseClicked((MouseEvent e)->{
-            InfoImplementacion();
-        });
+        btncl.setOnMouseClicked((MouseEvent e)->
+            InfoImplementacion()
+        );
         
-        btnven.setOnMouseClicked((MouseEvent e)->{
-            InfoImplementacion();
-        });
+        btnven.setOnMouseClicked((MouseEvent e)->
+            InfoImplementacion()
+        );
         
-        btnger.setOnMouseClicked((MouseEvent e)->{
-            InfoImplementacion();
-        });
+        btnger.setOnMouseClicked((MouseEvent e)->
+            InfoImplementacion());
         
-        btnrep.setOnMouseClicked((MouseEvent e)->{
-            InfoImplementacion();
-        });
+        btnrep.setOnMouseClicked((MouseEvent e)->
+            InfoImplementacion()
+        );
         
-        btnjef.setOnMouseClicked((MouseEvent e)->{
-            InfoImplementacion();
-        });
+        btnjef.setOnMouseClicked((MouseEvent e)->
+            InfoImplementacion()
+        );
         
-        btnist.setOnMouseClicked((MouseEvent e)->{
-            st.setScene(ingresarStock(u,st,scp));
-        });
+        btnist.setOnMouseClicked((MouseEvent e)->
+            st.setScene(ingresarStock(u,st,scp))
+        );
         
-        btnast.setOnMouseClicked((MouseEvent e)->{
-            st.setScene(actualizarStock(u, st, scp));
-        });
+        btnast.setOnMouseClicked((MouseEvent e)->
+            st.setScene(actualizarStock(u, st, scp))
+        );
         
-        btnapr.setOnMouseClicked((MouseEvent e)->{
-            st.setScene(actualizarPrecio(u,st,scp));
-        });
+        btnapr.setOnMouseClicked((MouseEvent e)->
+            st.setScene(actualizarPrecio(u,st,scp))
+        );
         return sc;
     }
 }

@@ -10,6 +10,7 @@ import Modelo.Gerente;
 import Modelo.Producto;
 import Modelo.Usuario;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -18,8 +19,8 @@ import java.util.ArrayList;
 public class Local {
     private int idlocal; //
     private String direccion;//
-    private ArrayList<Producto> listProducto;
-    private ArrayList<Usuario> listVendedores;
+    private List<Producto> listProducto=new ArrayList<>();
+    private List<Usuario> listVendedores = new ArrayList<>();
     private Gerente gerente;
     private Usuario administrador;
     private boolean isMatriz; //
@@ -57,13 +58,7 @@ public class Local {
     public String getDireccion() {
         return direccion;
     }
-    
-    public void cargarDatos(){
-        
-    }
-
-    
-    
+       
     public int getIdlocal() {
         return idlocal;
     }
@@ -72,7 +67,7 @@ public class Local {
         this.idlocal = idlocal;
     }
 
-    public ArrayList<Producto> getListProducto() {
+    public List<Producto> getListProducto() {
         return listProducto;
     }
 
@@ -80,7 +75,7 @@ public class Local {
         this.listProducto = listProducto;
     }
 
-    public ArrayList<Usuario> getListVendedores() {
+    public List<Usuario> getListVendedores() {
         return listVendedores;
     }
 

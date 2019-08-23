@@ -7,6 +7,7 @@ package Modelo;
 
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -15,7 +16,7 @@ import java.util.HashMap;
 public class Tramite {
     protected Cliente cliente;
     protected LocalDate fecha;
-    protected HashMap<Producto,Integer> listProducto;
+    protected Map<Producto,Integer> listProducto = new HashMap<>();
     protected DataBase db;
 
     public Tramite(Cliente cliente,  DataBase db) {
@@ -41,11 +42,11 @@ public class Tramite {
         this.fecha = fecha;
     }
 
-    public HashMap<Producto, Integer> getListProducto() {
+    public Map<Producto, Integer> getListProducto() {
         return listProducto;
     }
 
-    public void setListProducto(HashMap<Producto, Integer> listProducto) {
+    public void setListProducto(Map<Producto, Integer> listProducto) {
         this.listProducto = listProducto;
     }
 

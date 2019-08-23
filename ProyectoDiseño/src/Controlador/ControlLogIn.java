@@ -83,7 +83,7 @@ public class ControlLogIn {
         String sql = "{call obtenerVendedor(?,?)}";
         ResultSet rs = getUsuario(sql, usuario, contra);
         while (rs.next()) {
-            return new Usuario(usuario, contra, "Administrador", null, rs.getString(1), rs.getString(2), rs.getString(3));
+            return new Usuario(usuario, contra, "Vendedor", null, rs.getString(1), rs.getString(2), rs.getString(3));
             
         }
         return null;
@@ -93,7 +93,7 @@ public class ControlLogIn {
         String sql = "{call obtenerJefeBodega(?,?)}";
         ResultSet rs = getUsuario(sql, usuario, contra);
         while (rs.next()) {
-            return new Usuario(usuario, contra, "Administrador", null, rs.getString(1), rs.getString(2), rs.getString(3));
+            return new Usuario(usuario, contra, "JefeBodega", null, rs.getString(1), rs.getString(2), rs.getString(3));
             
         }
         return null;

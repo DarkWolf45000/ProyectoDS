@@ -9,6 +9,7 @@ import static Controlador.ControlLogIn.cn;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -22,7 +23,7 @@ public class Repartidor extends Persona{
         disponible=true;
     }
 
-    public static ArrayList<Repartidor> cargarDatos(DataBase db,int idBodega){
+    public static List<Repartidor> cargarDatos(DataBase db,int idBodega){
         ArrayList<Repartidor> listr=new ArrayList<>();
         try{
             String sql= "{call repartidor_bodega(?)}";

@@ -15,7 +15,7 @@ import java.sql.SQLException;
 
 public class BD implements DataBase {
 
-    public Connection c;
+    private static Connection c;
 
     //Se realiza metodo que retorna la Conexion
     public Connection getConexion() {
@@ -23,7 +23,7 @@ public class BD implements DataBase {
         //Se Realiza la conexion  
         try {
             Class.forName("com.mysql.jdbc.Driver"); //cambiar la ip dependiendo del contenedor
-            c = DriverManager.getConnection("jdbc:mysql://localHost:3306/DBProyecto", "root", "1234");
+            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBProyecto", "root", "root");
             //Verfificar que la conexion fue exitosa
             System.out.println("Conexion establecida");
 
