@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo;
 
 import Controlador.ControlLogIn;
 import Estrategy.Buscar;
-import static Controlador.ControlLogIn.cn;
 import Estrategy.BuscarCategoria;
 import Estrategy.BuscarDescripcion;
 import Estrategy.BuscarNombre;
@@ -21,15 +15,12 @@ import java.util.logging.Logger;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 
+
 /**
  *
  * @author LuisEduardo
  */
 public class Producto {
-
-    
-
-    
     private int idProducto;
     private String nombre;
     private String descripcion;
@@ -38,8 +29,8 @@ public class Producto {
     private String modelo;
     protected DataBase db;
     private static Buscar bq;
-    private TextField cantdeseada=new TextField();
-    private CheckBox isdeseado=new CheckBox();
+    private TextField cantdeseada;
+    private CheckBox isdeseado;
             
             
     public Producto(int idProducto, String descripcion, float precio, int cantDisp, String modelo) {
@@ -48,6 +39,9 @@ public class Producto {
         this.precio = precio;
         this.cantDisp = cantDisp;
         this.modelo = modelo;
+        cantdeseada = new TextField();
+        isdeseado=new CheckBox();
+        
     }
 
     public TextField getCantdeseada() {
@@ -137,7 +131,7 @@ public class Producto {
         ArrayList<Producto> listp=new ArrayList<>();
         try{
             String sql= "{call ObtenerProductosBodega(?)}";
-            CallableStatement cst=cn.prepareCall(sql);
+            CallableStatement cst=db.getC().prepareCall(sql);
             cst.setInt(1, idBodega);
             ResultSet rs = cst.executeQuery();
             while(rs.next()){

@@ -6,7 +6,6 @@ import Modelo.Pedido;
 import Modelo.Ruta;
 import Modelo.User;
 import Modelo.Usuario;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import javafx.scene.control.TextArea;
