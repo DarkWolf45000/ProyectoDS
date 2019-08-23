@@ -12,7 +12,6 @@ package modelo;
  * @author LuisEduardo
  */
 public class Venta extends Tramite{
-    private Factura factura;
     private Pagar pagar;
 
     public Venta(Cliente cliente,DataBase db) {
@@ -20,13 +19,7 @@ public class Venta extends Tramite{
         
     }
 
-    public Factura getFactura() {
-        return factura;
-    }
-
-    public void setFactura(Factura factura) {
-        this.factura = factura;
-    }
+    
 
     public Pagar getPagar() {
         return pagar;
