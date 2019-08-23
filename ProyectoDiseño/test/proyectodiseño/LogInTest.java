@@ -5,11 +5,11 @@
  */
 package proyectodiseño;
 
-import Controlador.ControlJefeBodega;
-import Modelo.Bodega;
-import Modelo.BD;
-import Modelo.Pedido;
-import Modelo.Producto;
+import controlador.ControlJefeBodega;
+import modelo.Bodega;
+import modelo.BD;
+import modelo.Pedido;
+import modelo.Producto;
 import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;
