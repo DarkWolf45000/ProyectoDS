@@ -8,10 +8,6 @@ package strategy;
 import controlador.ControlLogIn;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -20,25 +16,7 @@ import static org.junit.Assert.*;
  * @author LuisEduardo
  */
 public class BuscarCategoriaTest {
-    
-    public BuscarCategoriaTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
+   
 
     /**
      * Test of Buscarproducto method, of class BuscarCategoria.
@@ -46,7 +24,6 @@ public class BuscarCategoriaTest {
     //Se comprueba que se retorne productos al buscar usando la categoria correcta
     @Test
     public void testBuscarproducto() throws SQLException {
-        System.out.println("Buscarproducto Categoria");
         ControlLogIn cli=new ControlLogIn();
         String parametro = "Alimentos";
         BuscarCategoria instance = new BuscarCategoria();

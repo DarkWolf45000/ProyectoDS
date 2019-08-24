@@ -5,16 +5,8 @@
  */
 package controlador;
 
-import java.util.List;
-import javafx.scene.control.TextArea;
 import modelo.BD;
-import modelo.JefeBodega;
 import modelo.Pedido;
-import modelo.User;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -24,24 +16,7 @@ import static org.junit.Assert.*;
  */
 public class ControlJefeBodegaTest {
     
-    public ControlJefeBodegaTest() {
-    }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
    //Se espera que al consultar un pedido por su id, lo devuelva
     @Test

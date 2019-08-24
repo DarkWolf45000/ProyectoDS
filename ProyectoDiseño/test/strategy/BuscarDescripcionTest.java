@@ -8,10 +8,6 @@ package strategy;
 import controlador.ControlLogIn;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -21,24 +17,7 @@ import static org.junit.Assert.*;
  */
 public class BuscarDescripcionTest {
     
-    public BuscarDescripcionTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
+  
 
     /**
      * Test of Buscarproducto method, of class BuscarDescripcion.
@@ -46,7 +25,6 @@ public class BuscarDescripcionTest {
     //Se comprueba que regrese productos al enviar una descripcion
     @Test
     public void testBuscarproducto() throws SQLException {
-        System.out.println("Buscarproducto Descripcion");
         ControlLogIn cli=new ControlLogIn();
         String parametro = "Comestible dulce";
         BuscarDescripcion instance = new BuscarDescripcion();

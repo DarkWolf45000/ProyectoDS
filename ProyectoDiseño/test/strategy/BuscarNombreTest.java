@@ -8,10 +8,6 @@ package strategy;
 import controlador.ControlLogIn;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -20,25 +16,7 @@ import static org.junit.Assert.*;
  * @author LuisEduardo
  */
 public class BuscarNombreTest {
-    
-    public BuscarNombreTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
+ 
 
     /**
      * Test of Buscarproducto method, of class BuscarNombre.
@@ -46,7 +24,6 @@ public class BuscarNombreTest {
     //Se comprueba que retorne un producto al enviar un nombre
     @Test
     public void testBuscarproducto() throws SQLException {
-        System.out.println("Buscarproducto Nombre");
         ControlLogIn cli=new ControlLogIn();
         String parametro = "Aromatel";
         BuscarNombre instance = new BuscarNombre();

@@ -5,7 +5,6 @@
  */
 package modelo;
 
-import controlador.ControlJefeBodega;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;

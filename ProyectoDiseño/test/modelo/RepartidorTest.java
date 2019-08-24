@@ -5,11 +5,7 @@
  */
 package modelo;
 
-import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -18,30 +14,12 @@ import static org.junit.Assert.*;
  * @author LuisEduardo
  */
 public class RepartidorTest {
-    
-    public RepartidorTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
+  
+  
 
     //Se comprueba que retorne un repartidor al enviar la id correspondinte
     @Test
     public void testObtenerRepartidor() {
-        System.out.println("obtenerRepartidor");
         String idRepartidor = "0950950950";
         DataBase bdtest = new BD();
         bdtest.getConexion();
